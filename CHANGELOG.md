@@ -1,3 +1,10 @@
+# [1.1.0](https://github.com/timothycpoon/xdy-pf2e-workbench/compare/fv1.0.0...fv1.1.0) (2023-12-27)
+
+
+### Features
+
+* modify name generation ([24aee06](https://github.com/timothycpoon/xdy-pf2e-workbench/commit/24aee062c2c1e8740d79426d8a1cf7d77955c858))
+
 # [5.41.0](https://github.com/xdy/xdy-pf2e-workbench/compare/v5.40.6...v5.41.0) (2023-12-23)
 
 
