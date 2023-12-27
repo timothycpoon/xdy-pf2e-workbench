@@ -556,7 +556,7 @@
       },
       "npcMystifierUseAdjectiveTraits": {
         "hint": "Check to use adjectives",
-        "name": "ADJECTIVES SETTING TIMOTHY ONLY"
+        "name": "ADJECTIVES TIMOTHY ONLY"
       },
       "npcMystifierUseCreatureTypesTraits": {
         "hint": "Check to use creature type traits (see https://2e.aonprd.com/Traits.aspx) in the mystified name.",
