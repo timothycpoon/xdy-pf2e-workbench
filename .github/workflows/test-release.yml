@@ -9,7 +9,7 @@ on:
 jobs:
   release:
     # Only release on push to main on xdy/xdy-pf2e-workbench
-    if: github.event_name == 'push' && (github.ref == 'refs/heads/main') && github.repository == 'xdy/xdy-pf2e-workbench'
+    if: github.event_name == 'push' && (github.ref == 'refs/heads/main')
     runs-on: ubuntu-latest
 
     steps:
@@ -68,13 +68,13 @@ jobs:
 #          FVTT_MANIFEST_URL: https://github.com/${{github.repository}}/releases/download/${{github.event.release.tag_name}}/module.json
 #          FVTT_USE_NEW_PACKAGE_ADMINISTRATION_INTERFACE: true
 
-      # Publish the release to FoundryVTT's package repository.
-      - name: Publish Module to FoundryVTT Website
-        uses: Varriount/fvtt-autopublish@v2.0.1
-        with:
-          username: ${{ secrets.FOUNDRY_ADMIN_USERNAME }}
-          password: ${{ secrets.FOUNDRY_ADMIN_PASSWORD }}
-          module-id: "xdy-pf2e-workbench"
-          #manifest-url: https://github.com/${{ github.repository }}/releases/download/${{ env.RELEASE_NAME }}/module.json
-          manifest-url: https://github.com/xdy/xdy-pf2e-workbench/releases/latest/download/module.json
-          manifest-file: "static/module.json"
+      # # Publish the release to FoundryVTT's package repository.
+      # - name: Publish Module to FoundryVTT Website
+      #   uses: Varriount/fvtt-autopublish@v2.0.1
+      #   with:
+      #     username: ${{ secrets.FOUNDRY_ADMIN_USERNAME }}
+      #     password: ${{ secrets.FOUNDRY_ADMIN_PASSWORD }}
+      #     module-id: "xdy-pf2e-workbench"
+      #     #manifest-url: https://github.com/${{ github.repository }}/releases/download/${{ env.RELEASE_NAME }}/module.json
+      #     manifest-url: https://github.com/xdy/xdy-pf2e-workbench/releases/latest/download/module.json
+      #     manifest-file: "static/module.json"
