@@ -1,3 +1,10 @@
+# [1.2.0](https://github.com/timothycpoon/xdy-pf2e-workbench/compare/fv1.1.1...fv1.2.0) (2023-12-27)
+
+
+### Features
+
+* copium ([216e6d0](https://github.com/timothycpoon/xdy-pf2e-workbench/commit/216e6d0f94c209ac00405ed44bcc9b860910abfd))
+
 ## [1.1.1](https://github.com/timothycpoon/xdy-pf2e-workbench/compare/fv1.1.0...fv1.1.1) (2023-12-27)
 
 
