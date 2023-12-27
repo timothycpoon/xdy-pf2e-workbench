@@ -153,6 +153,13 @@ export class WorkbenchMystificationSettings extends SettingsMenuPF2eWorkbench {
                 default: false,
                 type: Boolean,
             },
+            npcMystifierUseAdjectiveTraits: {
+                name: `${MODULENAME}.SETTINGS.npcMystifierUseAdjectiveTraits.name`,
+                hint: `${MODULENAME}.SETTINGS.npcMystifierUseAdjectiveTraits.hint`,
+                scope: "world",
+                default: true,
+                type: Boolean,
+            },
             npcMystifierUseCreatureTypesTraits: {
                 name: `${MODULENAME}.SETTINGS.npcMystifierUseCreatureTypesTraits.name`,
                 hint: `${MODULENAME}.SETTINGS.npcMystifierUseCreatureTypesTraits.hint`,

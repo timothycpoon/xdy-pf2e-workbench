@@ -1,14 +1,11 @@
 export const AON_CREATURE_TYPES: string[] = [
     "aberration",
     "animal",
-    "astral",
     "beast",
     "celestial",
     "construct",
     "dragon",
-    "dream",
     "elemental",
-    "ethereal",
     "fey",
     "fiend",
     "fungus",
@@ -19,10 +16,35 @@ export const AON_CREATURE_TYPES: string[] = [
     "ooze",
     "petitioner",
     "plant",
-    "positive",
     "spirit",
-    "time",
+    "swarm",
+    "troop",
     "undead",
+];
+
+export const ADJECTIVE_CREATURE_TRAITS: string[] = [
+    "alchemical",
+    "amphibious",
+    "aquatic",
+    "clockwork",
+    "ethereal",
+    "incorporeal",
+    "summoned",
+    "holy",
+    "unholy",
+    "acid",
+    "cold",
+    "electricity",
+    "fire",
+    "force",
+    "sonic",
+    "vitality",
+    "void",
+    "air",
+    "earth",
+    "metal",
+    "water",
+    "wood"
 ];
 
 export const ELITE_WEAK: string[] = ["elite", "weak"];

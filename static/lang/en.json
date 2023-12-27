@@ -554,6 +554,10 @@
         "hint": "Check to use all 'creature traits' as defined in the pf2e system in the mystified name.",
         "name": "Use creature traits."
       },
+      "npcMystifierUseAdjectiveTraits": {
+        "hint": "Check to use adjectives",
+        "name": "ADJECTIVES TIMOTHY ONLY"
+      },
       "npcMystifierUseCreatureTypesTraits": {
         "hint": "Check to use creature type traits (see https://2e.aonprd.com/Traits.aspx) in the mystified name.",
         "name": "Use creature type traits"
