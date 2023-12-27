@@ -1,42 +1,31 @@
-## [30.0.1](https://github.com/timothycpoon/xdy-pf2e-workbench/compare/fv30.0.0...fv30.0.1) (2023-12-27)
-
-
-### Bug Fixes
-
-* last try ([01b2a3e](https://github.com/timothycpoon/xdy-pf2e-workbench/commit/01b2a3ee014e22324a56cb5b960cba5b59ea271b))
-
-# [1.2.0](https://github.com/timothycpoon/xdy-pf2e-workbench/compare/fv1.1.1...fv1.2.0) (2023-12-27)
-
-
-### Bug Fixes
-
-* change text ([1c9a309](https://github.com/timothycpoon/xdy-pf2e-workbench/commit/1c9a309d6baac0a18274451fa05cc1f5b4d3d4cd))
+# [5.43.0](https://github.com/xdy/xdy-pf2e-workbench/compare/v5.42.0...v5.43.0) (2023-12-27)
 
 
 ### Features
 
-* copium ([216e6d0](https://github.com/timothycpoon/xdy-pf2e-workbench/commit/216e6d0f94c209ac00405ed44bcc9b860910abfd))
+* Change private spell casting to have a dropdown with none, nonAllies, nonPartymembers and npcs as options for who should always cast privately. (Partymembers effectively can't cast privately as the spell is revealed if any partymember knows it.) ([fc0e5d5](https://github.com/xdy/xdy-pf2e-workbench/commit/fc0e5d502f15c245f64065d434e0440e767d4c65)), closes [#1068](https://github.com/xdy/xdy-pf2e-workbench/issues/1068)
 
-# [1.2.0](https://github.com/timothycpoon/xdy-pf2e-workbench/compare/fv1.1.1...fv1.2.0) (2023-12-27)
+# [5.42.0](https://github.com/xdy/xdy-pf2e-workbench/compare/v5.41.2...v5.42.0) (2023-12-27)
 
 
 ### Features
 
-* copium ([216e6d0](https://github.com/timothycpoon/xdy-pf2e-workbench/commit/216e6d0f94c209ac00405ed44bcc9b860910abfd))
+* BAM: Changed Climb, Force Open, Jump (Long), Lie, Request and Swim to use new style actions. Changed minimum and verified pf2e version to 5.11.5 ([a88d15f](https://github.com/xdy/xdy-pf2e-workbench/commit/a88d15fc83c2f9350ccfd32b98ace5b7c4319060))
 
-## [1.1.1](https://github.com/timothycpoon/xdy-pf2e-workbench/compare/fv1.1.0...fv1.1.1) (2023-12-27)
+## [5.41.2](https://github.com/xdy/xdy-pf2e-workbench/compare/v5.41.1...v5.41.2) (2023-12-27)
 
 
 ### Bug Fixes
 
-* release hopium ([04ecc10](https://github.com/timothycpoon/xdy-pf2e-workbench/commit/04ecc108f5139b85a5fe881eb7483fef9884b1a3))
+* Canceling attacks if targeting reminder option is set to do that should work again. ([6e2660a](https://github.com/xdy/xdy-pf2e-workbench/commit/6e2660ad9d4698702109648eda10e49c6c5fe5ea)), closes [#1175](https://github.com/xdy/xdy-pf2e-workbench/issues/1175)
 
-# [1.1.0](https://github.com/timothycpoon/xdy-pf2e-workbench/compare/fv1.0.0...fv1.1.0) (2023-12-27)
+## [5.41.1](https://github.com/xdy/xdy-pf2e-workbench/compare/v5.41.0...v5.41.1) (2023-12-27)
 
 
-### Features
+### Bug Fixes
 
-* modify name generation ([24aee06](https://github.com/timothycpoon/xdy-pf2e-workbench/commit/24aee062c2c1e8740d79426d8a1cf7d77955c858))
+* Better handling when dying is removed manually. ([c65f0cf](https://github.com/xdy/xdy-pf2e-workbench/commit/c65f0cfcff67be83296961496b0c006737307884)), closes [#1172](https://github.com/xdy/xdy-pf2e-workbench/issues/1172)
+* Keeping up with the Macro Faeries. ([a142b95](https://github.com/xdy/xdy-pf2e-workbench/commit/a142b958af8ed7cd264a05aab26f6038361d4645))
 
 # [5.41.0](https://github.com/xdy/xdy-pf2e-workbench/compare/v5.40.6...v5.41.0) (2023-12-23)
 

@@ -1,6 +1,7 @@
 import {
     foundryGetProperty,
     isActuallyDamageRoll,
+    isFirstGM,
     logDebug,
     logInfo,
     pf2eDeepClone,
@@ -63,24 +64,10 @@ export const preCreateChatMessageHook = (message: ChatMessagePF2e, data: any, _o
         proceed = reminderTargeting(message);
     }
 
-    if (String(game.settings.get(MODULENAME, "reminderCannotAttack")) === "cancelAttack") {
+    if (proceed && String(game.settings.get(MODULENAME, "reminderCannotAttack")) === "cancelAttack") {
         proceed = reminderCannotAttack(message, true);
     }
 
-    const { hasCastingId, nonNpcCasting, npcCastingAlways, npcCastingIfCtrl } = collectPrivateCastingValues(message);
-    if (
-        proceed &&
-        game.settings.get(MODULENAME, "castPrivateSpell") &&
-        hasCastingId &&
-        (npcCastingAlways || npcCastingIfCtrl || nonNpcCasting)
-    ) {
-        castPrivateSpell(data, message).then();
-    }
-
-    return proceed;
-};
-
-function collectPrivateCastingValues(message: ChatMessagePF2e) {
     const downkeys = game?.keyboard.downKeys;
 
     let ctrlHeld = ["ControlLeft", "ControlRight", "MetaLeft", "MetaRight", "Meta", "OsLeft", "OsRight"].some((key) =>
@@ -89,19 +76,43 @@ function collectPrivateCastingValues(message: ChatMessagePF2e) {
     if (ctrlHeld === undefined) {
         ctrlHeld = game?.keyboard?.isModifierActive(KeyboardManager.MODIFIER_KEYS.CONTROL);
     }
-    const hasCastingId = message.flags.pf2e?.casting?.id;
-    const settingNpcAlways = game.settings.get(MODULENAME, "castPrivateSpellAlwaysForNPC");
-    const nonNpcCasting = ctrlHeld && message.actor?.type !== NPC_TYPE;
-    const npcCastingAlways = !ctrlHeld && message.actor?.type === NPC_TYPE && settingNpcAlways;
-    const npcCastingIfCtrl = ctrlHeld && message.actor?.type === NPC_TYPE && !settingNpcAlways;
-    return { hasCastingId, nonNpcCasting, npcCastingAlways, npcCastingIfCtrl };
-}
+    const isNpc = message.actor?.type === NPC_TYPE;
+    const inParty = game.actors?.party?.members?.some((member) => member.id === message.actor?.id);
+    const isAlly = message.actor?.alliance === "party";
+    const alwaysNpc = game.settings.get(MODULENAME, "castPrivateSpellAlwaysFor") === "npcs";
+    const alwaysNonAlly = game.settings.get(MODULENAME, "castPrivateSpellAlwaysFor") === "nonAllies";
+    const alwaysNonParty = game.settings.get(MODULENAME, "castPrivateSpellAlwaysFor") === "nonPartymembers";
 
-export function handleDying(dyingCounter: number, originalDyingCounter: number, actor) {
+    const privateBecauseNpc = isNpc && alwaysNpc;
+    const privateBecauseNotAlly = !isAlly && alwaysNonAlly;
+    const privateBecauseNotInParty = !inParty && alwaysNonParty;
+    const privateForRelevantActor = privateBecauseNpc || privateBecauseNotAlly || privateBecauseNotInParty;
+    const flippedByCtrl = (ctrlHeld && !privateForRelevantActor) || (!ctrlHeld && privateForRelevantActor); // ctrlHeld ? !privateForRelevantActor : privateForRelevantActor;
+    // if (ctrlHeld && !privateForRelevantActor) {
+    //     flippedByCtrl = !privateForRelevantActor;
+    // }
+    if (
+        proceed &&
+        game.settings.get(MODULENAME, "castPrivateSpell") &&
+        message.flags.pf2e?.casting?.id &&
+        !inParty &&
+        flippedByCtrl
+    ) {
+        castPrivateSpell(data, message).then();
+    }
+
+    return proceed;
+};
+
+export function handleDying(
+    dyingCounter: number,
+    originalDyingCounter: number,
+    actor,
+    isDefeated: any = actor.combatant?.defeated,
+) {
     // Can't await, so do the math.
-    const defeated = actor.combatant?.defeated;
-    const shouldDie = originalDyingCounter + dyingCounter >= actor.system.attributes.dying.max && !defeated;
-    const shouldBecomeDying = originalDyingCounter + dyingCounter > 0 && !defeated;
+    const shouldDie = originalDyingCounter + dyingCounter >= actor.system.attributes.dying.max && !isDefeated;
+    const shouldBecomeDying = originalDyingCounter + dyingCounter > 0 && !isDefeated;
     if (shouldDie) {
         actor.combatant?.toggleDefeated().then(() => {
             // Dead, not dying, so clear the flag.
@@ -329,6 +340,10 @@ export async function createItemHook(item: ItemPF2e, _options: {}, _id: any) {
 export async function updateItemHook(_item: ItemPF2e, _update: any) {}
 
 export async function deleteItemHook(item: ItemPF2e, _options: {}) {
+    if (isFirstGM() && item.slug === "dying" && item.parent) {
+        handleDying(0, 0, item.parent, false);
+    }
+
     if (
         game.settings.get(MODULENAME, "giveWoundedWhenDyingRemoved") ||
         game.settings.get(MODULENAME, "giveUnconsciousIfDyingRemovedAt0HP")
