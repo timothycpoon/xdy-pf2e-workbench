@@ -1,3 +1,10 @@
+## [30.0.1](https://github.com/timothycpoon/xdy-pf2e-workbench/compare/fv30.0.0...fv30.0.1) (2023-12-27)
+
+
+### Bug Fixes
+
+* last try ([01b2a3e](https://github.com/timothycpoon/xdy-pf2e-workbench/commit/01b2a3ee014e22324a56cb5b960cba5b59ea271b))
+
 # [1.2.0](https://github.com/timothycpoon/xdy-pf2e-workbench/compare/fv1.1.1...fv1.2.0) (2023-12-27)
 
 
