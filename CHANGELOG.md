@@ -1,3 +1,10 @@
+## [1.1.1](https://github.com/timothycpoon/xdy-pf2e-workbench/compare/fv1.1.0...fv1.1.1) (2023-12-27)
+
+
+### Bug Fixes
+
+* release hopium ([04ecc10](https://github.com/timothycpoon/xdy-pf2e-workbench/commit/04ecc108f5139b85a5fe881eb7483fef9884b1a3))
+
 # [1.1.0](https://github.com/timothycpoon/xdy-pf2e-workbench/compare/fv1.0.0...fv1.1.0) (2023-12-27)
 
 
