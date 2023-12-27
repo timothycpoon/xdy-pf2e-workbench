@@ -1,6 +1,18 @@
 # [1.2.0](https://github.com/timothycpoon/xdy-pf2e-workbench/compare/fv1.1.1...fv1.2.0) (2023-12-27)
 
 
+### Bug Fixes
+
+* change text ([1c9a309](https://github.com/timothycpoon/xdy-pf2e-workbench/commit/1c9a309d6baac0a18274451fa05cc1f5b4d3d4cd))
+
+
+### Features
+
+* copium ([216e6d0](https://github.com/timothycpoon/xdy-pf2e-workbench/commit/216e6d0f94c209ac00405ed44bcc9b860910abfd))
+
+# [1.2.0](https://github.com/timothycpoon/xdy-pf2e-workbench/compare/fv1.1.1...fv1.2.0) (2023-12-27)
+
+
 ### Features
 
 * copium ([216e6d0](https://github.com/timothycpoon/xdy-pf2e-workbench/commit/216e6d0f94c209ac00405ed44bcc9b860910abfd))
