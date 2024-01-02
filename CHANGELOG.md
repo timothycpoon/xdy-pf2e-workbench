@@ -1,3 +1,16 @@
+# [30.2.0](https://github.com/timothycpoon/xdy-pf2e-workbench/compare/fv30.1.1...fv30.2.0) (2024-01-02)
+
+
+### Bug Fixes
+
+* Autorolled damage now includes more (possibly all?) of the flags and roll options it should have. ([7d9030c](https://github.com/timothycpoon/xdy-pf2e-workbench/commit/7d9030c84f6b80cc8666e01ca8ac3891ba529928))
+
+
+### Features
+
+* BAM: For Treat Wounds, when not showing untrained actions, handle the ability of Chirurgeons to use Crafting instead. ([691271c](https://github.com/timothycpoon/xdy-pf2e-workbench/commit/691271c0cea8713454b3683e37b3d7e5df2b8e30))
+* Support autorolling damage for Kineticist Elemental Blasts. ([71a1f90](https://github.com/timothycpoon/xdy-pf2e-workbench/commit/71a1f90278a418f13feba665fcb146884c9893b3))
+
 # [5.45.0](https://github.com/xdy/xdy-pf2e-workbench/compare/v5.44.0...v5.45.0) (2024-01-02)
 
 
