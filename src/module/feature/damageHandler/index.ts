@@ -1,6 +1,11 @@
 import { MODULENAME } from "../../xdy-pf2e-workbench.js";
 import { ActorFlagsPF2e } from "@actor/data/base.js";
-import { degreeOfSuccessWithRerollHandling, isActuallyDamageRoll, shouldIHandleThisMessage } from "../../utils.ts";
+import {
+    degreeOfSuccessWithRerollHandling,
+    isActuallyDamageRoll,
+    objectHasKey,
+    shouldIHandleThisMessage,
+} from "../../utils.ts";
 import { handleDying } from "../../hooks.js";
 import { ChatMessagePF2e } from "@module/chat-message/document.js";
 
@@ -76,7 +81,7 @@ export async function autoRollDamage(message: ChatMessagePF2e) {
             const actor = messageToken?.actor ? messageToken?.actor : game.actors?.get(<string>message.speaker.actor);
             const rollType = flags.context?.type;
 
-            const origin: any = originUuid ? await fromUuid(originUuid) : null;
+            const origin: any = originUuid ? fromUuidSync(originUuid) : null;
             const rollForNonSpellAttack = rollType === "attack-roll" && autoRollDamageForStrike;
 
             const isSaveSpell = origin?.system?.defense?.save ?? false;
@@ -98,13 +103,16 @@ export async function autoRollDamage(message: ChatMessagePF2e) {
                 rollForNonAttackSpell &&
                 (autoRollDamageForSpellWhenNotAnAttack === "nonSaveSpell" ||
                     autoRollDamageForSpellWhenNotAnAttack === "anySpell");
-            console.log(rollForNonAttackSaveSpell + " " + rollForNonAttackNonSaveSpell);
             const rollForAttackSpell =
                 origin?.traits?.has("attack") &&
                 autoRollDamageForSpellAttack &&
                 (Number.isInteger(+(<any>message.item)?.system?.time?.value) ?? true);
             const degreeOfSuccess = degreeOfSuccessWithRerollHandling(message);
-            if (actor && (rollForNonAttackSpell || rollForNonSpellAttack || rollForAttackSpell)) {
+            if (
+                degreeOfSuccess.toLowerCase().includes("success") &&
+                actor &&
+                (rollForNonAttackSpell || rollForNonSpellAttack || rollForAttackSpell)
+            ) {
                 if (
                     rollForNonAttackSaveSpell ||
                     rollForNonAttackNonSaveSpell ||
@@ -180,7 +188,23 @@ export async function autoRollDamage(message: ChatMessagePF2e) {
                         }
                     }
                 } else if (rollForNonSpellAttack) {
-                    const rollOptions = actor?.getRollOptions(["all", "damage-roll"]);
+                    // TODO Clean up this mess.
+                    const options = actor?.getRollOptions(["all", "damage-roll"]);
+                    const attackOption = options.find((option) => option.match(/(.*)-attack/));
+                    const damageOption = attackOption?.replace("-attack", "-damage");
+                    if (damageOption) {
+                        options.push(damageOption);
+                    }
+                    const checkContext = message.flags.pf2e.context ?? null;
+
+                    const mapIncreases =
+                        checkContext &&
+                        "mapIncreases" in checkContext &&
+                        [0, 1, 2].includes(<number>checkContext.mapIncreases)
+                            ? checkContext.mapIncreases
+                            : null;
+                    const altUsage = checkContext && "altUsage" in checkContext ? checkContext.altUsage : null;
+                    const target = message.target?.token?.object ?? null;
                     const actions = actor?.system?.actions;
                     if (actions && actions.length > 0) {
                         const rollDamage = await noOrSuccessfulFlatcheck(message); // Can't be inlined
@@ -189,10 +213,37 @@ export async function autoRollDamage(message: ChatMessagePF2e) {
                             if (toRoll) {
                                 if (toRoll.type === "strike") {
                                     // TODO Handle other things than strikes
-                                    if (degreeOfSuccess === "success") {
-                                        toRoll?.damage({ options: rollOptions });
-                                    } else if (degreeOfSuccess === "criticalSuccess") {
-                                        toRoll?.critical({ options: rollOptions });
+                                    const method = degreeOfSuccess === "success" ? "damage" : "critical";
+                                    toRoll[method]?.({
+                                        event,
+                                        altUsage,
+                                        mapIncreases,
+                                        checkContext,
+                                        target,
+                                        options,
+                                    });
+                                }
+                            } else {
+                                const roll = message.rolls.find((r) => r.options?.action === "elemental-blast");
+                                if (roll && actor.isOfType("character")) {
+                                    const identifier = <string>roll?.options.identifier;
+                                    const [element, damageType, meleeOrRanged, actionCost]: (string | undefined)[] =
+                                        identifier?.split(".") ?? [];
+
+                                    if (
+                                        objectHasKey(CONFIG.PF2E.elementTraits, element) &&
+                                        objectHasKey(CONFIG.PF2E.damageTypes, damageType)
+                                    ) {
+                                        const params: any = {
+                                            element,
+                                            damageType,
+                                            melee: meleeOrRanged === "melee",
+                                            actionCost: Number(actionCost) || 1,
+                                            checkContext,
+                                            outcome: degreeOfSuccess,
+                                            event,
+                                        };
+                                        await new game.pf2e.ElementalBlast(actor).damage(params);
                                     }
                                 }
                             }

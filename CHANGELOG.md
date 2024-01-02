@@ -1,24 +1,28 @@
-## [30.1.1](https://github.com/timothycpoon/xdy-pf2e-workbench/compare/fv30.1.0...fv30.1.1) (2023-12-30)
-
-
-### Bug Fixes
-
-* As per PC1 page 214 shields are normally strapped, so, change the dropping held items on becoming unconscious feature so that shields and the items attached to them are not dropped, instead they're just set to not be held in any hands (i.e. worn.) ([44fe01d](https://github.com/timothycpoon/xdy-pf2e-workbench/commit/44fe01d08bb8850e3b4acab2ab24162dfa6ce600)), closes [#1079](https://github.com/timothycpoon/xdy-pf2e-workbench/issues/1079)
-
-# [30.1.0](https://github.com/timothycpoon/xdy-pf2e-workbench/compare/fv30.0.1...fv30.1.0) (2023-12-27)
-
-
-### Bug Fixes
-
-* Better handling when dying is removed manually. ([c65f0cf](https://github.com/timothycpoon/xdy-pf2e-workbench/commit/c65f0cfcff67be83296961496b0c006737307884)), closes [#1172](https://github.com/timothycpoon/xdy-pf2e-workbench/issues/1172)
-* Canceling attacks if targeting reminder option is set to do that should work again. ([6e2660a](https://github.com/timothycpoon/xdy-pf2e-workbench/commit/6e2660ad9d4698702109648eda10e49c6c5fe5ea)), closes [#1175](https://github.com/timothycpoon/xdy-pf2e-workbench/issues/1175)
-* Keeping up with the Macro Faeries. ([a142b95](https://github.com/timothycpoon/xdy-pf2e-workbench/commit/a142b958af8ed7cd264a05aab26f6038361d4645))
+# [5.45.0](https://github.com/xdy/xdy-pf2e-workbench/compare/v5.44.0...v5.45.0) (2024-01-02)
 
 
 ### Features
 
-* BAM: Changed Climb, Force Open, Jump (Long), Lie, Request and Swim to use new style actions. Changed minimum and verified pf2e version to 5.11.5 ([a88d15f](https://github.com/timothycpoon/xdy-pf2e-workbench/commit/a88d15fc83c2f9350ccfd32b98ace5b7c4319060))
-* Change private spell casting to have a dropdown with none, nonAllies, nonPartymembers and npcs as options for who should always cast privately. (Partymembers effectively can't cast privately as the spell is revealed if any partymember knows it.) ([fc0e5d5](https://github.com/timothycpoon/xdy-pf2e-workbench/commit/fc0e5d502f15c245f64065d434e0440e767d4c65)), closes [#1068](https://github.com/timothycpoon/xdy-pf2e-workbench/issues/1068)
+* Support autorolling damage for Kineticist Elemental Blasts. ([71a1f90](https://github.com/xdy/xdy-pf2e-workbench/commit/71a1f90278a418f13feba665fcb146884c9893b3))
+
+# [5.44.0](https://github.com/xdy/xdy-pf2e-workbench/compare/v5.43.1...v5.44.0) (2024-01-02)
+
+
+### Bug Fixes
+
+* Autorolled damage now includes more (possibly all?) of the flags and roll options it should have. ([7d9030c](https://github.com/xdy/xdy-pf2e-workbench/commit/7d9030c84f6b80cc8666e01ca8ac3891ba529928))
+
+
+### Features
+
+* BAM: For Treat Wounds, when not showing untrained actions, handle the ability of Chirurgeons to use Crafting instead. ([691271c](https://github.com/xdy/xdy-pf2e-workbench/commit/691271c0cea8713454b3683e37b3d7e5df2b8e30))
+
+## [5.43.1](https://github.com/xdy/xdy-pf2e-workbench/compare/v5.43.0...v5.43.1) (2023-12-27)
+
+
+### Bug Fixes
+
+* As per PC1 page 214 shields are normally strapped, so, change the dropping held items on becoming unconscious feature so that shields and the items attached to them are not dropped, instead they're just set to not be held in any hands (i.e. worn.) ([44fe01d](https://github.com/xdy/xdy-pf2e-workbench/commit/44fe01d08bb8850e3b4acab2ab24162dfa6ce600)), closes [#1079](https://github.com/xdy/xdy-pf2e-workbench/issues/1079)
 
 # [5.43.0](https://github.com/xdy/xdy-pf2e-workbench/compare/v5.42.0...v5.43.0) (2023-12-27)
 
