@@ -1,15 +1,131 @@
-# [30.2.0](https://github.com/timothycpoon/xdy-pf2e-workbench/compare/fv30.1.1...fv30.2.0) (2024-01-02)
+## [5.46.2](https://github.com/xdy/xdy-pf2e-workbench/compare/v5.46.1...v5.46.2) (2024-01-07)
 
 
 ### Bug Fixes
 
-* Autorolled damage now includes more (possibly all?) of the flags and roll options it should have. ([7d9030c](https://github.com/timothycpoon/xdy-pf2e-workbench/commit/7d9030c84f6b80cc8666e01ca8ac3891ba529928))
+* BAM: Improved handling of attack, downtime and exploration traits. ([e891354](https://github.com/xdy/xdy-pf2e-workbench/commit/e89135478cf14f86364930a88510e9be2d3c6541)), closes [#1112](https://github.com/xdy/xdy-pf2e-workbench/issues/1112)
+
+## [5.46.1](https://github.com/xdy/xdy-pf2e-workbench/compare/v5.46.0...v5.46.1) (2024-01-07)
+
+
+### Bug Fixes
+
+* BAM: Added "Create a Diversion - Distracting Words". Changed Administer First Aid, Create A Diversion, Decipher Writing, Performance, Subsist to use new style actions. Added i18n for Reposition. Cleaned up the code. ([2a2ab48](https://github.com/xdy/xdy-pf2e-workbench/commit/2a2ab487563942de41ee95abbd3bf7acc31278ec)), closes [#1195](https://github.com/xdy/xdy-pf2e-workbench/issues/1195)
+
+# [5.46.0](https://github.com/xdy/xdy-pf2e-workbench/compare/v5.45.14...v5.46.0) (2024-01-07)
+
+
+### Bug Fixes
+
+* BAM: Use new-style actions for Disarm, Feint, Gather Information, Grapple, Impersonate, Jump (High), Make an Impression and Shove. ([cc7a526](https://github.com/xdy/xdy-pf2e-workbench/commit/cc7a526db41c0efe35c356ff6326ae656c2b9559))
+* When handling nonlethal damage, check rollOption instead of item trait. ([dfd9597](https://github.com/xdy/xdy-pf2e-workbench/commit/dfd95977cc134e35cd4e9a50dacb1da1d726ed6c))
 
 
 ### Features
 
-* BAM: For Treat Wounds, when not showing untrained actions, handle the ability of Chirurgeons to use Crafting instead. ([691271c](https://github.com/timothycpoon/xdy-pf2e-workbench/commit/691271c0cea8713454b3683e37b3d7e5df2b8e30))
-* Support autorolling damage for Kineticist Elemental Blasts. ([71a1f90](https://github.com/timothycpoon/xdy-pf2e-workbench/commit/71a1f90278a418f13feba665fcb146884c9893b3))
+* Update types, remove use of deprecated methods. Set minimum and verified pf2e to 5.12.0 ([bfe644c](https://github.com/xdy/xdy-pf2e-workbench/commit/bfe644cad0fdc87cec838ebaf1192dec20ef8105)), closes [#1194](https://github.com/xdy/xdy-pf2e-workbench/issues/1194)
+
+## [5.45.14](https://github.com/xdy/xdy-pf2e-workbench/compare/v5.45.13...v5.45.14) (2024-01-06)
+
+
+### Bug Fixes
+
+* Stupid typos are stupid... ([cfbd20e](https://github.com/xdy/xdy-pf2e-workbench/commit/cfbd20e92af0a31c00c0146cfb147d75a141be4c))
+
+## [5.45.13](https://github.com/xdy/xdy-pf2e-workbench/compare/v5.45.12...v5.45.13) (2024-01-06)
+
+
+### Bug Fixes
+
+* Twice more unto the breach... ([15d5343](https://github.com/xdy/xdy-pf2e-workbench/commit/15d5343af970dd3514689fa4bbe8abd65053d800))
+
+## [5.45.12](https://github.com/xdy/xdy-pf2e-workbench/compare/v5.45.11...v5.45.12) (2024-01-06)
+
+
+### Bug Fixes
+
+* Once more unto the breach... ([f85c013](https://github.com/xdy/xdy-pf2e-workbench/commit/f85c013dcb7d8872396f855b1f55e746898f67bc))
+
+## [5.45.11](https://github.com/xdy/xdy-pf2e-workbench/compare/v5.45.10...v5.45.11) (2024-01-06)
+
+
+### Bug Fixes
+
+* Overcomplicating things... ([1f44986](https://github.com/xdy/xdy-pf2e-workbench/commit/1f4498617edafc846546089237c738112d6a3878))
+
+## [5.45.10](https://github.com/xdy/xdy-pf2e-workbench/compare/v5.45.9...v5.45.10) (2024-01-06)
+
+
+### Bug Fixes
+
+* Deploy problems part infinity ([8114d54](https://github.com/xdy/xdy-pf2e-workbench/commit/8114d543e2ea660812165eaa970bdb6f41cc8bbd))
+
+## [5.45.9](https://github.com/xdy/xdy-pf2e-workbench/compare/v5.45.8...v5.45.9) (2024-01-06)
+
+
+### Bug Fixes
+
+* I don't like yaml formatting. :( ([acd9522](https://github.com/xdy/xdy-pf2e-workbench/commit/acd95225e596293aae41bd90dd2c505a41f1e4fe))
+
+## [5.45.8](https://github.com/xdy/xdy-pf2e-workbench/compare/v5.45.7...v5.45.8) (2024-01-06)
+
+
+### Bug Fixes
+
+* Like this then? ([8b5cc04](https://github.com/xdy/xdy-pf2e-workbench/commit/8b5cc044bbf89623dd355d1f7af1577cf06b4bb2))
+* Or, like this? ([9592ec2](https://github.com/xdy/xdy-pf2e-workbench/commit/9592ec23c59f05b9ee6ac10a0ca6a5b7c13d4859))
+* Script the version? ([607c5d9](https://github.com/xdy/xdy-pf2e-workbench/commit/607c5d9244ce391d36811c2c15fc1abf99eee55c))
+* Use the github variable ([0f2cbee](https://github.com/xdy/xdy-pf2e-workbench/commit/0f2cbee81f2d74428debba2b8c2ce0ae2c4beae1))
+
+## [5.45.7](https://github.com/xdy/xdy-pf2e-workbench/compare/v5.45.6...v5.45.7) (2024-01-06)
+
+
+### Bug Fixes
+
+* Define ref-name ([064b87e](https://github.com/xdy/xdy-pf2e-workbench/commit/064b87e982302806abb60fec6ed76259370c5ddc))
+* Format yaml ([d48f98b](https://github.com/xdy/xdy-pf2e-workbench/commit/d48f98bafc7a6ef5b86a4715395b093603ce8a17))
+
+## [5.45.6](https://github.com/xdy/xdy-pf2e-workbench/compare/v5.45.5...v5.45.6) (2024-01-06)
+
+
+### Bug Fixes
+
+* Typo ([c93b43f](https://github.com/xdy/xdy-pf2e-workbench/commit/c93b43f1538836be234022998576d2bebec08e34))
+
+## [5.45.5](https://github.com/xdy/xdy-pf2e-workbench/compare/v5.45.4...v5.45.5) (2024-01-06)
+
+
+### Bug Fixes
+
+* Try curl ([3da835a](https://github.com/xdy/xdy-pf2e-workbench/commit/3da835a52bc6b40faa9f6be08609bf799f48ad64))
+
+## [5.45.4](https://github.com/xdy/xdy-pf2e-workbench/compare/v5.45.3...v5.45.4) (2024-01-06)
+
+
+### Bug Fixes
+
+* Yet another try ([3399962](https://github.com/xdy/xdy-pf2e-workbench/commit/3399962d0ba49e706a80113aa0a397c0ed10b929))
+
+## [5.45.3](https://github.com/xdy/xdy-pf2e-workbench/compare/v5.45.2...v5.45.3) (2024-01-06)
+
+
+### Bug Fixes
+
+* Another try ([61e6be3](https://github.com/xdy/xdy-pf2e-workbench/commit/61e6be3cb627e4735d319fe9844895f1008ca824))
+
+## [5.45.2](https://github.com/xdy/xdy-pf2e-workbench/compare/v5.45.1...v5.45.2) (2024-01-06)
+
+
+### Bug Fixes
+
+* Another try at using ghost's foundry-publish ([939238d](https://github.com/xdy/xdy-pf2e-workbench/commit/939238de889eef36f72aed8d62bf8eabca5e0ebb))
+
+## [5.45.1](https://github.com/xdy/xdy-pf2e-workbench/compare/v5.45.0...v5.45.1) (2024-01-03)
+
+
+### Bug Fixes
+
+* Changed the option "Characters automatically drop held items on becoming unconscious." so that items with the trait "free-hand" (e.g. gauntlets) are treated like strapped shields, e.g. they go from held to worn instead of being dropped. ([54777d5](https://github.com/xdy/xdy-pf2e-workbench/commit/54777d57d2232d3cd2cb1f11b56709695c724997)), closes [#1189](https://github.com/xdy/xdy-pf2e-workbench/issues/1189)
 
 # [5.45.0](https://github.com/xdy/xdy-pf2e-workbench/compare/v5.44.0...v5.45.0) (2024-01-02)
 

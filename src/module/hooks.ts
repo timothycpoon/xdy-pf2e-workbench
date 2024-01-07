@@ -1,19 +1,7 @@
-import {
-    foundryGetProperty,
-    isActuallyDamageRoll,
-    isFirstGM,
-    logDebug,
-    logInfo,
-    pf2eDeepClone,
-    pf2eMergeObject,
-    pf2eSetProperty,
-    shouldIHandleThis,
-} from "./utils.js";
-import { ActorPF2e } from "@actor";
-import { ActorSystemData } from "@actor/data/base.js";
+import { isActuallyDamageRoll, isFirstGM, logDebug, logInfo, shouldIHandleThis } from "./utils.js";
+import { ActorPF2e, CreaturePF2e } from "@actor";
 import { TokenDocumentPF2e } from "@scene";
 import { CHARACTER_TYPE, MODULENAME, NPC_TYPE } from "./xdy-pf2e-workbench.js";
-import { ActorSheetPF2e } from "@actor/sheet/base.js";
 import { UserPF2e } from "@module/user/index.js";
 import {
     actionsReminder,
@@ -55,9 +43,10 @@ import { ItemPF2e } from "@item/base/document.js";
 import { CombatantPF2e, EncounterPF2e } from "@module/encounter/index.js";
 import { moveOnZeroHP } from "./feature/initiativeHandler/index.js";
 import { ChatMessagePF2e } from "@module/chat-message/document.js";
-import { CreaturePF2e } from "@actor/creature/document.js";
 import { CheckRoll } from "@module/system/check/roll.js";
 import { PhysicalItemPF2e } from "@item/physical/document.js";
+import { ActorSystemData } from "@actor/data/base.js";
+import { ActorSheetPF2e } from "@actor/sheet/base.js";
 
 export const preCreateChatMessageHook = (message: ChatMessagePF2e, data: any, _options, _user: UserPF2e) => {
     let proceed = true;
@@ -306,7 +295,8 @@ function dropHeldItemsOnBecomingUnconscious(actor) {
     const items = <PhysicalItemPF2e[]>actor.items.filter((i) => i.isHeld);
     if (items.length > 0) {
         for (const item of items) {
-            if (item.type === "shield" || item.traits.has("attached-to-shield")) {
+            if (item.traits.has("free-hand") || item.type === "shield" || item.traits.has("attached-to-shield")) {
+                // Presumed to strapped to an arm/worn on a hand, so just unreadied instead of dropped
                 actor.adjustCarryType(item, { carryType: "worn", handsHeld: 0, inSlot: false });
             } else {
                 actor.adjustCarryType(item, { carryType: "dropped", handsHeld: 0, inSlot: false });
@@ -388,7 +378,7 @@ export function renderTokenHUDHook(_app: TokenDocumentPF2e, html: JQuery, data: 
 }
 
 export async function preUpdateActorHook(actor: CreaturePF2e, update: Record<string, string>) {
-    const updateHp = foundryGetProperty(update, "system.attributes.hp.value");
+    const updateHp = fu.getProperty(update, "system.attributes.hp.value");
 
     // All these are only relevant if hp has changed (it's undefined otherwise)
     if (typeof updateHp === "number") {
@@ -412,7 +402,7 @@ export async function preUpdateActorHook(actor: CreaturePF2e, update: Record<str
                 (String(game.settings.get(MODULENAME, "enableAutomaticMove")) === "reaching0HP" &&
                     [CHARACTER_TYPE, NPC_TYPE].includes(actor.type)));
         if (!String(game.settings.get(MODULENAME, "autoGainDyingAtZeroHP")).startsWith("no")) {
-            handleDyingOnZeroHP(actor, pf2eDeepClone(update), currentActorHp, updateHp).then((hpRaisedAbove0) => {
+            handleDyingOnZeroHP(actor, fu.deepClone(update), currentActorHp, updateHp).then((hpRaisedAbove0) => {
                 logDebug("Workbench increaseDyingOnZeroHP complete");
                 if (hpRaisedAbove0) {
                     if (!String(game.settings.get(MODULENAME, "autoRemoveDyingAtGreaterThanZeroHP")).startsWith("no")) {
@@ -466,7 +456,7 @@ export async function preUpdateActorHook(actor: CreaturePF2e, update: Record<str
 
 export function preUpdateTokenHook(_document, update, options, ..._args) {
     if (game.settings.get(MODULENAME, "tokenAnimation") && (update.x || update.y)) {
-        pf2eSetProperty(options, "animation", {
+        fu.setProperty(options, "animation", {
             movementSpeed: game.settings.get(MODULENAME, "tokenAnimationSpeed"),
         });
     }
@@ -551,7 +541,7 @@ export async function pf2eSystemReadyHook() {
                     }
 
                     patchData["system"]["traits"]["value"].push("hb_workbenched");
-                    const object = pf2eMergeObject(original, patchData);
+                    const object = fu.mergeObject(original, patchData);
                     const unflatten1 = unflatten(object);
                     await document.update(unflatten1);
                 } else if (patch.action === "unlock") {
