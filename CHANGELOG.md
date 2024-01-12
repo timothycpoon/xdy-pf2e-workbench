@@ -1,3 +1,10 @@
+## [30.3.2](https://github.com/timothycpoon/xdy-pf2e-workbench/compare/fv30.3.1...fv30.3.2) (2024-01-12)
+
+
+### Bug Fixes
+
+* Remove sustained from workbench auras. ([b5f1554](https://github.com/timothycpoon/xdy-pf2e-workbench/commit/b5f155407adee5994e226312e3024c0c251e9875)), closes [#1197](https://github.com/timothycpoon/xdy-pf2e-workbench/issues/1197)
+
 ## [5.46.7](https://github.com/xdy/xdy-pf2e-workbench/compare/v5.46.6...v5.46.7) (2024-01-11)
 
 
