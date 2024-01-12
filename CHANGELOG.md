@@ -1,12 +1,9 @@
-## [30.3.1](https://github.com/timothycpoon/xdy-pf2e-workbench/compare/fv30.3.0...fv30.3.1) (2024-01-09)
+## [5.46.7](https://github.com/xdy/xdy-pf2e-workbench/compare/v5.46.6...v5.46.7) (2024-01-11)
 
 
 ### Bug Fixes
 
-* Another go at fixing dying automation. ([0bfc1ed](https://github.com/timothycpoon/xdy-pf2e-workbench/commit/0bfc1ed320f287ff577709949300660488a90a86))
-* BAM: Support sending shift to action macros again. ([951f554](https://github.com/timothycpoon/xdy-pf2e-workbench/commit/951f554cbb8dd2c565e2e401f5714e22f28d52cc))
-* Keeping up with the Macro Faeries. ([e6c4c9e](https://github.com/timothycpoon/xdy-pf2e-workbench/commit/e6c4c9eda95e86e6d83d3e37e2195ab877a9253e))
-* Made housepatcher ignore items previously patched by it or CCC (i.e. it won't patch anything with the traits "(HOUSEPATCHED)" or "(CCC PATCHED)" ). ([155ef62](https://github.com/timothycpoon/xdy-pf2e-workbench/commit/155ef626b0f25aca7c35eea623fef808841c54fa))
+* Remove sustained from workbench auras. ([b5f1554](https://github.com/xdy/xdy-pf2e-workbench/commit/b5f155407adee5994e226312e3024c0c251e9875)), closes [#1197](https://github.com/xdy/xdy-pf2e-workbench/issues/1197)
 
 ## [5.46.6](https://github.com/xdy/xdy-pf2e-workbench/compare/v5.46.5...v5.46.6) (2024-01-08)
 
