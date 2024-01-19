@@ -1,3 +1,12 @@
+## [30.3.3](https://github.com/timothycpoon/xdy-pf2e-workbench/compare/fv30.3.2...fv30.3.3) (2024-01-19)
+
+
+### Bug Fixes
+
+* Keeping up with the Macro Faeries. ([e845897](https://github.com/timothycpoon/xdy-pf2e-workbench/commit/e845897e6064deabc8762920323e8ef2760e53be))
+* Keeping up with the Macro Faeries. ([5aa7591](https://github.com/timothycpoon/xdy-pf2e-workbench/commit/5aa75910f7a2f068be9f415383da1ee60097da69))
+* Keeping up with the Macro Faeries. ([281e3e3](https://github.com/timothycpoon/xdy-pf2e-workbench/commit/281e3e35a3c8059cea70f09f341beb1429dabe96))
+
 ## [5.46.10](https://github.com/xdy/xdy-pf2e-workbench/compare/v5.46.9...v5.46.10) (2024-01-17)
 
 
