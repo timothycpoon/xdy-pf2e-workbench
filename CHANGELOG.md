@@ -1,3 +1,20 @@
+# [30.4.0](https://github.com/timothycpoon/xdy-pf2e-workbench/compare/fv30.3.3...fv30.4.0) (2024-01-22)
+
+
+### Bug Fixes
+
+* Fixes more Autorolling damage bugs. Should now work for regular strikes and elemental blasts. ([6bfb565](https://github.com/timothycpoon/xdy-pf2e-workbench/commit/6bfb5652774e7e6dd70ed253e997963988262f9a))
+* Keeping up with the Macro Faeries. ([72fc3af](https://github.com/timothycpoon/xdy-pf2e-workbench/commit/72fc3af458853bf609478aa0d02412b192978d9a))
+* package ([ec58616](https://github.com/timothycpoon/xdy-pf2e-workbench/commit/ec58616f728bbe43113c69c0c3468f14a695b236))
+* Rebuild release ([9426049](https://github.com/timothycpoon/xdy-pf2e-workbench/commit/942604981b51433972ce2bb39484fc416192e76f))
+* Several Autorolling damage bugs fixed, should work for save spells as well as attack spells. ([292ea26](https://github.com/timothycpoon/xdy-pf2e-workbench/commit/292ea2692397f97978707b5908e9db35a357e8a2)), closes [#1201](https://github.com/timothycpoon/xdy-pf2e-workbench/issues/1201)
+
+
+### Features
+
+* Add setting to show hero point handler messages in chat (default) or as info notifications. ([5667899](https://github.com/timothycpoon/xdy-pf2e-workbench/commit/56678997af8fe75aab873633efd283140d64d024)), closes [#1202](https://github.com/timothycpoon/xdy-pf2e-workbench/issues/1202)
+* If private spellcasting with public message is enabled the public message is whispered to all players, but not the GM. (Unless the gm is alone in the world, in which case the GM does get that message.) ([9b8febe](https://github.com/timothycpoon/xdy-pf2e-workbench/commit/9b8febee0b1bba73c7b583c2d3969ff4a06208f8)), closes [#1199](https://github.com/timothycpoon/xdy-pf2e-workbench/issues/1199)
+
 # [5.48.0](https://github.com/xdy/xdy-pf2e-workbench/compare/v5.47.1...v5.48.0) (2024-01-21)
 
 
