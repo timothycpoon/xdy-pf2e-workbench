@@ -1,11 +1,44 @@
-## [30.3.3](https://github.com/timothycpoon/xdy-pf2e-workbench/compare/fv30.3.2...fv30.3.3) (2024-01-19)
+# [5.48.0](https://github.com/xdy/xdy-pf2e-workbench/compare/v5.47.1...v5.48.0) (2024-01-21)
+
+
+### Features
+
+* Add setting to show hero point handler messages in chat (default) or as info notifications. ([5667899](https://github.com/xdy/xdy-pf2e-workbench/commit/56678997af8fe75aab873633efd283140d64d024)), closes [#1202](https://github.com/xdy/xdy-pf2e-workbench/issues/1202)
+
+## [5.47.1](https://github.com/xdy/xdy-pf2e-workbench/compare/v5.47.0...v5.47.1) (2024-01-21)
 
 
 ### Bug Fixes
 
-* Keeping up with the Macro Faeries. ([e845897](https://github.com/timothycpoon/xdy-pf2e-workbench/commit/e845897e6064deabc8762920323e8ef2760e53be))
-* Keeping up with the Macro Faeries. ([5aa7591](https://github.com/timothycpoon/xdy-pf2e-workbench/commit/5aa75910f7a2f068be9f415383da1ee60097da69))
-* Keeping up with the Macro Faeries. ([281e3e3](https://github.com/timothycpoon/xdy-pf2e-workbench/commit/281e3e35a3c8059cea70f09f341beb1429dabe96))
+* Rebuild release ([9426049](https://github.com/xdy/xdy-pf2e-workbench/commit/942604981b51433972ce2bb39484fc416192e76f))
+
+# [5.47.0](https://github.com/xdy/xdy-pf2e-workbench/compare/v5.46.13...v5.47.0) (2024-01-21)
+
+
+### Features
+
+* If private spellcasting with public message is enabled the public message is whispered to all players, but not the GM. (Unless the gm is alone in the world, in which case the GM does get that message.) ([9b8febe](https://github.com/xdy/xdy-pf2e-workbench/commit/9b8febee0b1bba73c7b583c2d3969ff4a06208f8)), closes [#1199](https://github.com/xdy/xdy-pf2e-workbench/issues/1199)
+
+## [5.46.13](https://github.com/xdy/xdy-pf2e-workbench/compare/v5.46.12...v5.46.13) (2024-01-21)
+
+
+### Bug Fixes
+
+* Fixes more Autorolling damage bugs. Should now work for regular strikes and elemental blasts. ([6bfb565](https://github.com/xdy/xdy-pf2e-workbench/commit/6bfb5652774e7e6dd70ed253e997963988262f9a))
+
+## [5.46.12](https://github.com/xdy/xdy-pf2e-workbench/compare/v5.46.11...v5.46.12) (2024-01-21)
+
+
+### Bug Fixes
+
+* Several Autorolling damage bugs fixed, should work for save spells as well as attack spells. ([292ea26](https://github.com/xdy/xdy-pf2e-workbench/commit/292ea2692397f97978707b5908e9db35a357e8a2)), closes [#1201](https://github.com/xdy/xdy-pf2e-workbench/issues/1201)
+
+## [5.46.11](https://github.com/xdy/xdy-pf2e-workbench/compare/v5.46.10...v5.46.11) (2024-01-20)
+
+
+### Bug Fixes
+
+* Keeping up with the Macro Faeries. ([72fc3af](https://github.com/xdy/xdy-pf2e-workbench/commit/72fc3af458853bf609478aa0d02412b192978d9a))
 
 ## [5.46.10](https://github.com/xdy/xdy-pf2e-workbench/compare/v5.46.9...v5.46.10) (2024-01-17)
 
