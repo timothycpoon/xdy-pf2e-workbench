@@ -1,3 +1,10 @@
+## [30.4.1](https://github.com/timothycpoon/xdy-pf2e-workbench/compare/fv30.4.0...fv30.4.1) (2024-01-22)
+
+
+### Bug Fixes
+
+* differences ([aeeae9d](https://github.com/timothycpoon/xdy-pf2e-workbench/commit/aeeae9dcbd96cd54117cab95997cc8ef1d5aa0fa))
+
 # [30.4.0](https://github.com/timothycpoon/xdy-pf2e-workbench/compare/fv30.3.3...fv30.4.0) (2024-01-22)
 
 
