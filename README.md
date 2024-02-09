@@ -8,7 +8,11 @@
 
 ![GitHub all releases](https://img.shields.io/github/downloads/xdy/xdy-pf2e-workbench/total) ![the latest version zip](https://img.shields.io/github/downloads/xdy/xdy-pf2e-workbench/latest/xdy-pf2e-workbench.zip) ![Forge installs](https://img.shields.io/badge/dynamic/json?label=Forge%20Installs&query=package.installs&suffix=%25&url=https%3A%2F%2Fforge-vtt.com%2Fapi%2Fbazaar%2Fpackage%2Fxdy-pf2e-workbench)
 
+Translations:
+<a href="https://gitlocalize.com/repo/7104?utm_source=badge"> <img src="https://gitlocalize.com/repo/7104/whole_project/badge.svg" /> </a>
+
 <a href="https://weblate.foundryvtt-hub.com/engage/xdy-pf2e-workbench/"><img src="https://weblate.foundryvtt-hub.com/widgets/xdy-pf2e-workbench/-/multi-auto.svg" alt="Translation status" /></a>
+
 
 This module is intended to hold a few features for the foundry vtt pf2e system that could well have been separate
 modules and may well be eaten by the system at some point.
@@ -38,17 +42,18 @@ A demo video of most features: https://www.youtube.com/watch?v=WzDq2N1X07s
     * Option to remind when attack is made by a token that probably can't attack (due to being unconscious / dead /
       defeated / has no hp / is restrained / etc), and option to cancel impossible attacks.
         * Suboption to allow Eidolons to attack even if they have 0 hp.
-    * Option to remind when an attack is made without targeting, and option to cancel untargeted attacks.
+    * Option to remind when an attack is made without targeting, or just cancel untargeted attacks.
     * Option to show reminder each turn that the number of actions is other than three. Handles Quickened, Slowed and
       Stunned.
     * Option to automatically add a reminder effect when breath weapons are used (i.e. sent to chat.) Breath weapon
       description must match ```"1d(4|6) #(rounds|Rounds|recharge|Recharge)"``` for it to be
-      recognized.
+      recognized. (Optionally hiding the reminder for non-partymembers.)
     * Hero point handler. Gives option to (using Configure Controls) add a keybind to open a dialog that can reset or
       add hero points for all characters, add one hero point to a random (or selected) character (on new timers only)
       and, most importantly, start a timer to make the dialog reappear after (by default) 60 minutes. Timer now survives
       refreshes. Reopen the dialog to see how much time remains (press escape to leave without changes).
         * Set number of minutes till the next time the dialog is shown.
+        * Post a notification when a Hero Point is handed out
 
 * Quality of Life section
     * Option to add an npc scaler feature when right clicking on an npc (This feature has been taken over from the
@@ -60,12 +65,16 @@ A demo video of most features: https://www.youtube.com/watch?v=WzDq2N1X07s
       delisted [PF2e Toolbox](https://github.com/Djphoenix719/FVTT-PF2EToolbox#quick-roller) module. Thanks DJ!)
     * Option to hold CTRL while casting a spell to cast it as a whispered chat message. Separate option to output a
       separate public chat message with a Recall Knowledge button to recognize it, an optional save button and an
-      optional trait list, unless you hold CTRL+SHIFT to entirely skip this message.
+      optional trait list, unless you hold CTRL+SHIFT to entirely skip this message. Also has an option to cast the
+      normal way if a party member knows the spell, and an option to always cast privately for
+      non-allies/non-partymembers/NPCs.
     * Option to alter the token animation speed. (Not compatible with Multi Level Tokens teleport functionality.)
+    * Option to add an asterisk to, in the feat browser, add an asterisk to the name of feats with prerequisites.
+    * Option to show spell names in rarity colours on actor sheets.
 
 * World Automation section
     * Option to automatically move combatant that goes to 0 hp to just before the current combatant. (Normally due to
-      the current combatant just having downed the target combatant.)
+      the current combatant just having downed the target combatant.) Option to limit to characters only.
     * Enable/disable the option to autoroll damage on a hit.
     * Enable/disable the option to automatically apply persistent healing.
     * Option to automatically reduce Stunned condition at the start of the turn hidden behind option to show actions
@@ -73,7 +82,7 @@ A demo video of most features: https://www.youtube.com/watch?v=WzDq2N1X07s
     * Option automatically give Unconscious if Dying is removed when at 0 hp.
     * Option to automatically increase Wounded when Dying is removed (handles the
       feats [Bounce Back](https://2e.aonprd.com/Feats.aspx?ID=1441)
-      and [Numb to Death](https://2e.aonprd.com/Feats.aspx?ID=1182). Only works for players if they themself apply the
+      and [Numb to Death](https://2e.aonprd.com/Feats.aspx?ID=1182). Only works for players if they themselves apply the
       damage/healing.
     * Option to automatically increase Dying on reaching 0 hp (handles the
       feats [Orc Ferocity](https://2e.aonprd.com/Feats.aspx?ID=83)
@@ -87,8 +96,6 @@ A demo video of most features: https://www.youtube.com/watch?v=WzDq2N1X07s
         * Suboption for how to handle if the final damage was nonlethal.
     * Option to automatically remove Dying when healed to above 0 hp.
     * Option to drop all held items on becoming unconscious.
-    * Option to automate the results of the dying recovery roll button being clicked. (I.e. it does not automatically
-      roll to try recover the dying character.)
 
 * Client Automation section
     * Optional settings to (if the GM allows it) automatically roll damage on a hit for strikes and/or spell attacks.
@@ -103,7 +110,10 @@ A demo video of most features: https://www.youtube.com/watch?v=WzDq2N1X07s
           damage' button on the damage card.
     * Optional settings to (if the GM allows it) automatically applying persistent damage, fast healing and
       regeneration (with an optional extra debug chat message), inspired by @Jamz' code.
-    * Option to automatically reduce the Frightened condition at the end of each turn. See the included effect 'Effect:
+    * Option to automate the results of the dying recovery roll button being clicked. (I.e. it does not automatically
+      roll to try recover the dying character.)
+    * Option to automatically reduce the Frightened condition at the end of each turn. See the included effect '
+      Effect:
       Minimum Frightened' for how to set a minimum frightened level that the module won't reduce below.
 
 * House Rules
@@ -116,12 +126,17 @@ A demo video of most features: https://www.youtube.com/watch?v=WzDq2N1X07s
 * No section
     * Optional setting to automatically collapse chat cards with an h3 header (intended for item cards like spells,
       feats, items, actions, etc). Can be configured to default to collapsed or expanded.
-    * Option to either expand all damage cards, or only expand new cards. If the latter, on a refresh the last three
-      messages are expanded if they are damage cards.
-    * Option to set a custom pause text and image, as well as to move it's position to center of screen.
+    * Option to either expand all damage cards/action cards/attach cards, or only expand new cards. If the latter, on a
+      refresh the last three messages are expanded if they are damage cards.
     * Several options for the macro 'Basic Action Macros' (aka BAM)
-    * A few potentially useful internal functions have been made available for macro use. Name and a simple example of
-      each can be found below:
+        * Add a glow to the buttons where the actor is the best in the group.
+        * Show actions that cannot be used.
+        * Use a tabbed or list view of the buttons.
+    * Option to set a custom pause text and image, as well as to move it's position to center of screen.
+
+API:
+A few potentially useful internal functions have been made available for macro use. Name and a simple example
+of each can be found below:
 
 ```
         resetHeroPoints: resetHeroPoints, // game.PF2eWorkbench.resetHeroPoints(1)
@@ -211,7 +226,6 @@ A demo video of most features: https://www.youtube.com/watch?v=WzDq2N1X07s
       the first weapon of any type.
     * A Reach 'aura' used by the (experimental) 'Whirlwind Strike' macro.
 
-
 ## Installation
 
 Install by either searching for xdy-pf2e-workbench in [FoundryVTT's](https://foundryvtt.com/) Module tab and clicking
@@ -294,7 +308,8 @@ Open Game License:
 Project Licensing:
 
 * Everything in this project that is not covered by one of the following license exceptions is made available under the
-  Apache License (see [LICENSE](LICENSE)).
+  Apache License (see [LICENSE](LICENSE)). (Including the types and utility classes generated or copied from the pf2e
+  system at https://github.com/foundryvtt/pf2e, also under the Apache License.)
 
 Virtual Table Top Platform Licenses:
 

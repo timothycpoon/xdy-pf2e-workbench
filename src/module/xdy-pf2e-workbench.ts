@@ -12,11 +12,11 @@ import { preloadTemplates } from "./preloadTemplates.js";
 import { registerWorkbenchKeybindings } from "./keybinds.js";
 import { ActorPF2e } from "@actor";
 
-import { debounce, isFirstGM, logInfo } from "./utils.js";
+import { isFirstGM, logInfo } from "./utils.js";
 import { enableNpcRollerButton, registerNpcRollerHandlebarsTemplates } from "./feature/npc-roller/NpcRoller.js";
 import { scaleNPCToLevelFromActor } from "./feature/cr-scaler/NPCScaler.js";
 import { generateNameFromTraitsForToken } from "./feature/tokenMystificationHandler/traits-name-generator.js";
-import { basicActionMacros } from "./feature/macros/basicActionMacros.js";
+import { basicActionMacros, registerBasicActionMacrosHandlebarsTemplates } from "./feature/macros/basicActionMacros.js";
 import { buildNpcSpellbookJournal } from "./feature/macros/buildNpcSpellbookJournal.js";
 import {
     createChatMessageHook,
@@ -52,6 +52,8 @@ import { SettingsMenuPF2eWorkbench } from "./settings/menu.js";
 import { toggleMenuSettings } from "./feature/settingsHandler/index.js";
 import { mystifyNpcItems } from "./feature/qolHandler/index.js";
 import { getAllFromAllowedPacks } from "./feature/api/getAllFromAllowedPacks.js";
+
+import "../styles/xdy-pf2e-workbench.scss";
 
 export const MODULENAME = "xdy-pf2e-workbench";
 export const NPC_TYPE = "npc";
@@ -131,7 +133,7 @@ export function updateHooks(cleanSlate = false) {
     handle(
         "createItem",
         game.settings.get(MODULENAME, "dropHeldItemsOnBecomingUnconscious"),
-        debounce(createItemHook, 10),
+        fu.debounce(createItemHook, 10),
     );
 
     handle("updateItem", false, updateItemHook);
@@ -200,6 +202,8 @@ Hooks.once("init", async (_actor: ActorPF2e) => {
 
     await preloadTemplates();
     registerNpcRollerHandlebarsTemplates().then();
+
+    registerBasicActionMacrosHandlebarsTemplates().then();
 
     registerHandlebarsHelpers();
 

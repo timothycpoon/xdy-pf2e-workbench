@@ -31,9 +31,9 @@
         "downtime": "Downtime",
         "explorationShort": "E",
         "downtimeShort": "D",
-        "bamActionsPerColumn": {
-          "name": "BAM: Approximate actions per row",
-          "hint": "Approximate number of actions per row in the Basic Action Macros dialog. The actual number of actions per row will be the closest number of actions per row that will fit in the dialog."
+        "bamTabview": {
+          "name": "BAM: Use tabbed layout",
+          "hint": "Use a tabbed layout for the Basic Action Macros dialog."
         },
         "bamShowUnusable": {
           "name": "BAM: Show actions that cannot be used.",
@@ -347,9 +347,17 @@
         "name": "Show spell names in rarity colour on actor sheets."
       },
       "castPrivateSpell": {
-        "hint": "Check to enabling ctrl-clicking Cast on a spell to cast it as a whisper to caster and GM, UNLESS a party member knows the spell.",
+        "hint": "Check to enabling ctrl-clicking Cast on a spell to cast it as a whisper to caster and GM.",
         "name": "Ctrl-click Cast to cast in private.",
         "aSpell": "A spell"
+      },
+      "castPrivateSpellAutoRevealIfKnown": {
+        "hint": "Check to not cast privately if any party member knows the spell.",
+        "name": "... but don't cast privately if spell known by party."
+      },
+      "castPrivateSpellAutoRevealPartyMembersThatKnowSpell": {
+        "hint": "Check to show party members that know the spell in the chat card",
+        "name": "... and list the party members that know it"
       },
       "castPrivateSpellHideName": {
         "hint": "Check to hide the name of a privately cast spell in the damage roll instead of hiding the damage roll.",
@@ -372,7 +380,8 @@
         "secondPartNoRk": ".<br>You can try using one of @UUID[Compendium.pf2e.feats-srd.MjQyTcV8Jiv1Jtln] or @UUID[Compendium.pf2e.feats-srd.2rSyTfPgAmNAo01r] to recognize it. Or, on your turn, spend an action to try to identify it (ask your gm for details).",
         "secondPartRK": ".<br>You can try using one of @UUID[Compendium.pf2e.feats-srd.MjQyTcV8Jiv1Jtln] or @UUID[Compendium.pf2e.feats-srd.2rSyTfPgAmNAo01r] to recognize it. Or, on your turn, spend an action to try to identify it with @Check[type:{skill}|dc:{dcRK}|traits:secret,action:recall-knowledge] @UUID[Compendium.pf2e.actionspf2e.Item.1OagaWtBpVXExToo] (or 10 minutes with @Check[type:{skill}|dc:{dcRK}|traits:secret,action:identify-magic] @UUID[Compendium.pf2e.actionspf2e.Item.eReSHVEPCsdkSL4G] )",
         "spell": "Spell",
-        "they": "They"
+        "they": "They",
+        "knownBy": "<div><p><b>Known by: </b>{spellHavers}</p></div><hr class=\"item-block-divider\">"
       },
       "castPrivateSpellWithPublicMessageShowTraits": {
         "hint": "Show spell traits in the public message.",

@@ -3,16 +3,8 @@ import { ActorPF2e, CreaturePF2e } from "@actor";
 import { TokenDocumentPF2e } from "@scene";
 import { CHARACTER_TYPE, MODULENAME, NPC_TYPE } from "./xdy-pf2e-workbench.js";
 import { UserPF2e } from "@module/user/index.js";
+import { actionsReminder, autoReduceStunned, reminderTargeting } from "./feature/reminders/index.js";
 import {
-    actionsReminder,
-    autoReduceStunned,
-    reminderBreathWeapon,
-    reminderCannotAttack,
-    reminderTargeting,
-} from "./feature/reminders/index.js";
-import {
-    castPrivateSpell,
-    castPrivateSpellHideName,
     chatActionCardDescriptionCollapse,
     chatAttackCardDescriptionCollapse,
     chatCardDescriptionCollapse,
@@ -28,7 +20,7 @@ import {
 } from "./feature/tokenMystificationHandler/index.js";
 import { ItemPF2e } from "@item/base/document.js";
 import { CombatantPF2e, EncounterPF2e } from "@module/encounter/index.js";
-import { ChatMessagePF2e } from "@module/chat-message/document.js";
+import { ChatMessagePF2e } from "@module/chat-message/index.js";
 import { CheckRoll } from "@module/system/check/roll.js";
 import { PhysicalItemPF2e } from "@item/physical/document.js";
 import { ActorSystemData } from "@actor/data/base.js";
@@ -36,18 +28,20 @@ import { ActorSheetPF2e } from "@actor/sheet/base.js";
 import {
     dyingHandlingPreCreateChatMessageHook,
     dyingHandlingPreUpdateActorHook,
-    itemHandlingItemHook,
     handleDyingRecoveryRoll,
+    itemHandlingItemHook,
 } from "./feature/damageHandler/dyingHandling.ts";
+import { checkAttackValidity } from "./feature/reminders/checkAttackValidity.js";
+import { reminderBreathWeapon } from "./feature/reminders/reminderBreathWeapon.js";
+import { castPrivateSpellHideName, handlePrivateSpellcasting } from "./feature/qolHandler/handlePrivateSpellcasting.js";
 
 export const preCreateChatMessageHook = (message: ChatMessagePF2e, data: any, _options, _user: UserPF2e) => {
     let proceed = true;
     const reminderTargetingEnabled = game.settings.get(MODULENAME, "reminderTargeting") === "mustTarget";
-    const reminderCannotAttackEnabled =
-        String(game.settings.get(MODULENAME, "reminderCannotAttack")) === "cancelAttack";
+    const reminderCannotAttack = String(game.settings.get(MODULENAME, "reminderCannotAttack"));
     const castPrivateSpellEnabled = game.settings.get(MODULENAME, "castPrivateSpell");
-    const ctrlHeld = ["ControlLeft", "ControlRight", "MetaLeft", "MetaRight", "Meta", "OsLeft", "OsRight"].some(
-        (key) => game?.keyboard.downKeys.has(key),
+    const ctrlHeld = ["ControlLeft", "ControlRight", "MetaLeft", "MetaRight", "Meta", "OsLeft", "OsRight"].some((key) =>
+        game?.keyboard.downKeys.has(key),
     );
     const privateCast = castPrivately(
         game.actors?.party?.members?.some((member) => member.id === message.actor?.id) ?? false,
@@ -59,15 +53,15 @@ export const preCreateChatMessageHook = (message: ChatMessagePF2e, data: any, _o
         message.flags.pf2e?.casting?.id &&
         ((ctrlHeld && !privateCast) || (!ctrlHeld && privateCast))
     ) {
-        castPrivateSpell(data, message).then();
+        handlePrivateSpellcasting(data, message).then();
     }
 
     if (reminderTargetingEnabled) {
         proceed = reminderTargeting(message);
     }
 
-    if (proceed && reminderCannotAttackEnabled) {
-        proceed = reminderCannotAttack(message, true);
+    if (proceed && reminderCannotAttack === "cancelAttack") {
+        proceed = checkAttackValidity(message, true);
     }
 
     return proceed;
@@ -84,8 +78,9 @@ function castPrivately(inParty: boolean, message: ChatMessagePF2e) {
 }
 
 export function createChatMessageHook(message: ChatMessagePF2e) {
-    if (String(game.settings.get(MODULENAME, "reminderCannotAttack")) === "reminder") {
-        reminderCannotAttack(message, false);
+    const reminderCancelAttack = String(game.settings.get(MODULENAME, "reminderCannotAttack"));
+    if (reminderCancelAttack === "reminder") {
+        checkAttackValidity(message, false);
     }
 
     if (["no", "reminder"].includes(String(game.settings.get(MODULENAME, "reminderTargeting")))) {
@@ -216,9 +211,9 @@ function dropHeldItemsOnBecomingUnconscious(actor) {
         for (const item of items) {
             if (item.traits.has("free-hand") || item.type === "shield" || item.traits.has("attached-to-shield")) {
                 // Presumed to strapped to an arm/worn on a hand, so just unreadied instead of dropped
-                actor.adjustCarryType(item, { carryType: "worn", handsHeld: 0, inSlot: false });
+                actor.changeCarryType(item, { carryType: "worn", handsHeld: 0, inSlot: false });
             } else {
-                actor.adjustCarryType(item, { carryType: "dropped", handsHeld: 0, inSlot: false });
+                actor.changeCarryType(item, { carryType: "dropped", handsHeld: 0, inSlot: false });
             }
         }
         const message = game.i18n.format(`${MODULENAME}.SETTINGS.dropHeldItemsOnBecomingUnconscious.message`, {

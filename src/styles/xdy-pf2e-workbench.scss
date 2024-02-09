@@ -1,0 +1,253 @@
+@use "sass:math";
+
+:root {
+    --xdy-pf2e-workbench-pause: "";
+    --xdy-pf2e-workbench-pause-background: "initial";
+    --xdy-pf2e-workbench-pause-bottom: "";
+    --xdy-pf2e-workbench-pause-figcaption-top: "";
+}
+
+#pause {
+    background: var(--xdy-pf2e-workbench-pause-background);
+    bottom: var(--xdy-pf2e-workbench-pause-bottom);
+}
+
+#pause figcaption {
+    top: var(--xdy-pf2e-workbench-pause-figcaption-top);
+}
+
+#pause img {
+    content: var(--xdy-pf2e-workbench-pause);
+}
+
+/*Modified from the npc sheet*/
+.xdy-pf2e-workbench-rarity-common {
+    border-color: #323232;
+    color: #323232;
+}
+
+.xdy-pf2e-workbench-rarity-uncommon {
+    border-color: #98513d;
+    color: #98513d;
+}
+
+.xdy-pf2e-workbench-rarity-rare {
+    border-color: #002664;
+    color: #002664;
+}
+
+.xdy-pf2e-workbench-rarity-unique {
+    border-color: #54166e;
+    color: #54166e;
+}
+
+/** Keeley's Hero Point Rule */
+.chat-message .tags.modifiers .tag.keeley-add-10,
+.chat-message .dice-total.keeley-add-10,
+.chat-message .dice-formula > .keeley-add-10 {
+    color: purple;
+}
+
+.chat-message .tags.modifiers .tag.keeley-add-10 {
+    box-shadow: inset 0 0 0 1px rgba(128, 0, 128, 0.3);
+}
+
+/* NPC Roller */
+
+.roll-app {
+    display: grid;
+    grid-template-columns: 128px 1fr;
+}
+
+.roll-app nav.roll-app-nav {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    flex-wrap: wrap;
+}
+
+.roll-app-nav button {
+    all: revert;
+    background: unset;
+    border: unset;
+    padding: 4px 8px;
+    font-family: var(--font-primary);
+    font-size: var(--font-size-14);
+    cursor: pointer;
+    text-align: left;
+}
+
+.roll-app-nav button.active {
+    font-weight: bold;
+}
+
+.roll-app .roll-app-table {
+    margin: 0;
+}
+
+.roll-app .roll-app-table tbody tr,
+.roll-app .roll-app-table thead tr {
+    text-align: center;
+}
+
+.roll-app .roll-app-table tbody tr.selected {
+    background: rgb(0 0 0 / 66%);
+    color: white;
+}
+
+.roll-app .roll-app-table tbody tr.selected button.rollable {
+    color: white;
+}
+
+.roll-app .roll-app-table tbody tr:nth-child(2n) {
+    background: rgba(0 0 0 / 20%);
+}
+
+.roll-app .roll-app-table tbody tr:nth-child(2n):hover {
+    background: rgba(0 0 0 / 30%);
+}
+
+.roll-app .roll-app-table tbody tr:not(.selected):hover {
+    background: rgba(0 0 0 / 10%);
+}
+
+
+.roll-app .roll-app-table tbody button {
+    all: revert;
+    background: unset;
+    border: unset;
+    width: unset;
+    font-family: var(--font-primary);
+    font-size: var(--font-size-14);
+    display: block;
+    padding: 0 32px;
+    margin: 0 auto;
+    cursor: pointer;
+}
+
+.roll-app .roll-app-table tbody button:hover {
+    font-weight: bold;
+}
+
+.xdy-pf2e-workbench-rarity-common {
+    border-color: #323232;
+    color: #323232;
+}
+
+.xdy-pf2e-workbench-rarity-uncommon {
+    border-color: #98513d;
+    color: #98513d;
+}
+
+.xdy-pf2e-workbench-rarity-rare {
+    border-color: #002664;
+    color: #002664;
+}
+
+.xdy-pf2e-workbench-rarity-unique {
+    border-color: #54166e;
+    color: #54166e;
+}
+
+.xdy-pf2e-workbench-hide {
+    display: none !important;
+}
+
+
+.bam-dialog {
+    container: bam-dialog / inline-size;
+}
+
+.pf2e-bg .window-content {
+    //background: url('/systems/pf2e/assets/sheet/background.webp');
+}
+
+.action-list {
+    display: grid;
+    flex-wrap: wrap;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 8px;
+    grid-column-gap: 2px;
+    grid-auto-flow: column;
+    grid-template-rows: repeat(calc((var(--bam-count) + var(--bam-columns) / 2 - 0.01) / var(--bam-columns)), 1fr);
+    grid-template-columns: repeat(var(--bam-columns), 1fr);
+    button.glow {
+        --color-glow1: 35;
+        --color-glow2: 50;
+        animation: glow2 alternate infinite 2s;
+        z-index: 1;
+    }
+}
+
+.action-btn {
+    margin: 1px auto;
+    width: 100%;
+    height: fit-content;
+    box-shadow: inset 0 0 0 1px rgb(0 0 0 / 50%);
+    text-shadow: none;
+    border: #000;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    white-space: nowrap;
+    overflow: hidden;
+
+    &:hover {
+        text-shadow: 0 0 2px #fff;
+    }
+
+    img {
+        margin-right: 5px;
+    }
+}
+
+.map-wrapper {
+    display: flex;
+    gap: 5px;
+    margin: 0 auto;
+    width: 100%;
+
+    button {
+        width: unset;
+
+        &:first-child {
+            flex: 1 1 160px;
+        }
+    }
+}
+
+@keyframes glow2 {
+    0% {
+        color: hsl(var(--color-glow1), 90%, 50%);
+        box-shadow: 0 0 2px 2px hsl(var(--color-glow1), 100%, 50%);
+    }
+    100% {
+        color: hsl(var(--color-glow2), 90%, 50%);
+        box-shadow: 0 0 2px 2px hsl(var(--color-glow2), 100%, 50%);
+    }
+}
+
+@function bamWidth($columns) {
+    @return 26 + $columns*250px;
+}
+
+@for $i from 1 through 40 {
+    @container bam-dialog (width <= #{bamWidth($i+1)}) and (width > #{bamWidth($i)}) {
+        .action-list {
+            --bam-columns:#{$i};
+        }
+    }
+}
+
+@container bam-dialog (width < #{bamWidth(1)}){
+    .action-list {
+	--bam-columns: 1;
+    }
+}
+
+@container bam-dialog (width > #{bamWidth(41)}) {
+    .action-list {
+        --bam-columns: 41;
+    }
+}

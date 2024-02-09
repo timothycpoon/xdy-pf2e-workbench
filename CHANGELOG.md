@@ -1,26 +1,112 @@
-## [30.4.1](https://github.com/timothycpoon/xdy-pf2e-workbench/compare/fv30.4.0...fv30.4.1) (2024-01-22)
-
-
-### Bug Fixes
-
-* differences ([aeeae9d](https://github.com/timothycpoon/xdy-pf2e-workbench/commit/aeeae9dcbd96cd54117cab95997cc8ef1d5aa0fa))
-
-# [30.4.0](https://github.com/timothycpoon/xdy-pf2e-workbench/compare/fv30.3.3...fv30.4.0) (2024-01-22)
-
-
-### Bug Fixes
-
-* Fixes more Autorolling damage bugs. Should now work for regular strikes and elemental blasts. ([6bfb565](https://github.com/timothycpoon/xdy-pf2e-workbench/commit/6bfb5652774e7e6dd70ed253e997963988262f9a))
-* Keeping up with the Macro Faeries. ([72fc3af](https://github.com/timothycpoon/xdy-pf2e-workbench/commit/72fc3af458853bf609478aa0d02412b192978d9a))
-* package ([ec58616](https://github.com/timothycpoon/xdy-pf2e-workbench/commit/ec58616f728bbe43113c69c0c3468f14a695b236))
-* Rebuild release ([9426049](https://github.com/timothycpoon/xdy-pf2e-workbench/commit/942604981b51433972ce2bb39484fc416192e76f))
-* Several Autorolling damage bugs fixed, should work for save spells as well as attack spells. ([292ea26](https://github.com/timothycpoon/xdy-pf2e-workbench/commit/292ea2692397f97978707b5908e9db35a357e8a2)), closes [#1201](https://github.com/timothycpoon/xdy-pf2e-workbench/issues/1201)
+# [5.54.0](https://github.com/xdy/xdy-pf2e-workbench/compare/v5.53.0...v5.54.0) (2024-02-09)
 
 
 ### Features
 
-* Add setting to show hero point handler messages in chat (default) or as info notifications. ([5667899](https://github.com/timothycpoon/xdy-pf2e-workbench/commit/56678997af8fe75aab873633efd283140d64d024)), closes [#1202](https://github.com/timothycpoon/xdy-pf2e-workbench/issues/1202)
-* If private spellcasting with public message is enabled the public message is whispered to all players, but not the GM. (Unless the gm is alone in the world, in which case the GM does get that message.) ([9b8febe](https://github.com/timothycpoon/xdy-pf2e-workbench/commit/9b8febee0b1bba73c7b583c2d3969ff4a06208f8)), closes [#1199](https://github.com/timothycpoon/xdy-pf2e-workbench/issues/1199)
+* Adds option for private casting that if a party member knowing a spell causes it to be cast openly, list those party members in the chat card. ([8113639](https://github.com/xdy/xdy-pf2e-workbench/commit/8113639d49d89147a305a159dd8a3f5744e9056c)), closes [#1231](https://github.com/xdy/xdy-pf2e-workbench/issues/1231)
+
+# [5.53.0](https://github.com/xdy/xdy-pf2e-workbench/compare/v5.52.5...v5.53.0) (2024-02-09)
+
+
+### Features
+
+* When casting a spell privately with the option to hide the spell name in the damage roll, show the true spell name to the GM. Cleaned up private spell casting. ([b483762](https://github.com/xdy/xdy-pf2e-workbench/commit/b483762618af6045ff58610f07e460fe59f35745))
+
+## [5.52.5](https://github.com/xdy/xdy-pf2e-workbench/compare/v5.52.4...v5.52.5) (2024-02-09)
+
+
+### Bug Fixes
+
+* Breath weapon reminder should work again. ([a3ac5dd](https://github.com/xdy/xdy-pf2e-workbench/commit/a3ac5dd8df1ddc4e4cd3d52345001af5c33fbfa2)), closes [#1238](https://github.com/xdy/xdy-pf2e-workbench/issues/1238)
+
+## [5.52.4](https://github.com/xdy/xdy-pf2e-workbench/compare/v5.52.3...v5.52.4) (2024-02-05)
+
+
+### Bug Fixes
+
+* Debounce dropped item handling to avoid an abundantly redundant excess of tautologically repetitive messages in triplicate echoing in the chat. ([2fa8644](https://github.com/xdy/xdy-pf2e-workbench/commit/2fa864452a39cbd77c4a7558ff7aa172273d6a53))
+
+## [5.52.3](https://github.com/xdy/xdy-pf2e-workbench/compare/v5.52.2...v5.52.3) (2024-02-05)
+
+
+### Bug Fixes
+
+* The option to make characters drop their held items when becoming unconscious should now work again. ([6580a89](https://github.com/xdy/xdy-pf2e-workbench/commit/6580a89694a08e0c2f976eca466678a2f7d51915))
+
+## [5.52.2](https://github.com/xdy/xdy-pf2e-workbench/compare/v5.52.1...v5.52.2) (2024-02-03)
+
+
+### Bug Fixes
+
+* Keeping up with the Macro Faeries. ([de75ee4](https://github.com/xdy/xdy-pf2e-workbench/commit/de75ee4f579736f7c55123b81ec21ab8d98c3808))
+
+## [5.52.1](https://github.com/xdy/xdy-pf2e-workbench/compare/v5.52.0...v5.52.1) (2024-02-02)
+
+
+### Bug Fixes
+
+* BAM: Add back glow and colors to the buttons, fix the background image. Courtesy of [@omegarogue9344](https://github.com/omegarogue9344) and [@xyzzy42](https://github.com/xyzzy42) ([556b9d2](https://github.com/xdy/xdy-pf2e-workbench/commit/556b9d291822c6a502e8b8f5165a28237dc40729))
+
+# [5.52.0](https://github.com/xdy/xdy-pf2e-workbench/compare/v5.51.0...v5.52.0) (2024-02-01)
+
+
+### Features
+
+* Awesome rework of Basic Action Macros, courtesy of [@omegarogue9344](https://github.com/omegarogue9344) ([98e5c80](https://github.com/xdy/xdy-pf2e-workbench/commit/98e5c80ed895c18b781153fa65017531a05d06de))
+
+# [5.51.0](https://github.com/xdy/xdy-pf2e-workbench/compare/v5.50.1...v5.51.0) (2024-01-31)
+
+
+### Features
+
+* Set minimum pf2e version to 5.13.0, updated types. ([077da26](https://github.com/xdy/xdy-pf2e-workbench/commit/077da26d13e707002ddb862d7e10d2fd051e797f))
+
+## [5.50.1](https://github.com/xdy/xdy-pf2e-workbench/compare/v5.50.0...v5.50.1) (2024-01-30)
+
+
+### Bug Fixes
+
+* Revert "feat: BAM: Add support for Versatile Performance." ([4453ba5](https://github.com/xdy/xdy-pf2e-workbench/commit/4453ba58e9d0dd12686903589cd8c48fa2f9d036))
+
+# [5.50.0](https://github.com/xdy/xdy-pf2e-workbench/compare/v5.49.3...v5.50.0) (2024-01-30)
+
+
+### Features
+
+* BAM: Add support for Versatile Performance. ([b7f1a18](https://github.com/xdy/xdy-pf2e-workbench/commit/b7f1a181254befea4a6e114e719174db20fe48be))
+
+## [5.49.3](https://github.com/xdy/xdy-pf2e-workbench/compare/v5.49.2...v5.49.3) (2024-01-29)
+
+
+### Bug Fixes
+
+* Keeping up with the Macro Faeries. ([fcac54b](https://github.com/xdy/xdy-pf2e-workbench/commit/fcac54bbc6f9ea0e3452c5bcaff8b260dd28c4ec))
+
+## [5.49.2](https://github.com/xdy/xdy-pf2e-workbench/compare/v5.49.1...v5.49.2) (2024-01-27)
+
+
+### Bug Fixes
+
+* NPC Scaling should scale perception correctly again. ([9f52757](https://github.com/xdy/xdy-pf2e-workbench/commit/9f527573d6b46029d5fe8dccc1795ce0f3af8688)), closes [#1198](https://github.com/xdy/xdy-pf2e-workbench/issues/1198)
+
+## [5.49.1](https://github.com/xdy/xdy-pf2e-workbench/compare/v5.49.0...v5.49.1) (2024-01-27)
+
+
+### Bug Fixes
+
+* Revert to old release workflow ([27d1ef3](https://github.com/xdy/xdy-pf2e-workbench/commit/27d1ef3d931a129f658cbb6a1d095b6ca9b786c4))
+
+# [5.49.0](https://github.com/xdy/xdy-pf2e-workbench/compare/v5.48.0...v5.49.0) (2024-01-27)
+
+
+### Bug Fixes
+
+* Fix release process ([82448cd](https://github.com/xdy/xdy-pf2e-workbench/commit/82448cda625b2efe5a2596792c74805e58fdf8ca))
+
+
+### Features
+
+* Add option to allow casting privately even if party member knows the spell. ([b0fadb8](https://github.com/xdy/xdy-pf2e-workbench/commit/b0fadb8f7c2cd3d8bf6e833a7bf74887464742ec)), closes [#1208](https://github.com/xdy/xdy-pf2e-workbench/issues/1208)
 
 # [5.48.0](https://github.com/xdy/xdy-pf2e-workbench/compare/v5.47.1...v5.48.0) (2024-01-21)
 
