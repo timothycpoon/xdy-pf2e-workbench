@@ -1,3 +1,31 @@
+# [30.6.0](https://github.com/timothycpoon/xdy-pf2e-workbench/compare/fv30.5.0...fv30.6.0) (2024-03-01)
+
+
+### Bug Fixes
+
+* Autorolling damage for save spells now rolls damage on a successful save if it's a basic save. Cleaned up the autorolling damage code. ([db10f26](https://github.com/timothycpoon/xdy-pf2e-workbench/commit/db10f26dd231d22a4fe524b640093585296b17b8))
+* buildNpcSpellbookJournal now only tries to handle spellcastingentries that contain the spells property (i.e. it avoids item spellcasting entries). ([a08f2fe](https://github.com/timothycpoon/xdy-pf2e-workbench/commit/a08f2fed1138930120e594ff73a8d67ef2610da8))
+* Colorization of spell and feat rarity options now work again, as well as indication of feat prerequisites. ([d3dd6aa](https://github.com/timothycpoon/xdy-pf2e-workbench/commit/d3dd6aa26090fc5b2c3793baa55a04bbc9802d22))
+* For the Breath Weapon Reminder, support the format of some 3pp products and use the ability title in the icon again. ([1507d6a](https://github.com/timothycpoon/xdy-pf2e-workbench/commit/1507d6a9268c414147d145d342057ec207220379))
+* Improve description of autorevealing privately cast spells. Fix handling of damagerolls with no context options. ([a75c0dc](https://github.com/timothycpoon/xdy-pf2e-workbench/commit/a75c0dc6d16ee830b3177122ffb346ba70b35eaf))
+* Keeping up with the Macro Faeries. ([8501c23](https://github.com/timothycpoon/xdy-pf2e-workbench/commit/8501c23642fe88695dccfb000c0f1cd530d8efa9))
+* Keeping up with the Macro Faeries. ([64b8dc2](https://github.com/timothycpoon/xdy-pf2e-workbench/commit/64b8dc288f5581900f464cf16fa75abd00a10513))
+* More robust handling of persistent damage if that option is enabled. ([90bb41a](https://github.com/timothycpoon/xdy-pf2e-workbench/commit/90bb41afc0db42459fc3adf082c1bc684d310222))
+* Not all actors have items. ([fa00db9](https://github.com/timothycpoon/xdy-pf2e-workbench/commit/fa00db99eecf5e1899c09805dd5db5c2ce07d168))
+* Remove empty match in breath weapon reminder. ([8353177](https://github.com/timothycpoon/xdy-pf2e-workbench/commit/8353177fc36106b5f07327ecacda5d44f5d7ee00))
+* Show the correct save when casting spells privately (fixes the issues with double-dipping on adjustments by sending the message from the GM rather than the caster.) ([59dfe79](https://github.com/timothycpoon/xdy-pf2e-workbench/commit/59dfe79af838ee01d2271f9066462aa5163e01b5))
+* Use of Keeley's hero point rule should be visible in chat again. ([9e460d0](https://github.com/timothycpoon/xdy-pf2e-workbench/commit/9e460d0039bbee2ba4018d423e3932aba7f6fd67))
+* When collapsing attack chat cards, make the eye that indicates 'click here to expand' visible again, and make it possible to click anywhere on the title row to expand/collapse. ([9565627](https://github.com/timothycpoon/xdy-pf2e-workbench/commit/9565627f41792e5c52d8b7e75e09699f27245a1e))
+* When npcs cast spells privately, don't doubledip on elite/weak adjustments. ([d5935d1](https://github.com/timothycpoon/xdy-pf2e-workbench/commit/d5935d1333b69dff2bc7f23db2fa6402217e64ad))
+
+
+### Features
+
+* Add an option to show the public message to the gm also when casting a spell privately. ([2d57c62](https://github.com/timothycpoon/xdy-pf2e-workbench/commit/2d57c624a2eecbb8bd27a517815be660ebfa0d9b)), closes [#1232](https://github.com/timothycpoon/xdy-pf2e-workbench/issues/1232)
+* Add option to show rarity color on the crafting tab. Some cleanup of the colorization code. ([97a0da4](https://github.com/timothycpoon/xdy-pf2e-workbench/commit/97a0da4e824d43b2f14e47f39cf0d4fa0de72d35))
+* If the option to automatically reduce stun is enabled it is now handled for minions as long as the owning player is online (the same as for automatically reducing frightened.) ([bb4f086](https://github.com/timothycpoon/xdy-pf2e-workbench/commit/bb4f086b84807a78c2fdaa664a0f97f781e240a7))
+* trap names ([1137f4b](https://github.com/timothycpoon/xdy-pf2e-workbench/commit/1137f4b8d117e83b552beff689a498143a805226))
+
 # [5.57.0](https://github.com/xdy/xdy-pf2e-workbench/compare/v5.56.9...v5.57.0) (2024-02-29)
 
 
