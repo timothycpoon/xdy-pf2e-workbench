@@ -34,6 +34,7 @@ import {
 import { checkAttackValidity } from "./feature/reminders/checkAttackValidity.js";
 import { reminderBreathWeapon } from "./feature/reminders/reminderBreathWeapon.js";
 import { castPrivateSpellHideName, handlePrivateSpellcasting } from "./feature/qolHandler/handlePrivateSpellcasting.js";
+import { FeatPF2e } from "@item/feat/document.js";
 
 export const preCreateChatMessageHook = (message: ChatMessagePF2e, data: any, _options, _user: UserPF2e) => {
     let proceed = true;
@@ -57,7 +58,7 @@ export const preCreateChatMessageHook = (message: ChatMessagePF2e, data: any, _o
     }
 
     if (reminderTargetingEnabled) {
-        proceed = reminderTargeting(message);
+        proceed = reminderTargeting(message, String(game.settings.get(MODULENAME, "reminderTargeting")));
     }
 
     if (proceed && reminderCannotAttack === "cancelAttack") {
@@ -83,8 +84,9 @@ export function createChatMessageHook(message: ChatMessagePF2e) {
         checkAttackValidity(message, false);
     }
 
-    if (["no", "reminder"].includes(String(game.settings.get(MODULENAME, "reminderTargeting")))) {
-        reminderTargeting(message);
+    const reminderTargetingSetting = String(game.settings.get(MODULENAME, "reminderTargeting"));
+    if (["no", "reminder"].includes(reminderTargetingSetting)) {
+        reminderTargeting(message, reminderTargetingSetting);
     }
 
     if (!isActuallyDamageRoll(message)) {
@@ -105,16 +107,13 @@ export function createChatMessageHook(message: ChatMessagePF2e) {
 }
 
 function deprecatedDyingHandlingRenderChatMessageHook(message: ChatMessagePF2e) {
-    if (game.settings.get(MODULENAME, "handleDyingRecoveryRoll")) {
-        handleDyingRecoveryRoll(message);
-    }
+    handleDyingRecoveryRoll(message, Boolean(game.settings.get(MODULENAME, "handleDyingRecoveryRoll")));
 }
 
-export function renderChatMessageHook(message: ChatMessagePF2e, html: JQuery) {
+export function renderChatMessageHook(message: ChatMessagePF2e, jq: JQuery) {
+    const html = <HTMLElement>jq.get(0);
     // Only acts on latest message, but can't be in createChatMessageHook as that doesn't get triggered for some reason.
-    if (game.settings.get(MODULENAME, "applyPersistentHealing")) {
-        persistentHealing(message);
-    }
+    persistentHealing(message, Boolean(game.settings.get(MODULENAME, "applyPersistentHealing")));
 
     if (game.settings.get(MODULENAME, "applyPersistentDamage")) {
         persistentDamage(message);
@@ -125,7 +124,7 @@ export function renderChatMessageHook(message: ChatMessagePF2e, html: JQuery) {
     // Affects all messages
     const minimumUserRoleFlag: any = message.getFlag(MODULENAME, "minimumUserRole");
     if (!isNaN(minimumUserRoleFlag) && minimumUserRoleFlag > game.user.role) {
-        html.addClass("xdy-pf2e-workbench-hide");
+        html.classList.add("xdy-pf2e-workbench-hide");
     }
 
     if (game.settings.get(MODULENAME, "npcMystifierUseMystifiedNameInChat")) {
@@ -133,12 +132,9 @@ export function renderChatMessageHook(message: ChatMessagePF2e, html: JQuery) {
     }
 
     if (isActuallyDamageRoll(message)) {
-        if (
-            String(game.settings.get(MODULENAME, "autoExpandDamageRolls")) === "expandedAll" ||
-            String(game.settings.get(MODULENAME, "autoExpandDamageRolls")) === "expandedNew" ||
-            String(game.settings.get(MODULENAME, "autoExpandDamageRolls")) === "expandedNewest"
-        ) {
-            damageCardExpand(message, html);
+        const expandDamageRolls = String(game.settings.get(MODULENAME, "autoExpandDamageRolls"));
+        if (["expandedAll", "expandedNew", "expandedNewest"].includes(expandDamageRolls)) {
+            damageCardExpand(message, html, expandDamageRolls);
         }
     } else {
         if (
@@ -177,37 +173,40 @@ export function renderChatMessageHook(message: ChatMessagePF2e, html: JQuery) {
     // Alert everyone that Keeley's hero point rule was invoked
     const lastRoll = message.rolls.at(-1);
     if (lastRoll?.options.keeleyAdd10) {
-        const element = html[0];
+        const element: any = jq.get(0);
 
-        const tags = element.querySelector(".flavor-text > .tags.modifiers");
-        const formulaElem = element.querySelector<HTMLElement>(".reroll-discard .dice-formula");
-        const newTotalElem = element.querySelector<HTMLElement>(".reroll-second .dice-total");
-        if (tags && formulaElem && newTotalElem) {
-            // Add a tag to the list of modifiers
-            const newTag = document.createElement("span");
-            newTag.classList.add("tag", "tag_transparent", "keeley-add-10");
-            newTag.innerText = game.i18n.localize(`${MODULENAME}.SETTINGS.keeleysHeroPointRule.bonusTag`);
-            newTag.dataset.slug = "keeley-add-10";
-            if (tags.querySelector<HTMLElement>(".tag")?.dataset.visibility === "gm") {
-                newTag.dataset.visibility = "gm";
+        if (element) {
+            const tags = element.querySelector(".flavor-text > .tags.modifiers");
+            const formulaElem = element.querySelector(".reroll-discard .dice-formula");
+            const newTotalElem = element.querySelector(".reroll-second .dice-total");
+            if (tags && formulaElem && newTotalElem) {
+                // Add a tag to the list of modifiers
+                const newTag = document.createElement("span");
+                newTag.classList.add("tag", "tag_transparent", "keeley-add-10");
+                newTag.innerText = game.i18n.localize(`${MODULENAME}.SETTINGS.keeleysHeroPointRule.bonusTag`);
+                newTag.dataset.slug = "keeley-add-10";
+                const querySelector = tags.querySelector(".tag");
+                if (querySelector?.dataset.visibility === "gm") {
+                    newTag.dataset.visibility = "gm";
+                }
+                tags.append(newTag);
+
+                // Show +10 in the formula
+                const span = document.createElement("span");
+                span.className = "keeley-add-10";
+                span.innerText = " + 10";
+                formulaElem?.append(span);
+
+                // Make the total purple
+                newTotalElem.classList.add("keeley-add-10");
             }
-            tags.append(newTag);
-
-            // Show +10 in the formula
-            const span = document.createElement("span");
-            span.className = "keeley-add-10";
-            span.innerText = " + 10";
-            formulaElem?.append(span);
-
-            // Make the total purple
-            newTotalElem.classList.add("keeley-add-10");
         }
     }
 }
 
 function dropHeldItemsOnBecomingUnconscious(actor) {
-    const items = <PhysicalItemPF2e[]>actor.items.filter((i) => i.isHeld);
-    if (items.length > 0) {
+    const items = <PhysicalItemPF2e[]>actor.items?.filter((i) => i.isHeld);
+    if (items && items.length > 0) {
         for (const item of items) {
             if (item.traits.has("free-hand") || item.type === "shield" || item.traits.has("attached-to-shield")) {
                 // Presumed to strapped to an arm/worn on a hand, so just unreadied instead of dropped
@@ -265,8 +264,9 @@ export async function pf2eStartTurnHook(combatant: CombatantPF2e, _combat: Encou
     // TODO Handle removal of game.combats.active.combatant.defeated/unsetting of deathIcon (are those the same?) for combatants that are neither dying nor have 0 HP.
 }
 
-export function renderTokenHUDHook(_app: TokenDocumentPF2e, html: JQuery, data: any) {
-    if (game.user?.isGM && game.settings.get(MODULENAME, "npcMystifier")) {
+export function renderTokenHUDHook(_app: TokenDocumentPF2e, q: JQuery, data: any) {
+    const html = q.get(0);
+    if (html && game.user?.isGM && game.settings.get(MODULENAME, "npcMystifier")) {
         renderNameHud(data, html);
     }
 }
@@ -286,10 +286,11 @@ export async function preUpdateActorHook(actor: CreaturePF2e, update: Record<str
             game.settings.get("pf2e", "automation.lootableNPCs") &&
             String(game.settings.get(MODULENAME, "npcMystifyAllPhysicalMagicalItems")) === "onZeroHp"
         ) {
-            await mystifyNpcItems(actor.items);
+            await mystifyNpcItems(actor);
         }
 
-        dyingHandlingPreUpdateActorHook(actor, update, currentActorHp, updateHp);
+        const autoGainDying = String(game.settings.get(MODULENAME, "autoGainDyingAtZeroHP"));
+        dyingHandlingPreUpdateActorHook(actor, update, currentActorHp, updateHp, autoGainDying);
     }
 }
 
@@ -348,58 +349,70 @@ export async function pf2eSystemReadyHook() {
     }
 }
 
-export function renderActorSheetHook(sheet: ActorSheetPF2e<ActorPF2e>, $html: JQuery) {
-    if (sheet.actor?.type === CHARACTER_TYPE && game.settings.get(MODULENAME, "playerSpellsRarityColour")) {
-        $html.find(".spell-list").each((_i, e) => {
-            $(e)
-                .find(".item.spell")
-                .each((_n, e) => {
-                    const $e = $(e);
-                    const itemId: string = <string>$e.attr("data-item-id");
-                    const spell: any = sheet.actor?.items?.get(itemId);
-                    if (spell) {
-                        const rarity = spell.system.traits.rarity;
-                        if (rarity) {
-                            $e.find("h4").addClass(`xdy-pf2e-workbench-rarity-${rarity}`);
-                        }
-                    }
-                });
-        });
+export function renderActorSheetHook(sheet: ActorSheetPF2e<ActorPF2e>, q: JQuery) {
+    const html = <HTMLElement>q.get(0);
+
+    function itemFromCompendium(element: Element, qualifiedName: string) {
+        const itemUuid = element.getAttribute(qualifiedName);
+        const item: ItemPF2e | null = itemUuid ? fromUuidSync(itemUuid) : null;
+        return item;
     }
 
-    if (sheet.actor?.type === CHARACTER_TYPE && game.settings.get(MODULENAME, "playerFeatsRarityColour")) {
-        $html.find(".feats-pane").each((_i, e) => {
-            $(e)
-                .find(".feat-item")
-                .each((_n, e) => {
-                    const $e = $(e);
-                    const itemId: string = <string>$e.attr("data-item-id");
-                    const feat: any = sheet.actor?.items?.get(itemId);
-                    if (feat) {
-                        const rarity = feat.system.traits.rarity;
+    function itemFromActor(element: Element, attributeName: string) {
+        const itemId = <string>element.getAttribute(attributeName);
+        return itemId ? <ItemPF2e | null>sheet.actor?.items?.get(itemId) : null;
+    }
+
+    function performColoring(
+        setting: string,
+        listSelector: string,
+        itemSelector: string,
+        fetchItem: (el: Element) => ItemPF2e | null,
+    ) {
+        if (sheet.actor?.type === CHARACTER_TYPE && game.settings.get(MODULENAME, setting)) {
+            const lists = html.querySelectorAll(listSelector);
+            for (const list of lists) {
+                const elementNodeListOf = list.querySelectorAll(itemSelector);
+                for (const element of elementNodeListOf) {
+                    const item = fetchItem(element);
+                    if (item) {
+                        const rarity = item.system.traits.rarity;
                         if (rarity) {
-                            $e.find("h4").addClass(`xdy-pf2e-workbench-rarity-${rarity}`);
+                            const h4Elements = element.querySelectorAll("h4");
+                            h4Elements.forEach((h4) => h4.classList.add(`xdy-pf2e-workbench-rarity-${rarity}`));
                         }
                     }
-                });
-        });
+                }
+            }
+        }
     }
+
+    performColoring("playerSpellsRarityColour", ".spell-list", ".spell", (element) =>
+        itemFromActor(element, "data-item-id"),
+    );
+
+    performColoring("playerFeatsRarityColour", ".feats-pane", ".slot", (element) =>
+        itemFromActor(element, "data-item-id"),
+    );
+
+    performColoring("playerCraftingRarityColour", ".crafting-pane", ".formula-item", (element) =>
+        itemFromCompendium(element, "data-item-uuid"),
+    );
 
     if (sheet.actor?.type === CHARACTER_TYPE && game.settings.get(MODULENAME, "playerFeatsPrerequisiteHint")) {
-        $html.find(".feats-pane").each((_i, e) => {
-            $(e)
-                .find(".feat-item")
-                .each((_n, e) => {
-                    const $e = $(e);
-                    const itemId: string = <string>$e.attr("data-item-id");
-                    const feat: any = sheet.actor?.items?.get(itemId);
-                    if (feat) {
-                        const prereqs = feat.system.prerequisites.value.length > 0;
-                        if (prereqs) {
-                            $e.find("h4").append("*");
-                        }
+        const featLists = html.querySelectorAll(".feats-pane");
+        featLists.forEach((list) => {
+            const elementNodeListOf = list.querySelectorAll(".slot");
+            for (const element of elementNodeListOf) {
+                const feat: FeatPF2e | null = <FeatPF2e | null>itemFromActor(element, "data-item-id");
+                if (feat) {
+                    const prereqs = feat.system.prerequisites.value.length > 0;
+                    if (prereqs) {
+                        const h4Elements = element.querySelectorAll("h4");
+                        h4Elements.forEach((h4Element) => (h4Element.innerHTML += "*"));
                     }
-                });
+                }
+            }
         });
     }
 }

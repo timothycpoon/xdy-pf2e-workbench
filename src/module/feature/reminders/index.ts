@@ -31,21 +31,14 @@ export function actionsReminder(combatant: CombatantPF2e, reduction = 0) {
 }
 
 export function shouldShowActionReminder(actor, reduction: number) {
-    const showForPC =
-        ["all", "players"].includes(String(game.settings.get(MODULENAME, "actionsReminderAllow"))) &&
-        actor?.hasPlayerOwner;
-    const showForNPC =
-        ["all", "gm"].includes(String(game.settings.get(MODULENAME, "actionsReminderAllow"))) && !actor?.hasPlayerOwner;
+    const reminderAllowSetting = String(game.settings.get(MODULENAME, "actionsReminderAllow"));
+    const showForPC = ["all", "players"].includes(reminderAllowSetting) && actor?.hasPlayerOwner;
+    const showForNPC = ["all", "gm"].includes(reminderAllowSetting) && !actor?.hasPlayerOwner;
     return (showForPC || showForNPC) && hasConditionOrReduction(actor, reduction);
 }
 
 export function hasConditionOrReduction(actor, reduction: number) {
-    return (
-        actor.hasCondition("stunned") ||
-        actor.hasCondition("slowed") ||
-        actor.hasCondition("quickened") ||
-        reduction > 0
-    );
+    return actor.hasCondition("stunned", "slowed", "quickened") || reduction > 0;
 }
 
 function calculateMaxActions(actor: ActorPF2e) {
@@ -72,9 +65,8 @@ export async function autoReduceStunned(combatant, userId: string): Promise<numb
     return stunReduction;
 }
 
-export function reminderTargeting(message: ChatMessagePF2e): boolean {
+export function reminderTargeting(message: ChatMessagePF2e, setting: string): boolean {
     const context = message?.flags?.pf2e?.context ?? {};
-    const setting = String(game.settings.get(MODULENAME, "reminderTargeting"));
 
     if (
         message.actor &&

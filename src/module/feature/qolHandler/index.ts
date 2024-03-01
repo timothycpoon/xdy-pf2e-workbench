@@ -3,63 +3,78 @@ import { isActuallyDamageRoll } from "../../utils.js";
 import { PhysicalItemPF2e } from "@item";
 import { ChatMessagePF2e } from "@module/chat-message/index.js";
 
-export function chatCardDescriptionCollapse(html: JQuery) {
-    const hasCardContent = html.find(".card-content");
+export function chatCardDescriptionCollapse(html: HTMLElement) {
+    const hasCardContent = html.querySelectorAll(".card-content");
     if (hasCardContent.length > 0) {
         if (String(game.settings.get(MODULENAME, "autoCollapseItemChatCardContent")) === "collapsedDefault") {
-            hasCardContent.hide();
-            hasCardContent.siblings()?.get(0)?.insertAdjacentHTML("beforeend", eye);
+            hasCardContent.forEach((content) => (content["style"].display = "none"));
+            const cardContentSiblings = (hasCardContent[0] as HTMLElement).parentElement?.children;
+            if (cardContentSiblings?.[0]) {
+                cardContentSiblings[0].insertAdjacentHTML("beforeend", eye);
+            }
         }
-        html.on("click", "h3", (event: JQuery.ClickEvent) => {
-            const content = event.currentTarget.closest(".chat-message")?.querySelector(".card-content");
-            if (content && content.style) {
-                event.preventDefault();
-                content.style.display = content.style.display === "none" ? "block" : "none";
-                if (content.style.display === "none") {
-                    hasCardContent.hide();
+        html.addEventListener("click", (event) => {
+            const target = (event.target as HTMLElement).closest("h3");
+            if (target) {
+                const content: HTMLElement | undefined | null = target
+                    .closest(".chat-message")
+                    ?.querySelector(".card-content");
+                if (content) {
+                    event.preventDefault();
+                    content.style.display = content.style.display === "none" ? "block" : "none";
+                    if (content.style.display === "none") {
+                        hasCardContent.forEach((content: HTMLElement) => (content.style.display = "none"));
+                    }
+                    toggleEyes(html);
                 }
-                toggleEyes(html);
             }
         });
     }
 }
 
-function toggleEyes(html: JQuery) {
-    const hasEye = html.find(".fa-eye");
-    const hasEyeSlash = html.find(".fa-eye-slash");
-    for (const eye of hasEye) {
+function toggleEyes(html: HTMLElement) {
+    const hasEye = html.querySelectorAll(".fa-eye");
+    const hasEyeSlash = html.querySelectorAll(".fa-eye-slash");
+    for (const eye of Array.from(hasEye)) {
         eye.classList.toggle("fa-eye-slash");
         eye.classList.toggle("fa-eye");
     }
-    for (const eye of hasEyeSlash) {
+    for (const eye of Array.from(hasEyeSlash)) {
         eye.classList.toggle("fa-eye-slash");
         eye.classList.toggle("fa-eye");
     }
 }
 
-function handleRollNoteToggling(html: JQuery) {
+function handleRollNoteToggling(html: HTMLElement) {
     let note;
-    const hasNote = html.find(".roll-note");
-    for (note of hasNote) {
+    const hasNote = html.querySelectorAll(".roll-note");
+    for (note of Array.from(hasNote)) {
         note.style.display = note.style.display === "none" ? "block" : "none";
     }
     toggleEyes(html);
 }
 
-export function chatActionCardDescriptionCollapse(html: JQuery) {
-    const hasAction = html.find(".action");
+export function chatActionCardDescriptionCollapse(html: HTMLElement) {
+    const hasAction = html.querySelectorAll(".action");
     if (hasAction.length > 0) {
-        if (html.find(".roll-note").length > 0) {
+        const rollNotes = html.querySelectorAll(".roll-note");
+        if (rollNotes.length > 0) {
             if (String(game.settings.get(MODULENAME, "autoCollapseItemActionChatCardContent")) === "collapsedDefault") {
-                for (const note of html.find(".roll-note")) {
-                    note.style.display = "none";
+                for (const note of Array.from(rollNotes)) {
+                    note["style"].display = "none";
                 }
 
-                hasAction.siblings()?.get(1)?.insertAdjacentHTML("beforeend", eye);
+                const actionSiblings = (hasAction[0] as HTMLElement).parentElement?.children;
+                if (actionSiblings?.[1]) {
+                    actionSiblings[1].insertAdjacentHTML("beforeend", eye);
+                }
             }
-            html.on("click", "h4.action", (event: JQuery.ClickEvent) => {
-                event.preventDefault();
-                handleRollNoteToggling(html);
+            html.addEventListener("click", (event) => {
+                const target = event.target as HTMLElement;
+                if (target?.matches("h4.action, .fa-eye, .fa-eye-slash, strong")) {
+                    event.preventDefault();
+                    handleRollNoteToggling(html);
+                }
             });
         }
     }
@@ -67,26 +82,30 @@ export function chatActionCardDescriptionCollapse(html: JQuery) {
 
 const eye = ' <i style="font-size: small; max-width: min-content" class="fa-solid fa-eye-slash">';
 
-export function chatAttackCardDescriptionCollapse(html: JQuery) {
-    const hasRollNote = html.find(".roll-note");
+export function chatAttackCardDescriptionCollapse(html: HTMLElement) {
+    const hasRollNote = html.querySelectorAll(".roll-note");
     if (hasRollNote.length > 0) {
         if (String(game.settings.get(MODULENAME, "autoCollapseItemAttackChatCardContent")) === "collapsedDefault") {
             for (const note of hasRollNote) {
-                note.style.display = "none";
+                note["style"].display = "none";
             }
-            hasRollNote.siblings()?.get(0)?.insertAdjacentHTML("beforeend", eye);
+
+            hasRollNote[0].parentNode?.parentNode?.children[0].insertAdjacentHTML("beforeend", eye);
         }
-        html.on("click", "h4.action", (event: JQuery.ClickEvent) => {
-            event.preventDefault();
-            handleRollNoteToggling(html);
+        html.addEventListener("click", (event) => {
+            const target = event.target as HTMLElement;
+            if (target.matches("h4.action, .fa-eye, .fa-eye-slash, strong")) {
+                event.preventDefault();
+                handleRollNoteToggling(html);
+            }
         });
     }
 }
 
-export function damageCardExpand(message: ChatMessagePF2e, html: JQuery) {
-    const expandDmg = String(game.settings.get(MODULENAME, "autoExpandDamageRolls"));
+export function damageCardExpand(message: ChatMessagePF2e, html: HTMLElement, expandDmg: string) {
+    const diceTooltips = html.querySelectorAll(".dice-tooltip");
     if (expandDmg === "expandedAll") {
-        html.find(".dice-tooltip").css("display", "block");
+        diceTooltips.forEach((diceTooltip: HTMLElement) => (diceTooltip.style.display = "block"));
     } else if (
         expandDmg.startsWith("expandedNew") &&
         game.messages.contents
@@ -94,21 +113,21 @@ export function damageCardExpand(message: ChatMessagePF2e, html: JQuery) {
             .slice(-Math.min(expandDmg.endsWith("est") ? 1 : 3, game.messages.size))
             .filter((m) => m.id === message.id).length > 0
     ) {
-        html.find(".dice-tooltip").css("display", "block");
+        diceTooltips.forEach((diceTooltip: HTMLElement) => (diceTooltip.style.display = "block"));
     }
 }
 
 /**
  * Mystify NPC items.
  *
- * @param {Array} items - The items to mystify.
+ * @param actor
  * @param {string} minimumRarity - The minimum rarity of items to mystify. Default is obtained from a game setting.
  * @param {any} usingPartyLevel - Whether to use the party level to determine the minimum level of items to mystify. Default is obtained from a game setting.
  * @param {number} minimumLevel - The minimum level of items to mystify. Default is obtained from a game setting.
  * @param {number} multiplier - The multiplier to apply to the minimum level. Default is obtained from a game setting.
  */
 export async function mystifyNpcItems(
-    items,
+    actor,
     minimumRarity: string = String(
         game.settings.get(MODULENAME, "npcMystifyAllPhysicalMagicalItemsOfThisRarityOrGreater"),
     ),
@@ -128,33 +147,36 @@ export async function mystifyNpcItems(
         game.settings.set(
             MODULENAME,
             "npcMystifyAllPhysicalMagicalItemsOfThisLevelOrGreater",
-            game?.actors?.party?.level ??
-                game.settings.get(MODULENAME, "npcMystifyAllPhysicalMagicalItemsOfThisLevelOrGreater"),
+            game?.actors?.party?.level ?? minimumLevel,
         );
     }
     if (multiplier !== 1 && minimumLevel !== -1) {
         minimumLevel = minimumLevel * multiplier;
     }
+    const itemUpdates: any[] = [];
     const rarityKeys = Object.keys(CONFIG.PF2E.rarityTraits);
     const relevantItems: PhysicalItemPF2e[] = <PhysicalItemPF2e[]>Array.from(
-        items
-            .filter((item) =>
-                ["armor", "backpack", "book", "consumable", "equipment", "treasure", "weapon"].includes(item.type),
+        actor.items
+            ?.filter((item) =>
+                // Rollup couldn't resolve PHYSICAL_ITEM_TYPES so I copied the values
+                ["armor", "shield", "consumable", "backpack", "book", "equipment", "treasure", "weapon"].includes(
+                    item.type,
+                ),
             )
             .map((item) => <PhysicalItemPF2e>(<unknown>item))
-            .filter((item) => !item.isTemporary)
             .filter((item) => item.isIdentified)
+            .filter((item) => !item.isTemporary)
             .filter((item) => item.level >= minimumLevel)
-            .filter((item) => {
-                return rarityKeys.indexOf(item.rarity) >= rarityKeys.indexOf(minimumRarity);
-            })
+            .filter((item) => rarityKeys.indexOf(item.rarity) >= rarityKeys.indexOf(minimumRarity))
             .filter((item) => item.isMagical || item.isAlchemical),
     );
 
     for (const item of relevantItems ?? []) {
-        await items.get(item.id)?.update({
+        itemUpdates.push({
+            _id: item.id,
             "system.identification.status": "unidentified",
             "system.identification.unidentified": item.getMystifiedData("unidentified"),
         });
     }
+    await actor.updateEmbeddedDocuments("Item", itemUpdates);
 }

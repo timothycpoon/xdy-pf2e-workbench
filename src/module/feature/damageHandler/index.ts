@@ -125,7 +125,7 @@ export async function noOrSuccessfulFlatcheck(message: ChatMessagePF2e): Promise
 
 export function persistentDamage(message) {
     const flavor = message.flavor;
-    const persistentFlavor = flavor?.startsWith("<strong>" + game.i18n.localize("PF2E.ConditionTypePersistent"));
+    const persistentFlavor = flavor?.includes("<strong>" + game.i18n.localize("PF2E.ConditionTypePersistent"));
     if (
         shouldIHandleThisMessage(
             message,
@@ -164,14 +164,14 @@ export function persistentDamage(message) {
     }
 }
 
-export function persistentHealing(message) {
+export function persistentHealing(message, enabled: boolean) {
     if (
+        enabled &&
         shouldIHandleThisMessage(
             message,
             ["all", "players"].includes(String(game.settings.get(MODULENAME, "applyPersistentAllow"))),
             ["all", "gm"].includes(String(game.settings.get(MODULENAME, "applyPersistentAllow"))),
         ) &&
-        game.settings.get(MODULENAME, "applyPersistentHealing") &&
         message.flavor &&
         message.rolls &&
         game.combats &&

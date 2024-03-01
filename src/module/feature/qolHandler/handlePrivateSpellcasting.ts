@@ -17,7 +17,7 @@ export async function handlePrivateSpellcasting(data: any, message: ChatMessageP
     updateDataAndSource(data, message);
 
     if (isPublicMessageActive() && !isShiftModifierActive()) {
-        const { content, flags, token } = await generateMessageData(message, origin, spellUUID, data);
+        const { content, flags } = await generateMessageData(message, origin, spellUUID, data);
 
         const showToGM = game.settings.get(MODULENAME, "castPrivateSpellWithPublicMessageShowToGM");
 
@@ -32,14 +32,12 @@ export async function handlePrivateSpellcasting(data: any, message: ChatMessageP
             await ChatMessage.create({
                 whisper,
                 user,
-                speaker: ChatMessage.getSpeaker({ token: token }),
                 content,
                 flags,
             });
         } else {
             await ChatMessage.create({
                 user,
-                speaker: ChatMessage.getSpeaker({ token: token }),
                 content,
                 flags,
             });
@@ -83,9 +81,7 @@ async function generateMessageData(message: ChatMessagePF2e, origin: any, spellU
         },
     };
 
-    const token: any = message.token ? message.token : message.actor?.token;
-
-    return { content, flags, token };
+    return { content, flags };
 }
 
 function getDcRkForLevel(level: number): number {
@@ -118,7 +114,7 @@ const TRADITION_SKILLS = { arcane: "arcana", divine: "religion", occult: "occult
 
 function findPartyMembersWithSpell(origin: any) {
     return game.actors?.party?.members
-        ?.filter((actor) => actor.items.some((item) => item.isOfType("spell") && item.slug === origin.slug))
+        ?.filter((actor) => actor.items?.some((item) => item.isOfType("spell") && item.slug === origin.slug))
         .map((actor) => actor.name);
 }
 
@@ -207,24 +203,23 @@ function buildSpellMessage(
     return content;
 }
 
-export function castPrivateSpellHideName(message: ChatMessagePF2e, html: JQuery) {
+export async function castPrivateSpellHideName(message: ChatMessagePF2e, html: HTMLElement) {
     const msg = game.messages.contents
         .reverse()
-        .filter((m) => m.type === CONST.CHAT_MESSAGE_TYPES.WHISPER)
+        .filter((m) => m.type === 4) // Whisper, rollup can't resolve constant
         .filter((m) => m.flags?.pf2e?.casting)
         .filter((m) => m.flags?.pf2e?.origin?.uuid === message.flags?.pf2e?.origin?.uuid)
         .pop();
 
     if (msg) {
-        const flavor = html?.find(".flavor-text");
-        if (flavor.html()) {
-            fromUuid(<string>message.flags?.pf2e.origin?.uuid).then((origin) => {
-                const searchValue = origin?.name ?? "???";
-                const replaceValue =
-                    game.i18n.localize(`${MODULENAME}.SETTINGS.castPrivateSpell.aSpell`) +
-                    `<p data-visibility="gm">(${searchValue})</p>`;
-                flavor.html(flavor.html().replace(searchValue, replaceValue));
-            });
+        const flavor = html.querySelector(".flavor-text");
+        if (flavor && flavor.innerHTML) {
+            const origin = await fromUuid(<string>message.flags?.pf2e.origin?.uuid);
+            const searchValue = origin?.name ?? "???";
+            const replaceValue =
+                game.i18n.localize(`${MODULENAME}.SETTINGS.castPrivateSpell.aSpell`) +
+                `<p data-visibility="gm">(${searchValue})</p>`;
+            flavor.innerHTML = flavor.innerHTML.replace(searchValue, replaceValue);
         }
     }
 }

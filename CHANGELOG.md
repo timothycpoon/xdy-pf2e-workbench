@@ -1,3 +1,60 @@
+# [5.57.0](https://github.com/xdy/xdy-pf2e-workbench/compare/v5.56.9...v5.57.0) (2024-02-29)
+
+
+### Features
+
+* Add option to show rarity color on the crafting tab. Some cleanup of the colorization code. ([97a0da4](https://github.com/xdy/xdy-pf2e-workbench/commit/97a0da4e824d43b2f14e47f39cf0d4fa0de72d35))
+
+## [5.56.9](https://github.com/xdy/xdy-pf2e-workbench/compare/v5.56.8...v5.56.9) (2024-02-29)
+
+
+### Bug Fixes
+
+* Colorization of spell and feat rarity options now work again, as well as indication of feat prerequisites. ([d3dd6aa](https://github.com/xdy/xdy-pf2e-workbench/commit/d3dd6aa26090fc5b2c3793baa55a04bbc9802d22))
+
+## [5.56.8](https://github.com/xdy/xdy-pf2e-workbench/compare/v5.56.7...v5.56.8) (2024-02-27)
+
+
+### Bug Fixes
+
+* More robust handling of persistent damage if that option is enabled. ([90bb41a](https://github.com/xdy/xdy-pf2e-workbench/commit/90bb41afc0db42459fc3adf082c1bc684d310222))
+
+## [5.56.7](https://github.com/xdy/xdy-pf2e-workbench/compare/v5.56.6...v5.56.7) (2024-02-25)
+
+
+### Bug Fixes
+
+* Show the correct save when casting spells privately (fixes the issues with double-dipping on adjustments by sending the message from the GM rather than the caster.) ([59dfe79](https://github.com/xdy/xdy-pf2e-workbench/commit/59dfe79af838ee01d2271f9066462aa5163e01b5))
+
+## [5.56.6](https://github.com/xdy/xdy-pf2e-workbench/compare/v5.56.5...v5.56.6) (2024-02-24)
+
+
+### Bug Fixes
+
+* Use of Keeley's hero point rule should be visible in chat again. ([9e460d0](https://github.com/xdy/xdy-pf2e-workbench/commit/9e460d0039bbee2ba4018d423e3932aba7f6fd67))
+
+## [5.56.5](https://github.com/xdy/xdy-pf2e-workbench/compare/v5.56.4...v5.56.5) (2024-02-24)
+
+
+### Bug Fixes
+
+* When npcs cast spells privately, don't doubledip on elite/weak adjustments. ([d5935d1](https://github.com/xdy/xdy-pf2e-workbench/commit/d5935d1333b69dff2bc7f23db2fa6402217e64ad))
+
+## [5.56.4](https://github.com/xdy/xdy-pf2e-workbench/compare/v5.56.3...v5.56.4) (2024-02-24)
+
+
+### Bug Fixes
+
+* Not all actors have items. ([fa00db9](https://github.com/xdy/xdy-pf2e-workbench/commit/fa00db99eecf5e1899c09805dd5db5c2ce07d168))
+
+## [5.56.3](https://github.com/xdy/xdy-pf2e-workbench/compare/v5.56.2...v5.56.3) (2024-02-24)
+
+
+### Bug Fixes
+
+* Keeping up with the Macro Faeries. ([8501c23](https://github.com/xdy/xdy-pf2e-workbench/commit/8501c23642fe88695dccfb000c0f1cd530d8efa9))
+* When collapsing attack chat cards, make the eye that indicates 'click here to expand' visible again, and make it possible to click anywhere on the title row to expand/collapse. ([9565627](https://github.com/xdy/xdy-pf2e-workbench/commit/9565627f41792e5c52d8b7e75e09699f27245a1e))
+
 ## [5.56.2](https://github.com/xdy/xdy-pf2e-workbench/compare/v5.56.1...v5.56.2) (2024-02-17)
 
 
