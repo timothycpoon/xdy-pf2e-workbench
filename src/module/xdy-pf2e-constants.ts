@@ -20,6 +20,7 @@ export const AON_CREATURE_TYPES: string[] = [
     "swarm",
     "troop",
     "undead",
+    "trap",
 ];
 
 export const ADJECTIVE_CREATURE_TRAITS: string[] = [
@@ -44,7 +45,11 @@ export const ADJECTIVE_CREATURE_TRAITS: string[] = [
     "earth",
     "metal",
     "water",
-    "wood"
+    "wood",
+    "complex",
+    "mechanical",
+    "environmental",
+    "magical",
 ];
 
 export const ELITE_WEAK: string[] = ["elite", "weak"];

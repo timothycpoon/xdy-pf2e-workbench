@@ -169,6 +169,10 @@ export async function generateNameFromTraits(token: TokenPF2e | TokenDocumentPF2
             const postfix = (await fixesPreAndPost("npcMystifierPostfix")) || "";
             traitsList = filterTraitList(traitsList, prefix, postfix);
 
+            if (actor.type === "hazard" && !traitsList.includes("trap")) {
+                traitsList.push("hazard");
+            }
+
             result = traitsList
                 .map((trait: string) => trait.trim())
                 .filter((trait: string, index: number) => {
