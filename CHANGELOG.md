@@ -1,8 +1,13 @@
+<<<<<<< HEAD
 # [30.6.0](https://github.com/timothycpoon/xdy-pf2e-workbench/compare/fv30.5.0...fv30.6.0) (2024-03-01)
+=======
+## [5.58.1](https://github.com/xdy/xdy-pf2e-workbench/compare/v5.58.0...v5.58.1) (2024-03-10)
+>>>>>>> v5.58.1
 
 
 ### Bug Fixes
 
+<<<<<<< HEAD
 * Autorolling damage for save spells now rolls damage on a successful save if it's a basic save. Cleaned up the autorolling damage code. ([db10f26](https://github.com/timothycpoon/xdy-pf2e-workbench/commit/db10f26dd231d22a4fe524b640093585296b17b8))
 * buildNpcSpellbookJournal now only tries to handle spellcastingentries that contain the spells property (i.e. it avoids item spellcasting entries). ([a08f2fe](https://github.com/timothycpoon/xdy-pf2e-workbench/commit/a08f2fed1138930120e594ff73a8d67ef2610da8))
 * Colorization of spell and feat rarity options now work again, as well as indication of feat prerequisites. ([d3dd6aa](https://github.com/timothycpoon/xdy-pf2e-workbench/commit/d3dd6aa26090fc5b2c3793baa55a04bbc9802d22))
@@ -17,14 +22,38 @@
 * Use of Keeley's hero point rule should be visible in chat again. ([9e460d0](https://github.com/timothycpoon/xdy-pf2e-workbench/commit/9e460d0039bbee2ba4018d423e3932aba7f6fd67))
 * When collapsing attack chat cards, make the eye that indicates 'click here to expand' visible again, and make it possible to click anywhere on the title row to expand/collapse. ([9565627](https://github.com/timothycpoon/xdy-pf2e-workbench/commit/9565627f41792e5c52d8b7e75e09699f27245a1e))
 * When npcs cast spells privately, don't doubledip on elite/weak adjustments. ([d5935d1](https://github.com/timothycpoon/xdy-pf2e-workbench/commit/d5935d1333b69dff2bc7f23db2fa6402217e64ad))
+=======
+* *Actually* set minimun and verified foundry version to 11.315 and minimum and verified pf2e version to 5.14.1 ([c4c956d](https://github.com/xdy/xdy-pf2e-workbench/commit/c4c956db28643b28715cf337c97804cc19c6d95c))
+
+# [5.58.0](https://github.com/xdy/xdy-pf2e-workbench/compare/v5.57.2...v5.58.0) (2024-03-10)
+>>>>>>> v5.58.1
 
 
 ### Features
 
+<<<<<<< HEAD
 * Add an option to show the public message to the gm also when casting a spell privately. ([2d57c62](https://github.com/timothycpoon/xdy-pf2e-workbench/commit/2d57c624a2eecbb8bd27a517815be660ebfa0d9b)), closes [#1232](https://github.com/timothycpoon/xdy-pf2e-workbench/issues/1232)
 * Add option to show rarity color on the crafting tab. Some cleanup of the colorization code. ([97a0da4](https://github.com/timothycpoon/xdy-pf2e-workbench/commit/97a0da4e824d43b2f14e47f39cf0d4fa0de72d35))
 * If the option to automatically reduce stun is enabled it is now handled for minions as long as the owning player is online (the same as for automatically reducing frightened.) ([bb4f086](https://github.com/timothycpoon/xdy-pf2e-workbench/commit/bb4f086b84807a78c2fdaa664a0f97f781e240a7))
 * trap names ([1137f4b](https://github.com/timothycpoon/xdy-pf2e-workbench/commit/1137f4b8d117e83b552beff689a498143a805226))
+=======
+* Add option to, when collapsing item chat cards by default, move any effect links to outside the collapsed area so they are always visible. ([dada351](https://github.com/xdy/xdy-pf2e-workbench/commit/dada35185d4ea6d2e4474f18cc38ddb5ff5b6eed))
+* Set verified foundry version to 11.315 and minimum and verified version to 5.14.1, updated pf2e types. ([26986dc](https://github.com/xdy/xdy-pf2e-workbench/commit/26986dcd890c1e26dfe8bb052545d4cfe24d0563))
+
+## [5.57.2](https://github.com/xdy/xdy-pf2e-workbench/compare/v5.57.1...v5.57.2) (2024-03-10)
+
+
+### Bug Fixes
+
+* Keeping up with the Macro Faeries. ([5a7fa38](https://github.com/xdy/xdy-pf2e-workbench/commit/5a7fa38b98e7713b8ac3d9974349cbc295fc9db1))
+
+## [5.57.1](https://github.com/xdy/xdy-pf2e-workbench/compare/v5.57.0...v5.57.1) (2024-03-06)
+
+
+### Bug Fixes
+
+* Keeping up with the Macro Faeries. ([22661f2](https://github.com/xdy/xdy-pf2e-workbench/commit/22661f2c70448b7a6c872616cd0edf67834f79dd))
+>>>>>>> v5.58.1
 
 # [5.57.0](https://github.com/xdy/xdy-pf2e-workbench/compare/v5.56.9...v5.57.0) (2024-02-29)
 
