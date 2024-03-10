@@ -1,3 +1,18 @@
+# [30.7.0](https://github.com/timothycpoon/xdy-pf2e-workbench/compare/fv30.6.0...fv30.7.0) (2024-03-10)
+
+
+### Bug Fixes
+
+* *Actually* set minimun and verified foundry version to 11.315 and minimum and verified pf2e version to 5.14.1 ([c4c956d](https://github.com/timothycpoon/xdy-pf2e-workbench/commit/c4c956db28643b28715cf337c97804cc19c6d95c))
+* Keeping up with the Macro Faeries. ([5a7fa38](https://github.com/timothycpoon/xdy-pf2e-workbench/commit/5a7fa38b98e7713b8ac3d9974349cbc295fc9db1))
+* Keeping up with the Macro Faeries. ([22661f2](https://github.com/timothycpoon/xdy-pf2e-workbench/commit/22661f2c70448b7a6c872616cd0edf67834f79dd))
+
+
+### Features
+
+* Add option to, when collapsing item chat cards by default, move any effect links to outside the collapsed area so they are always visible. ([dada351](https://github.com/timothycpoon/xdy-pf2e-workbench/commit/dada35185d4ea6d2e4474f18cc38ddb5ff5b6eed))
+* Set verified foundry version to 11.315 and minimum and verified version to 5.14.1, updated pf2e types. ([26986dc](https://github.com/timothycpoon/xdy-pf2e-workbench/commit/26986dcd890c1e26dfe8bb052545d4cfe24d0563))
+
 <<<<<<< HEAD
 # [30.6.0](https://github.com/timothycpoon/xdy-pf2e-workbench/compare/fv30.5.0...fv30.6.0) (2024-03-01)
 =======
