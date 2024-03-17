@@ -1,3 +1,15 @@
+## [30.7.1](https://github.com/timothycpoon/xdy-pf2e-workbench/compare/fv30.7.0...fv30.7.1) (2024-03-17)
+
+
+### Bug Fixes
+
+* Keeping up with the Macro Faeries. ([65a0bd1](https://github.com/timothycpoon/xdy-pf2e-workbench/commit/65a0bd1353930c73c493668638faafa4c01ac9fb))
+* Test release process ([26808e1](https://github.com/timothycpoon/xdy-pf2e-workbench/commit/26808e1898327bae4e57b35fdf578f4e18e235f6))
+* Test release process ([c4f3312](https://github.com/timothycpoon/xdy-pf2e-workbench/commit/c4f331205eec69b9d977312edade2d4c030e126b))
+* Testing release process ([7654147](https://github.com/timothycpoon/xdy-pf2e-workbench/commit/76541474f78fc365ce256a9a066f25d03707fa50))
+* Testing release process ([d15eeeb](https://github.com/timothycpoon/xdy-pf2e-workbench/commit/d15eeebf550744b61d08bd55a1c57aefe05f1598))
+* Update release process ([e659202](https://github.com/timothycpoon/xdy-pf2e-workbench/commit/e659202f720a319ac76885eb80e72158d8204842))
+
 ## [5.58.7](https://github.com/xdy/xdy-pf2e-workbench/compare/v5.58.6...v5.58.7) (2024-03-15)
 
 
