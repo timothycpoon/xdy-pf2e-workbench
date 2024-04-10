@@ -1,5 +1,6 @@
 import { ChatMessagePF2e } from "@module/chat-message/index.js";
 import { MODULENAME } from "../../xdy-pf2e-workbench.js";
+import { SpellPF2e } from "@item/spell/document.js";
 
 export async function handlePrivateSpellcasting(data: any, message: ChatMessagePF2e) {
     const spellUUID = <string>message.flags?.pf2e.origin?.uuid;
@@ -63,7 +64,7 @@ function showPartymembersWithSpell(message, membersWithSpell, data: any) {
     }
 }
 
-async function generateMessageData(message: ChatMessagePF2e, origin: any, spellUUID: string, data: any) {
+async function generateMessageData(message: ChatMessagePF2e, origin, spellUUID: string, data: any) {
     const anonymous = game.i18n.localize(`${MODULENAME}.SETTINGS.castPrivateSpellWithPublicMessage.they`);
     const tokenName = game.settings.get("pf2e", "metagame_tokenSetsNameVisibility")
         ? anonymous
@@ -71,7 +72,9 @@ async function generateMessageData(message: ChatMessagePF2e, origin: any, spellU
 
     const type = message.flags?.pf2e.origin?.type ?? "spell";
     const traditionString = message.flags?.pf2e.casting?.tradition ?? "";
-    const content = buildSpellMessage(origin, tokenName, type, traditionString, spellUUID, data);
+    const context = message.flags.pf2e.context;
+    const isBasicSave = context?.options?.includes("item:defense:basic");
+    const content = buildSpellMessage(origin, tokenName, type, traditionString, spellUUID, data, isBasicSave);
 
     const flags = {
         "xdy-pf2e-workbench": {
@@ -114,7 +117,21 @@ const TRADITION_SKILLS = { arcane: "arcana", divine: "religion", occult: "occult
 
 function findPartyMembersWithSpell(origin: any) {
     return game.actors?.party?.members
-        ?.filter((actor) => actor.items?.some((item) => item.isOfType("spell") && item.slug === origin.slug))
+        ?.filter((actor) => {
+            return actor.items
+                ?.filter((i) => i.slug === origin.slug)
+                ?.filter((i) => i.isOfType("spell"))
+                ?.filter((i) => (<SpellPF2e>(<unknown>i)).spellcasting)
+                .some((item) => {
+                    const spell = <SpellPF2e>(<unknown>item);
+                    const entry = spell.spellcasting;
+                    return (
+                        !entry?.isPrepared ||
+                        (entry?.isPrepared &&
+                            entry?.system?.slots?.[`slot${spell.rank}`].prepared.some((s) => s.id === spell.id))
+                    );
+                });
+        })
         .map((actor) => actor.name);
 }
 
@@ -141,14 +158,7 @@ function isShiftModifierActive(): boolean {
     return game?.keyboard?.isModifierActive(KeyboardManager.MODIFIER_KEYS.SHIFT);
 }
 
-function buildSpellMessage(
-    origin: any,
-    tokenName: string,
-    type,
-    traditionString: string,
-    spellUUID: string,
-    data: any,
-) {
+function buildSpellMessage(origin, tokenName: string, type, traditionString: string, spellUUID: string, data, basic) {
     let content = "";
     if (origin) {
         content = game.i18n.localize(
@@ -187,18 +197,29 @@ function buildSpellMessage(
 
     const buttons = $(data.content).find("button");
     const saveButtons = buttons.filter((i) => buttons[i].getAttribute("data-action") === "spell-save");
+    const targetHelperActive = game.modules.find((s) => s.id === "pf2e-target-helper")?.active;
     if (saveButtons.length === 1) {
         const dataSave = saveButtons.attr("data-save") ?? "";
-        const dataDC = saveButtons.attr("data-dc") ?? "";
-        const origin: any = fromUuidSync(spellUUID);
-        content += game.i18n.format(`${MODULENAME}.SETTINGS.castPrivateSpellWithPublicMessage.savePart`, {
-            dataSave: dataSave,
-            dataDC: dataDC,
-            traits: Object.values(origin.system.traits.value)
-                .map((trait: any) => game.pf2e.system.sluggify(trait.valueOf()))
-                .sort()
-                .join(","),
-        });
+        if (!targetHelperActive) {
+            const dataDC = saveButtons.attr("data-dc") ?? "";
+
+            content += game.i18n.format(`${MODULENAME}.SETTINGS.castPrivateSpellWithPublicMessage.savePart`, {
+                dataSave: dataSave,
+                dataDC: dataDC,
+                traits: Object.values(origin.system.traits.value)
+                    .map((trait: any) => game.pf2e.system.sluggify(trait.valueOf()))
+                    .sort()
+                    .join(","),
+                basic,
+            });
+        } else {
+            content += game.i18n.format(`${MODULENAME}.SETTINGS.castPrivateSpellWithPublicMessage.noButtonSavePart`, {
+                dataSave: dataSave,
+                basic: basic
+                    ? game.i18n.localize(`${MODULENAME}.SETTINGS.castPrivateSpellWithPublicMessage.basic`)
+                    : "",
+            });
+        }
     }
     return content;
 }

@@ -1,14 +1,86 @@
-## [30.7.1](https://github.com/timothycpoon/xdy-pf2e-workbench/compare/fv30.7.0...fv30.7.1) (2024-03-17)
+## [5.62.1](https://github.com/xdy/xdy-pf2e-workbench/compare/v5.62.0...v5.62.1) (2024-04-07)
 
 
 ### Bug Fixes
 
-* Keeping up with the Macro Faeries. ([65a0bd1](https://github.com/timothycpoon/xdy-pf2e-workbench/commit/65a0bd1353930c73c493668638faafa4c01ac9fb))
-* Test release process ([26808e1](https://github.com/timothycpoon/xdy-pf2e-workbench/commit/26808e1898327bae4e57b35fdf578f4e18e235f6))
-* Test release process ([c4f3312](https://github.com/timothycpoon/xdy-pf2e-workbench/commit/c4f331205eec69b9d977312edade2d4c030e126b))
-* Testing release process ([7654147](https://github.com/timothycpoon/xdy-pf2e-workbench/commit/76541474f78fc365ce256a9a066f25d03707fa50))
-* Testing release process ([d15eeeb](https://github.com/timothycpoon/xdy-pf2e-workbench/commit/d15eeebf550744b61d08bd55a1c57aefe05f1598))
-* Update release process ([e659202](https://github.com/timothycpoon/xdy-pf2e-workbench/commit/e659202f720a319ac76885eb80e72158d8204842))
+* Keeping up with the Macro Faeries. ([69465f7](https://github.com/xdy/xdy-pf2e-workbench/commit/69465f7aba8978c00679ccf4f98cdd15489f3cb4))
+
+# [5.62.0](https://github.com/xdy/xdy-pf2e-workbench/compare/v5.61.1...v5.62.0) (2024-04-07)
+
+
+### Features
+
+* Readds remastered Refocus. (Handles the various *Focus feats, but not Psychics, Crimson Oath Devotion, and Oracle curses.) ([5699846](https://github.com/xdy/xdy-pf2e-workbench/commit/56998469565c4a65cdf74e64cbdf0e776aed8362))
+
+## [5.61.1](https://github.com/xdy/xdy-pf2e-workbench/compare/v5.61.0...v5.61.1) (2024-04-07)
+
+
+### Bug Fixes
+
+* Autorolling damage should work again. ([350c165](https://github.com/xdy/xdy-pf2e-workbench/commit/350c1656a6dc89b65afd4fd3bc7e04fb5879bf65))
+
+# [5.61.0](https://github.com/xdy/xdy-pf2e-workbench/compare/v5.60.0...v5.61.0) (2024-04-05)
+
+
+### Features
+
+* Step out of the way if pf2e-target-helper is configured to autoroll damage for save spells. ([15fea28](https://github.com/xdy/xdy-pf2e-workbench/commit/15fea2812df3ec9c28a7c48cbb840ed014f1f334))
+
+# [5.60.0](https://github.com/xdy/xdy-pf2e-workbench/compare/v5.59.4...v5.60.0) (2024-04-05)
+
+
+### Features
+
+* Hide the public message save button (but keep text that shows whether it's a basic save) if PF2e Target Helper is active as that adds it's own save buttons. ([c77eb56](https://github.com/xdy/xdy-pf2e-workbench/commit/c77eb569bd96fbef869bc9e388a1b218b12f5670))
+
+## [5.59.4](https://github.com/xdy/xdy-pf2e-workbench/compare/v5.59.3...v5.59.4) (2024-03-31)
+
+
+### Bug Fixes
+
+* When casting spells privately with a public message, show whether a spell save is basic or not. ([3fc2f4b](https://github.com/xdy/xdy-pf2e-workbench/commit/3fc2f4b9d73002cfefcb281f41d6344e4d9c95d9))
+
+## [5.59.3](https://github.com/xdy/xdy-pf2e-workbench/compare/v5.59.2...v5.59.3) (2024-03-31)
+
+
+### Bug Fixes
+
+* Keeping up with the Macro Faeries. ([345e424](https://github.com/xdy/xdy-pf2e-workbench/commit/345e4247ecd86ee393b046d8a5fd9ded91cf8c34))
+
+## [5.59.2](https://github.com/xdy/xdy-pf2e-workbench/compare/v5.59.1...v5.59.2) (2024-03-31)
+
+
+### Bug Fixes
+
+* Add correct traits to Dirge of Doom Aura RE, courtesy of DocSchlock, icon for Generate All Spells macro courtesy of Symon S. ([eb56c45](https://github.com/xdy/xdy-pf2e-workbench/commit/eb56c45c6a8efcdab3dfe06d91b410abe626fbfd))
+
+## [5.59.1](https://github.com/xdy/xdy-pf2e-workbench/compare/v5.59.0...v5.59.1) (2024-03-27)
+
+
+### Bug Fixes
+
+* Drental pointed out that there were still imgur links in the customizable macros, these have been replaced with the same icons that are in the non customizable macros. ([d0af852](https://github.com/xdy/xdy-pf2e-workbench/commit/d0af8528d3cc24bd4c30e40b65d910276730fbc8))
+
+# [5.59.0](https://github.com/xdy/xdy-pf2e-workbench/compare/v5.58.9...v5.59.0) (2024-03-26)
+
+
+### Features
+
+* Add conditional visibility of settings on menu forms, courtesy of @Clemente ([fbb8bc0](https://github.com/xdy/xdy-pf2e-workbench/commit/fbb8bc0209c9c0007194cdf4a995736625c99ddb))
+
+## [5.58.9](https://github.com/xdy/xdy-pf2e-workbench/compare/v5.58.8...v5.58.9) (2024-03-23)
+
+
+### Bug Fixes
+
+* Avoid undefined is not iterable error ([1abb7a0](https://github.com/xdy/xdy-pf2e-workbench/commit/1abb7a05a26bbacda9e3fccfe235aaaded856ae8))
+
+## [5.58.8](https://github.com/xdy/xdy-pf2e-workbench/compare/v5.58.7...v5.58.8) (2024-03-17)
+
+
+### Bug Fixes
+
+* When checking if a privately cast spell is known by a party member, verify that prepared spells are actually prepared and not just on the spell preparation shortlist. ([0eceedc](https://github.com/xdy/xdy-pf2e-workbench/commit/0eceedc0eb8b91f3c028df4942da6b269ba09ae7)), closes [#1265](https://github.com/xdy/xdy-pf2e-workbench/issues/1265)
 
 ## [5.58.7](https://github.com/xdy/xdy-pf2e-workbench/compare/v5.58.6...v5.58.7) (2024-03-15)
 
