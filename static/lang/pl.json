@@ -82,7 +82,8 @@
           "Escape": "Wyrwanie się",
           "AidASE": "Wsparcie (makro ASE)",
           "CreateADiversionDistractingWords": "Dywersja - Rozpraszające Słowa",
-          "Reposition": "Przemieszczenie"
+          "Reposition": "Przemieszczenie",
+          "AidPF2eMacros": "Wsparcie (Makra PF2e)"
         },
         "noActorSelected": "Nie wybrano żadnego aktora",
         "cancel": "Anuluj",
@@ -99,7 +100,7 @@
           "name": "BAM: Przybliżone akcje na wiersz",
           "hint": "Przybliżona liczba akcji na wiersz w oknie dialogowym Makra akcji podstawowych. Rzeczywista liczba akcji na wiersz będzie najbliższą liczbą akcji na wiersz, która zmieści się w oknie dialogowym."
         },
-        "gmMustImport": "GM musi kliknąć prawym przyciskiem myszy na kompendium xdy-pf2e-workbench-macros i wybrać opcję \"Importuj całą zawartość\" i upewnić się, że podczas importowania zaznaczona jest opcja \"Zachowaj identyfikatory dokumentów\".",
+        "gmMustImport": "MG musi kliknąć prawym przyciskiem myszy na kompendium xdy-pf2e-workbench-macros i wybrać opcję \"Importuj całą zawartość\" i upewnić się, że podczas importowania zaznaczona jest opcja \"Zachowaj identyfikatory dokumentów\".",
         "bamShowUnusable": {
           "name": "BAM: Pokaż akcje, których nie można użyć.",
           "hint": "Czy pokazywać akcje, których nie można użyć, ponieważ postać nie jest wyszkolona."
@@ -138,7 +139,7 @@
     },
     "SETTINGS": {
       "actionsReminderAllow": {
-        "gm": "GM",
+        "gm": "MG",
         "players": "Gracze",
         "all": "Wszystko",
         "hint": "Zaznacz, aby wyświetlić liczbę przypomnień o działaniach jako wiadomość czatu.",
@@ -154,7 +155,7 @@
       },
       "applyPersistentAllow": {
         "all": "Wszyscy",
-        "gm": "GM",
+        "gm": "MG",
         "name": "Kto może ustawić opcję automatycznego stosowania trwałych obrażeń/leczenia.",
         "hint": "Wybierz, kto może ustawić opcję automatycznego stosowania trwałych obrażeń/leczenia. Zapisz ustawienia, aby wyświetlić/ukryć dodatkowe opcje w menu ustawień automatyzacji klienta.",
         "none": "Nikt",
@@ -217,7 +218,9 @@
         "secondPartNoRk": ".<br>Możesz spróbować użyć jednego z @UUID[Compendium.pf2e.feats-srd.MjQyTcV8Jiv1Jtln] lub @UUID[Compendium.pf2e.feats-srd.2rSyTfPgAmNAo01r] aby go rozpoznać. Możesz też w swojej turze wydać akcję, aby spróbować go zidentyfikować (o szczegóły zapytaj swojego MG).",
         "firstPart": "{tokenName} właśnie rzucił {type} tradycji <strong>{traditionString}</strong><p data-visibility=\"gm\"> (@UUID[{spellUUID}]) </p>",
         "secondPartRK": ".<br>Możesz spróbować użyć jednego z @UUID[Compendium.pf2e.feats-srd.MjQyTcV8Jiv1Jtln] lub @UUID[Compendium.pf2e.feats-srd.2rSyTfPgAmNAo01r] aby go rozpoznać. Możesz też, w swojej turze, wydać akcję, aby spróbować go zidentyfikować za pomocą @Check[type:{skill}|dc:{dcRK}|traits:secret,action:recall-knowledge] @UUID[Compendium.pf2e.actionspf2e.Item.1OagaWtBpVXExToo] (lub 10 minut z @Check[type:{skill}|dc:{dcRK}|traits:secret,action:identify-magic] @UUID[Compendium.pf2e.actionspf2e.Item.eReSHVEPCsdkSL4G] )",
-        "knownBy": "<div><p><b>Znany przez: </b>{spellHavers}</p></div><hr class=\"item-block-divider\">"
+        "knownBy": "<div><p><b>Znany przez: </b>{spellHavers}</p></div><hr class=\"item-block-divider\">",
+        "basic": "Podstawowy",
+        "noButtonSavePart": "<br><b>{basic} {dataSave} rzut obronny</b>"
       },
       "applyPersistentDamageRecoveryRoll": {
         "hint": "... a następnie automatycznie przywróci ustawienia fabryczne. Wymaga włączenia powyższego ustawienia.",
@@ -228,7 +231,7 @@
         "name": "Kto może ustawić opcję automatycznej obsługi rzutów odzyskiwania po kliknięciu przycisku odzyskiwania.",
         "none": "Nikt",
         "players": "Gracze",
-        "gm": "GM",
+        "gm": "MG",
         "hint": "Wybierz, kto może ustawić opcję automatycznej obsługi rzutów regeneracji umierających postaci po kliknięciu przez właściciela przycisku odzyskiwania na karcie postaci. Zapisz ustawienia, aby wyświetlić/ukryć dodatkowe opcje w menu ustawień automatyzacji klienta."
       },
       "autoRollDamageForStrike": {
@@ -280,8 +283,8 @@
       "autoExpandDamageRolls": {
         "collapsedAll": "Wszystkie rzuty na obrażenia zwinięte (domyślne Foundry).",
         "expandedAll": "Wszystkie rzuty na obrażenia rozszerzają się.",
-        "expandedNew": "Nowe rzuty obrażeń rozszerzają się (tak jak trzy ostatnie rzuty obrażeń przy odświeżaniu).",
-        "expandedNewest": "Nowe rzuty na obrażenia rozszerzają się (tak jak ostatni rzut na obrażenia przy odświeżaniu).",
+        "expandedNew": "Nowe rzuty obrażeń rozszerzają się (tak jak trzy ostatnie rzuty obrażeń)",
+        "expandedNewest": "Nowe rzuty na obrażenia rozszerzają się (tak jak ostatni rzut na obrażenia)",
         "name": "Automatycznie rozszerzaj rzuty na obrażenia.",
         "hint": "Ustawienie klienta do automatycznego rozwijania rzutów obrażeń (domyślnie wszystkie rzuty obrażeń są zwinięte). Kliknij rzut kością, aby rozwinąć/zwinąć."
       },
@@ -421,7 +424,7 @@
         "petrified": "jest skamieniały",
         "unconscious": "jest nieprzytomny",
         "name": "Przypomnienie, jeśli atakowanie tokenem nie jest możliwe",
-        "hint": "Zaznacz aby pokazać przypomnienie jeśli atakujesz tokenem, który nie może atakować z powodu bycia nieprzytomnym/martwym/pokonanym/brak PŻ/etc.",
+        "hint": "Zaznacz aby pokazać przypomnienie jeśli atakujesz tokenem, który nie może atakować z powodu bycia nieprzytomnym/martwym/pokonanym/brak PW/itd.",
         "dead": "nie żyje",
         "error": "{title} anulowany przez {actorName} z powodu {reason}.",
         "info": "Czy jesteś pewien tego {title}? {actorName} {reason}, a więc raczej nie będzie w stanie zaatakować...",
@@ -539,8 +542,8 @@
         "hint": "Wybierz, aby umożliwić ustawienie inicjatywy walczącego poza własną turą tuż przed bieżącym walczącym, zazwyczaj dlatego, że bieżący walczący zabił wybranego uczestnika. Ze względu na zaokrąglanie kilku uczestników może mieć taką samą inicjatywę na liście.",
         "name": "Ustawia inicjatywę tuż przed aktualnym walczącym.",
         "noAutomation": "Nigdy",
-        "reaching0HP": "Gdy postać lub npc osiągnie 0 PŻ.",
-        "reaching0HPCharactersOnly": "Gdy postać walcząca osiągnie 0 PŻ."
+        "reaching0HP": "Gdy postać lub npc osiągnie 0 PW.",
+        "reaching0HPCharactersOnly": "Gdy postać walcząca osiągnie 0 PW."
       },
       "legacyVariantRuleAncestryParagon": {
         "title": "Atuty Ancestry Paragon",
@@ -586,8 +589,8 @@
         "hint": "Ustawienie klienta automatycznie zmniejszające stan przerażenia co turę dla postaci, NPC i postaci rodzinnych."
       },
       "giveUnconsciousIfDyingRemovedAt0HP": {
-        "hint": "Ustawienie automatycznej utraty przytomności w przypadku usunięcia stanu Umierania przy 0 PŻ.",
-        "name": "Automatycznie ustawia stan Nieprzytomny w przypadku usunięcia stanu Śmierci przy 0 PŻ.",
+        "hint": "Ustawienie automatycznej utraty przytomności w przypadku usunięcia stanu Umierania przy 0 PW.",
+        "name": "Automatycznie ustawia stan Nieprzytomny w przypadku usunięcia stanu Śmierci przy 0 PW.",
         "no": "Nie"
       },
       "giveWoundedWhenDyingRemoved": {

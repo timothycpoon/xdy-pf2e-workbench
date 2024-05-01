@@ -80,6 +80,7 @@ async function generateMessageData(message: ChatMessagePF2e, origin, spellUUID: 
         "xdy-pf2e-workbench": {
             privateSpell: {
                 originUuid: message.flags?.pf2e.origin?.uuid,
+                originCastRank: message.flags.pf2e.origin.castRank,
             },
         },
     };

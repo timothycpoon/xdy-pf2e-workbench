@@ -1,24 +1,66 @@
-# [30.8.0](https://github.com/timothycpoon/xdy-pf2e-workbench/compare/fv30.7.1...fv30.8.0) (2024-04-10)
+## [5.65.2](https://github.com/xdy/xdy-pf2e-workbench/compare/v5.65.1...v5.65.2) (2024-04-30)
 
 
 ### Bug Fixes
 
-* Add correct traits to Dirge of Doom Aura RE, courtesy of DocSchlock, icon for Generate All Spells macro courtesy of Symon S. ([eb56c45](https://github.com/timothycpoon/xdy-pf2e-workbench/commit/eb56c45c6a8efcdab3dfe06d91b410abe626fbfd))
-* Autorolling damage should work again. ([350c165](https://github.com/timothycpoon/xdy-pf2e-workbench/commit/350c1656a6dc89b65afd4fd3bc7e04fb5879bf65))
-* Avoid undefined is not iterable error ([1abb7a0](https://github.com/timothycpoon/xdy-pf2e-workbench/commit/1abb7a05a26bbacda9e3fccfe235aaaded856ae8))
-* Drental pointed out that there were still imgur links in the customizable macros, these have been replaced with the same icons that are in the non customizable macros. ([d0af852](https://github.com/timothycpoon/xdy-pf2e-workbench/commit/d0af8528d3cc24bd4c30e40b65d910276730fbc8))
-* Keeping up with the Macro Faeries. ([69465f7](https://github.com/timothycpoon/xdy-pf2e-workbench/commit/69465f7aba8978c00679ccf4f98cdd15489f3cb4))
-* Keeping up with the Macro Faeries. ([345e424](https://github.com/timothycpoon/xdy-pf2e-workbench/commit/345e4247ecd86ee393b046d8a5fd9ded91cf8c34))
-* When casting spells privately with a public message, show whether a spell save is basic or not. ([3fc2f4b](https://github.com/timothycpoon/xdy-pf2e-workbench/commit/3fc2f4b9d73002cfefcb281f41d6344e4d9c95d9))
-* When checking if a privately cast spell is known by a party member, verify that prepared spells are actually prepared and not just on the spell preparation shortlist. ([0eceedc](https://github.com/timothycpoon/xdy-pf2e-workbench/commit/0eceedc0eb8b91f3c028df4942da6b269ba09ae7)), closes [#1265](https://github.com/timothycpoon/xdy-pf2e-workbench/issues/1265)
+* Keeping up with the Macro Faeries. ([34cdcab](https://github.com/xdy/xdy-pf2e-workbench/commit/34cdcabff32bd56e6c50c2ff5449fd51b22d6853))
+
+## [5.65.1](https://github.com/xdy/xdy-pf2e-workbench/compare/v5.65.0...v5.65.1) (2024-04-26)
+
+
+### Bug Fixes
+
+* Another go at fixing custom pause text. ([bd6164b](https://github.com/xdy/xdy-pf2e-workbench/commit/bd6164b13ec39a6d4dadafde99bae234d2c3e5ef))
+
+# [5.65.0](https://github.com/xdy/xdy-pf2e-workbench/compare/v5.64.2...v5.65.0) (2024-04-22)
 
 
 ### Features
 
-* Add conditional visibility of settings on menu forms, courtesy of @Clemente ([fbb8bc0](https://github.com/timothycpoon/xdy-pf2e-workbench/commit/fbb8bc0209c9c0007194cdf4a995736625c99ddb))
-* Hide the public message save button (but keep text that shows whether it's a basic save) if PF2e Target Helper is active as that adds it's own save buttons. ([c77eb56](https://github.com/timothycpoon/xdy-pf2e-workbench/commit/c77eb569bd96fbef869bc9e388a1b218b12f5670))
-* Readds remastered Refocus. (Handles the various *Focus feats, but not Psychics, Crimson Oath Devotion, and Oracle curses.) ([5699846](https://github.com/timothycpoon/xdy-pf2e-workbench/commit/56998469565c4a65cdf74e64cbdf0e776aed8362))
-* Step out of the way if pf2e-target-helper is configured to autoroll damage for save spells. ([15fea28](https://github.com/timothycpoon/xdy-pf2e-workbench/commit/15fea2812df3ec9c28a7c48cbb840ed014f1f334))
+* New and improved Follow the Expert macro, courtesy of @Trent ([d124cd5](https://github.com/xdy/xdy-pf2e-workbench/commit/d124cd50e79775f9cc33c8ff413f659398b0f378))
+
+## [5.64.2](https://github.com/xdy/xdy-pf2e-workbench/compare/v5.64.1...v5.64.2) (2024-04-22)
+
+
+### Bug Fixes
+
+* Autorolling damage for players should work again. Hopefully without breaking something else. ([a793bfd](https://github.com/xdy/xdy-pf2e-workbench/commit/a793bfdc34fc815d24b98c7b1fcc5b96f96c7db2))
+* Changing pause text should work again. ([2b22585](https://github.com/xdy/xdy-pf2e-workbench/commit/2b22585447bfb5360b832ed24d818304a5bd3f6c))
+
+## [5.64.1](https://github.com/xdy/xdy-pf2e-workbench/compare/v5.64.0...v5.64.1) (2024-04-19)
+
+
+### Bug Fixes
+
+* Add originCastRank: message.flags.pf2e.origin.castRank instead  ([a7c8ace](https://github.com/xdy/xdy-pf2e-workbench/commit/a7c8acee853cfd39b88850bc1a92ab15af72adb8))
+
+# [5.64.0](https://github.com/xdy/xdy-pf2e-workbench/compare/v5.63.1...v5.64.0) (2024-04-19)
+
+
+### Features
+
+* Add flag xdy-pf2e-workbench.privateSpell.originMessageId to the private spellcasting public message. ([dd477b9](https://github.com/xdy/xdy-pf2e-workbench/commit/dd477b94dd9b0adb4a38ef276b827ca4b2024517))
+
+## [5.63.1](https://github.com/xdy/xdy-pf2e-workbench/compare/v5.63.0...v5.63.1) (2024-04-14)
+
+
+### Bug Fixes
+
+* Keeping up with the Macro Faeries. ([db13e89](https://github.com/xdy/xdy-pf2e-workbench/commit/db13e89b350b1fd8823bd5564942d445a83744e3))
+
+# [5.63.0](https://github.com/xdy/xdy-pf2e-workbench/compare/v5.62.2...v5.63.0) (2024-04-13)
+
+
+### Features
+
+* BAM: Add support for the Aid macro from Reyzor's PF2e Macros. ([75cf659](https://github.com/xdy/xdy-pf2e-workbench/commit/75cf6596f192ac56cd10a4e25023353de311aaac))
+
+## [5.62.2](https://github.com/xdy/xdy-pf2e-workbench/compare/v5.62.1...v5.62.2) (2024-04-13)
+
+
+### Bug Fixes
+
+* Keeping up with the Macro Faeries. ([cff521e](https://github.com/xdy/xdy-pf2e-workbench/commit/cff521ef5b143b2f2542d2470801edfeb5a6b8a9))
 
 ## [5.62.1](https://github.com/xdy/xdy-pf2e-workbench/compare/v5.62.0...v5.62.1) (2024-04-07)
 
