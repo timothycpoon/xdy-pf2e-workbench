@@ -1,22 +1,23 @@
-# [30.9.0](https://github.com/timothycpoon/xdy-pf2e-workbench/compare/fv30.8.0...fv30.9.0) (2024-05-01)
+## [5.65.5](https://github.com/xdy/xdy-pf2e-workbench/compare/v5.65.4...v5.65.5) (2024-05-09)
 
 
 ### Bug Fixes
 
-* Add originCastRank: message.flags.pf2e.origin.castRank instead  ([a7c8ace](https://github.com/timothycpoon/xdy-pf2e-workbench/commit/a7c8acee853cfd39b88850bc1a92ab15af72adb8))
-* Another go at fixing custom pause text. ([bd6164b](https://github.com/timothycpoon/xdy-pf2e-workbench/commit/bd6164b13ec39a6d4dadafde99bae234d2c3e5ef))
-* Autorolling damage for players should work again. Hopefully without breaking something else. ([a793bfd](https://github.com/timothycpoon/xdy-pf2e-workbench/commit/a793bfdc34fc815d24b98c7b1fcc5b96f96c7db2))
-* Changing pause text should work again. ([2b22585](https://github.com/timothycpoon/xdy-pf2e-workbench/commit/2b22585447bfb5360b832ed24d818304a5bd3f6c))
-* Keeping up with the Macro Faeries. ([34cdcab](https://github.com/timothycpoon/xdy-pf2e-workbench/commit/34cdcabff32bd56e6c50c2ff5449fd51b22d6853))
-* Keeping up with the Macro Faeries. ([db13e89](https://github.com/timothycpoon/xdy-pf2e-workbench/commit/db13e89b350b1fd8823bd5564942d445a83744e3))
-* Keeping up with the Macro Faeries. ([cff521e](https://github.com/timothycpoon/xdy-pf2e-workbench/commit/cff521ef5b143b2f2542d2470801edfeb5a6b8a9))
+* Keeping up with the Macro Faeries. ([46f9091](https://github.com/xdy/xdy-pf2e-workbench/commit/46f90914f50eeeff70fb8db3027341b4040e0601))
+
+## [5.65.4](https://github.com/xdy/xdy-pf2e-workbench/compare/v5.65.3...v5.65.4) (2024-05-04)
 
 
-### Features
+### Bug Fixes
 
-* Add flag xdy-pf2e-workbench.privateSpell.originMessageId to the private spellcasting public message. ([dd477b9](https://github.com/timothycpoon/xdy-pf2e-workbench/commit/dd477b94dd9b0adb4a38ef276b827ca4b2024517))
-* BAM: Add support for the Aid macro from Reyzor's PF2e Macros. ([75cf659](https://github.com/timothycpoon/xdy-pf2e-workbench/commit/75cf6596f192ac56cd10a4e25023353de311aaac))
-* New and improved Follow the Expert macro, courtesy of @Trent ([d124cd5](https://github.com/timothycpoon/xdy-pf2e-workbench/commit/d124cd50e79775f9cc33c8ff413f659398b0f378))
+* Keeping up with the Macro Faeries. ([aa7f93e](https://github.com/xdy/xdy-pf2e-workbench/commit/aa7f93eabdeb7d5afa07746aee5bdb2d134916ec))
+
+## [5.65.3](https://github.com/xdy/xdy-pf2e-workbench/compare/v5.65.2...v5.65.3) (2024-05-03)
+
+
+### Bug Fixes
+
+* Keeping up with the Macro Faeries. ([839c479](https://github.com/xdy/xdy-pf2e-workbench/commit/839c479c620fbb2401b8b93edcd29a644fc21884))
 
 ## [5.65.2](https://github.com/xdy/xdy-pf2e-workbench/compare/v5.65.1...v5.65.2) (2024-04-30)
 
