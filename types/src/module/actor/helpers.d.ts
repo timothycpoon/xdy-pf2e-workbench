@@ -38,6 +38,8 @@ interface MultipleAttackPenaltyData {
 }
 /** Create roll options pertaining to the active encounter and the actor's participant */
 declare function createEncounterRollOptions(actor: ActorPF2e): Record<string, boolean>;
+/** Create roll options pertaining to the terrain the actor is currently in */
+declare function createEnvironmentRollOptions(actor: ActorPF2e): Record<string, boolean>;
 /** Whether flanking puts this actor off-guard */
 declare function isOffGuardFromFlanking(target: ActorPF2e, origin: ActorPF2e): boolean;
 declare function getStrikeAttackDomains(weapon: WeaponPF2e<ActorPF2e> | MeleePF2e<ActorPF2e>, proficiencyRank: ZeroToFour | null, baseRollOptions: string[] | Set<string>): string[];
@@ -50,5 +52,5 @@ declare function getRangeIncrement(attackItem: ItemPF2e<ActorPF2e>, distance: nu
 declare function calculateRangePenalty(actor: ActorPF2e, increment: number | null, selectors: string[], rollOptions: Set<string>): ModifierPF2e | null;
 /** Whether this actor is of a the "character" type, excluding those from the PF2E Companion Compendia module */
 declare function isReallyPC(actor: ActorPF2e): boolean;
-export { auraAffectsActor, calculateMAPs, calculateRangePenalty, checkAreaEffects, createEncounterRollOptions, getRangeIncrement, getStrikeAttackDomains, getStrikeDamageDomains, isOffGuardFromFlanking, isReallyPC, migrateActorSource, resetActors, setHitPointsRollOptions, strikeFromMeleeItem, userColorForActor, };
+export { auraAffectsActor, calculateMAPs, calculateRangePenalty, checkAreaEffects, createEncounterRollOptions, createEnvironmentRollOptions, getRangeIncrement, getStrikeAttackDomains, getStrikeDamageDomains, isOffGuardFromFlanking, isReallyPC, migrateActorSource, resetActors, setHitPointsRollOptions, strikeFromMeleeItem, userColorForActor, };
 export type { MultipleAttackPenaltyData };

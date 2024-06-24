@@ -57,6 +57,9 @@ interface PartySheetData extends ActorSheetDataPF2e<PartyPF2e> {
     };
     explorationSummary: {
         speed: number;
+        feetPerMinute: number;
+        milesPerHour: number;
+        milesPerDay: number;
         activities: number;
     };
     /** Unsupported items on the sheet, may occur due to disabled campaign data */

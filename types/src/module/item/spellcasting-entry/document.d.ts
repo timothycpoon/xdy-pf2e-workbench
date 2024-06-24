@@ -14,8 +14,6 @@ declare class SpellcastingEntryPF2e<TParent extends ActorPF2e | null = ActorPF2e
     statistic: Statistic;
     get attribute(): AttributeString;
     get counteraction(): Statistic;
-    /** @deprecated */
-    get ability(): AttributeString;
     /** This entry's magic tradition, null if the spell's tradition should be used instead */
     get tradition(): MagicTradition | null;
     get category(): SpellcastingCategory;
@@ -66,7 +64,7 @@ declare class SpellcastingEntryPF2e<TParent extends ActorPF2e | null = ActorPF2e
         prepList?: boolean | undefined;
     }): Promise<SpellcastingSheetData>;
     getRollOptions(prefix?: string): string[];
-    protected _preUpdate(changed: DeepPartial<this["_source"]>, options: DocumentModificationContext<TParent>, user: UserPF2e): Promise<boolean | void>;
+    protected _preUpdate(changed: DeepPartial<this["_source"]>, options: DatabaseUpdateOperation<TParent>, user: UserPF2e): Promise<boolean | void>;
     /**
      * To prevent (or delay) console spam, will send out a deprecation notice in a later release
      * @deprecated

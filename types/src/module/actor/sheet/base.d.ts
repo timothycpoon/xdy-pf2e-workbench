@@ -63,7 +63,7 @@ declare abstract class ActorSheetPF2e<TActor extends ActorPF2e> extends ActorShe
      * @param targetActorId ID of the actor where the item will be stored.
      * @param itemId           ID of the item to move between the two actors.
      */
-    moveItemBetweenActors(event: DragEvent, sourceActorId: string, sourceTokenId: string | null, targetActorId: string, targetTokenId: string | null, itemId: string): Promise<void>;
+    moveItemBetweenActors(event: DragEvent, item: PhysicalItemPF2e, targetActor: ActorPF2e): Promise<void>;
     protected openTagSelector(anchor: HTMLElement, options?: Partial<TagSelectorOptions>): void;
     /** Construct and render a tag selection menu */
     protected tagSelector(selectorType: Exclude<TagSelectorType, "basic">, options?: Partial<TagSelectorOptions>): void;
@@ -77,6 +77,9 @@ declare abstract class ActorSheetPF2e<TActor extends ActorPF2e> extends ActorShe
     /** Tagify sets an empty input field to "" instead of "[]", which later causes the JSON parse to throw an error */
     protected _onSubmit(event: Event, { updateData, preventClose, preventRender }?: OnSubmitFormOptions): Promise<Record<string, unknown> | false>;
     protected _getSubmitData(updateData?: Record<string, unknown>): Record<string, unknown>;
+    protected _configureProseMirrorPlugins(name: string, options: {
+        remove?: boolean;
+    }): Record<string, ProseMirror.Plugin>;
 }
 interface ActorSheetPF2e<TActor extends ActorPF2e> extends ActorSheet<TActor, ItemPF2e> {
     prepareItems?(sheetData: ActorSheetDataPF2e<TActor>): Promise<void>;

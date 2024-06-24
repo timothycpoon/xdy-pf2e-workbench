@@ -12,6 +12,8 @@ export declare class EffectSheetPF2e extends ItemSheetPF2e<EffectPF2e> {
 }
 interface EffectSheetData extends ItemSheetDataPF2e<EffectPF2e> {
     badgeType: string;
+    expiryOptions: FormSelectOption[];
+    reevaluateOptions: FormSelectOption[];
     timeUnits: ConfigPF2e["PF2E"]["timeUnits"];
 }
 export {};

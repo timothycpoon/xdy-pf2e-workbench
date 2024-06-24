@@ -14,9 +14,9 @@ declare class MeasuredTemplateDocumentPF2e<TParent extends ScenePF2e | null = Sc
     /** Ensure the source has a `pf2e` flag along with an `areaShape` if directly inferable. */
     protected _initializeSource(data: object, options?: DataModelConstructionOptions<TParent>): this["_source"];
     /** If present, show the clear-template button on the message from which this template was spawned */
-    protected _onCreate(data: this["_source"], options: DocumentModificationContext<TParent>, userId: string): void;
+    protected _onCreate(data: this["_source"], operation: DatabaseCreateOperation<TParent>, userId: string): void;
     /** If present, hide the clear-template button on the message from which this template was spawned */
-    protected _onDelete(options: DocumentModificationContext<TParent>, userId: string): void;
+    protected _onDelete(operation: DatabaseDeleteOperation<TParent>, userId: string): void;
 }
 interface MeasuredTemplateDocumentPF2e<TParent extends ScenePF2e | null = ScenePF2e | null> extends MeasuredTemplateDocument<TParent> {
     get object(): MeasuredTemplatePF2e<this> | null;

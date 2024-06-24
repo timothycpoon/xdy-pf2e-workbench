@@ -3,10 +3,13 @@
 
 /* eslint-disable no-undef */
 
+import * as R from "remeda";
 import { MODULENAME } from "../../xdy-pf2e-workbench.js";
 import { ActorPF2e } from "@actor";
-import { Action } from "@actor/actions/types.js";
+import { Action, ActionUseOptions, ActionVariant } from "@actor/actions/types.js";
+import type { ActionTrait } from "@item/ability/index.d.ts";
 import { CharacterSkill } from "@actor/character/types.js";
+import type { MacroPF2e } from "@module/macro.d.ts";
 import { ModifierPF2e } from "@actor/modifiers.js";
 import { Statistic } from "@system/statistic/statistic.js";
 import { followTheExpert } from "./follow-the-expert.ts";
@@ -84,14 +87,15 @@ type MacroAction = {
     altSkillAndFeat?: { skill: string; feat: string }[];
     name: string;
     icon: string;
-    action: string | Function | string[] | Action | undefined;
+    action: Function | Action | ActionVariant | undefined;
     module?: string;
     best?: number;
     whoIsBest?: string;
     showMAP?: boolean;
     showExploration?: boolean;
     showDowntime?: boolean;
-    extra?: string;
+    // Optional parameters for an Action.use() call
+    options?: Partial<ActionUseOptions>;
     actionType?: "basic" | "skill_untrained" | "skill_trained" | "other";
     actionTitle?: string;
 };
@@ -126,16 +130,56 @@ function prepareActions(selectedActor: ActorPF2e, bamActions: MacroAction[]): Ma
         .sort((a, b) => a.name.localeCompare(b.name, game.i18n.lang));
 
     actionsToUse.forEach((x) => {
-        const action =
-            typeof x.action === "string" && x.action.includes("use(") ? eval(x.action.split(".use")[0]) : x.action;
-
-        const traits = action?.traits ?? [];
+        const traits = (x as any)?.action?.traits ?? [];
         x.showMAP = traits.includes("attack");
         x.showDowntime = traits.includes("downtime");
         x.showExploration = traits.includes("exploration");
     });
 
     return actionsToUse;
+}
+
+// Class to wrap a macro into an object that supports the ActionVariant
+// interface, which is what most of the system actions use.
+class MacroActionVariant implements ActionVariant {
+    traits: ActionTrait[] = [];
+    #macro: string;
+    #compendium: string;
+
+    get slug() {
+        return this.#macro.slugify();
+    }
+
+    constructor(macro: string, compendium: string) {
+        this.#macro = macro;
+        this.#compendium = compendium;
+    }
+
+    async use(options: ActionUseOptions): Promise<undefined> {
+        const pack = game.packs.get(this.#compendium);
+        if (pack) {
+            const macros = (await pack.getDocuments({ name: this.#macro })) as MacroPF2e[];
+            if (macros.length > 0) {
+                await macros[0].execute(R.pick(options, ["event"]));
+            } else {
+                ui.notifications.error(
+                    game.i18n.format(`${MODULENAME}.macros.basicActionMacros.macroNotFound`, {
+                        macroName: this.#macro,
+                    }),
+                );
+            }
+        } else {
+            ui.notifications.error(
+                game.i18n.format(`${MODULENAME}.macros.basicActionMacros.compendiumNotFound`, {
+                    compendiumName: this.#compendium,
+                }),
+            );
+        }
+    }
+
+    async toMessage(): Promise<undefined> {
+        // Required by interface, but not used by this module
+    }
 }
 
 /**
@@ -149,28 +193,28 @@ export async function basicActionMacros() {
             actionType: "skill_untrained",
             name: game.i18n.localize(`${MODULENAME}.macros.basicActionMacros.actions.AdministerFirstAidStabilize`),
             skill: "Medicine",
-            action: 'game.pf2e.actions.get("administer-first-aid").use({ event, variant: "stabilize"})',
+            action: game.pf2e.actions.get("administer-first-aid")?.variants.get("stabilize"),
             icon: "systems/pf2e/icons/features/feats/treat-wounds.webp",
         },
         {
             actionType: "skill_untrained",
             name: game.i18n.localize(`${MODULENAME}.macros.basicActionMacros.actions.AdministerFirstAidStopBleeding`),
             skill: "Medicine",
-            action: 'game.pf2e.actions.get("administer-first-aid").use({ event, variant: "stop-bleeding"})',
+            action: game.pf2e.actions.get("administer-first-aid")?.variants.get("stop-bleeding"),
             icon: "systems/pf2e/icons/conditions/persistent-damage.webp",
         },
         {
             actionType: "other",
             name: game.i18n.localize(`${MODULENAME}.macros.basicActionMacros.actions.AidToggle`),
             skill: "",
-            action: ["macroEffectAid", "xdy-pf2e-workbench.xdy-internal-utility-macros"],
+            action: new MacroActionVariant("macroEffectAid", "xdy-pf2e-workbench.xdy-internal-utility-macros"),
             icon: "systems/pf2e/icons/spells/efficient-apport.webp",
         },
         {
             actionType: "other",
             name: game.i18n.localize(`${MODULENAME}.macros.basicActionMacros.actions.AidASE`),
             skill: "",
-            action: ["Aid", "pf2e-action-support-engine-macros.action-support-engine-macros"],
+            action: new MacroActionVariant("Aid", "pf2e-action-support-engine-macros.action-support-engine-macros"),
             module: "pf2e-action-support-engine",
             icon: "systems/pf2e/icons/spells/efficient-apport.webp",
         },
@@ -178,7 +222,7 @@ export async function basicActionMacros() {
             actionType: "other",
             name: game.i18n.localize(`${MODULENAME}.macros.basicActionMacros.actions.AidPF2eMacros`),
             skill: "",
-            action: "game.activemacros.aid(_token.actor)",
+            action: (options) => game["activemacros"].aid(options.actors?.[0]),
             module: "pf2e-macros",
             icon: "systems/pf2e/icons/spells/efficient-apport.webp",
         },
@@ -242,56 +286,63 @@ export async function basicActionMacros() {
             actionType: "skill_untrained",
             name: game.i18n.localize(`${MODULENAME}.macros.basicActionMacros.actions.CreateADiversionDistractingWords`),
             skill: "Deception",
-            action: 'game.pf2e.actions.get("create-a-diversion").use({ event, variant: "distracting-words" })',
+            action: game.pf2e.actions.get("create-a-diversion")?.variants.get("distracting-words"),
             icon: "icons/skills/social/wave-halt-stop.webp",
         },
         {
             actionType: "skill_untrained",
             name: game.i18n.localize(`${MODULENAME}.macros.basicActionMacros.actions.CreateADiversionGesture`),
             skill: "Deception",
-            action: 'game.pf2e.actions.get("create-a-diversion").use({ event, variant: "gesture" })',
+            action: game.pf2e.actions.get("create-a-diversion")?.variants.get("gesture"),
             icon: "icons/skills/social/wave-halt-stop.webp",
         },
         {
             actionType: "skill_untrained",
             name: game.i18n.localize(`${MODULENAME}.macros.basicActionMacros.actions.CreateADiversionTrick`),
             skill: "Deception",
-            action: 'game.pf2e.actions.get("create-a-diversion").use({ event, variant: "trick" })',
+            action: game.pf2e.actions.get("create-a-diversion")?.variants.get("trick"),
             icon: "systems/pf2e/icons/spells/charming-words.webp",
         },
         {
             actionType: "skill_trained",
             name: game.i18n.localize(`${MODULENAME}.macros.basicActionMacros.actions.DecipherWritingArcana`),
             skill: "Arcana",
-            action: 'game.pf2e.actions.get("decipher-writing").use({ event, statistic: "arcana" })',
+            action: game.pf2e.actions.get("decipher-writing"),
+            options: { statistic: "arcana" },
             icon: "icons/skills/trades/academics-book-study-runes.webp",
         },
         {
             actionType: "skill_trained",
             name: game.i18n.localize(`${MODULENAME}.macros.basicActionMacros.actions.DecipherWritingOccultism`),
             skill: "Occultism",
-            action: 'game.pf2e.actions.get("decipher-writing").use({ event, statistic: "occultism" })',
+            action: game.pf2e.actions.get("decipher-writing"),
+            options: { statistic: "occultism" },
             icon: "icons/skills/trades/academics-book-study-purple.webp",
         },
         {
             actionType: "skill_trained",
             name: game.i18n.localize(`${MODULENAME}.macros.basicActionMacros.actions.DecipherWritingReligion`),
             skill: "Religion",
-            action: 'game.pf2e.actions.get("decipher-writing").use({ event, statistic: "religion" })',
+            action: game.pf2e.actions.get("decipher-writing"),
+            options: { statistic: "religion" },
             icon: "systems/pf2e/icons/equipment/other/spellbooks/thresholds-of-truth.webp",
         },
         {
             actionType: "skill_trained",
             name: game.i18n.localize(`${MODULENAME}.macros.basicActionMacros.actions.DecipherWritingSociety`),
             skill: "Society",
-            action: 'game.pf2e.actions.get("decipher-writing").use({ event, statistic: "society" })',
+            action: game.pf2e.actions.get("decipher-writing"),
+            options: { statistic: "society" },
             icon: "icons/skills/trades/academics-study-reading-book.webp",
         },
         {
             actionType: "skill_untrained",
             name: game.i18n.localize(`${MODULENAME}.macros.basicActionMacros.actions.Demoralize`),
             skill: "Intimidation",
-            action: ["XDY DO_NOT_IMPORT Demoralize", "xdy-pf2e-workbench.asymonous-benefactor-macros-internal"],
+            action: new MacroActionVariant(
+                "XDY DO_NOT_IMPORT Demoralize",
+                "xdy-pf2e-workbench.asymonous-benefactor-macros-internal",
+            ),
             icon: "icons/skills/social/intimidation-impressing.webp",
         },
         {
@@ -410,7 +461,7 @@ export async function basicActionMacros() {
             actionType: "skill_untrained",
             name: game.i18n.localize(`${MODULENAME}.macros.basicActionMacros.actions.Perform`),
             skill: "Performance",
-            action: 'game.pf2e.actions.get("perform").use({ event, variant: "singing" })',
+            action: game.pf2e.actions.get("perform")?.variants.get("singing"),
             icon: "icons/skills/trades/music-singing-voice-blue.webp",
         },
         {
@@ -419,6 +470,13 @@ export async function basicActionMacros() {
             skill: "Thievery",
             action: game.pf2e.actions.get("pick-a-lock"),
             icon: "icons/skills/social/theft-pickpocket-bribery-brown.webp",
+        },
+        {
+            actionType: "other",
+            name: game.i18n.localize("PF2E.Actions.PointOut.Title"),
+            skill: "",
+            action: game.pf2e.actions.get("point-out"),
+            icon: "systems/pf2e/icons/conditions/observed.webp",
         },
         {
             actionType: "other",
@@ -431,7 +489,10 @@ export async function basicActionMacros() {
             actionType: "skill_untrained",
             name: game.i18n.localize(`${MODULENAME}.macros.basicActionMacros.actions.RecallKnowledge`),
             skill: "",
-            action: ["XDY DO_NOT_IMPORT Recall_Knowledge", "xdy-pf2e-workbench.asymonous-benefactor-macros-internal"],
+            action: new MacroActionVariant(
+                "XDY DO_NOT_IMPORT Recall_Knowledge",
+                "xdy-pf2e-workbench.asymonous-benefactor-macros-internal",
+            ),
             icon: "icons/skills/trades/academics-study-reading-book.webp",
         },
         {
@@ -508,14 +569,16 @@ export async function basicActionMacros() {
             actionType: "skill_untrained",
             name: game.i18n.localize(`${MODULENAME}.macros.basicActionMacros.actions.SubsistSociety`),
             skill: "Society",
-            action: 'game.pf2e.actions.get("subsist").use({ event, statistic: "society" })',
+            action: game.pf2e.actions.get("subsist"),
+            options: { statistic: "society" },
             icon: "icons/environment/settlement/building-rubble.webp",
         },
         {
             actionType: "basic",
             name: game.i18n.localize(`${MODULENAME}.macros.basicActionMacros.actions.SubsistSurvival`),
             skill: "Survival",
-            action: 'game.pf2e.actions.get("subsist").use({ event, statistic: "survival" })',
+            action: game.pf2e.actions.get("subsist"),
+            options: { statistic: "survival" },
             icon: "icons/environment/wilderness/camp-improvised.webp",
         },
         {
@@ -561,10 +624,10 @@ export async function basicActionMacros() {
                 { skill: "Nature", feat: "natural-medicine" },
                 { skill: "Crafting", feat: "chirurgeon" },
             ],
-            action: [
+            action: new MacroActionVariant(
                 "XDY DO_NOT_IMPORT Treat Wounds and Battle Medicine",
                 "xdy-pf2e-workbench.asymonous-benefactor-macros-internal",
-            ],
+            ),
             icon: "icons/skills/wounds/injury-stapled-flesh-tan.webp",
         },
         {
@@ -654,46 +717,7 @@ export async function basicActionMacros() {
                 const action = (button, event) => {
                     const action = actionsToUse[button.dataset.action];
                     const current = action.action;
-                    if (typeof current === "string") {
-                        if (!current.includes("(")) {
-                            const macro = game.macros.get(current);
-                            if (!macro) {
-                                ui.notifications.error(
-                                    game.i18n.localize(`${MODULENAME}.macros.basicActionMacros.gmMustImport`),
-                                );
-                                return;
-                            }
-                            macro?.execute(event);
-                        } else {
-                            // Ugh
-                            eval(current);
-                        }
-                    } else if (Array.isArray(current)) {
-                        const macroName = current[0];
-                        const compendiumName = current[1];
-                        const pack = game.packs.get(compendiumName);
-                        if (pack) {
-                            pack.getDocuments().then((documents) => {
-                                const macro_data = documents.find((i) => i._source.name === macroName)?.toObject();
-                                if (macro_data) {
-                                    const temp_macro = new Macro(macro_data);
-                                    temp_macro.execute(event);
-                                } else {
-                                    ui.notifications.error(
-                                        game.i18n.format(`${MODULENAME}.macros.basicActionMacros.macroNotFound`, {
-                                            macroName,
-                                        }),
-                                    );
-                                }
-                            });
-                        } else {
-                            ui.notifications.error(
-                                game.i18n.format(`${MODULENAME}.macros.basicActionMacros.compendiumNotFound`, {
-                                    compendiumName,
-                                }),
-                            );
-                        }
-                    } else if (typeof current === "object") {
+                    if (typeof current === "object") {
                         // TODO Handle other variants than map
                         const mapValue =
                             button.dataset.map && button.dataset.map !== "0"
@@ -704,6 +728,7 @@ export async function basicActionMacros() {
                                 event,
                                 multipleAttackPenalty: mapValue,
                                 skipDialog: event.skipDialog,
+                                ...action.options,
                             })
                             .then();
                     } else {
@@ -724,7 +749,6 @@ export async function basicActionMacros() {
                                 event,
                                 actors: [selectedActor],
                                 skill: action.skill.toLocaleLowerCase(),
-                                variant: action.extra,
                             });
                         }
                     }

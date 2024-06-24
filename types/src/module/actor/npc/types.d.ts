@@ -1,7 +1,7 @@
 import type { CreatureSheetData } from "@actor/creature/sheet.ts";
 import type { HitPointsStatistic, TraitViewData } from "@actor/data/base.ts";
 import type { AbilityViewData } from "@actor/sheet/data-types.ts";
-import type { MovementType, SaveType, SkillAbbreviation } from "@actor/types.ts";
+import type { MovementType, SaveType, SkillSlug } from "@actor/types.ts";
 import type { ItemPF2e } from "@item";
 import type { SpellcastingSheetData } from "@item/spellcasting-entry/index.ts";
 import type { ZeroToFour } from "@module/data.ts";
@@ -9,7 +9,6 @@ import type { TraitTagifyEntry } from "@module/sheet/helpers.ts";
 import type { ArmorClassTraceData } from "@system/statistic/index.ts";
 import type { NPCAttributes, NPCPerceptionData, NPCSaveData, NPCSkillData, NPCSystemData } from "./data.ts";
 import type { NPCPF2e, NPCStrike } from "./index.ts";
-
 interface ActionsDetails {
     label: string;
     actions: AbilityViewData[];
@@ -54,7 +53,7 @@ interface NPCSystemSheetData extends NPCSystemData {
     saves: Record<SaveType, NPCSaveData & WithAdjustments & WithRank & {
         labelShort?: string;
     }>;
-    skills: Record<SkillAbbreviation, NPCSkillSheetData>;
+    skills: Record<SkillSlug, NPCSkillSheetData>;
 }
 interface NPCStrikeSheetData {
     _id: string;

@@ -37,7 +37,7 @@ function copyFolder(source: string, target: string) {
 }
 
 function getFolders(path: string | Buffer | URL) {
-    return fs.readdirSync(path).filter(function (file) {
+    return fs.readdirSync(path).filter(function(file) {
         return fs.statSync(path + "/" + file).isDirectory();
     });
 }
@@ -92,16 +92,16 @@ ${documentation ? documentation[0] : "/* There is no documentation in the macro.
     ) {
         const pack = game.packs.get(compendiumName);
         if (pack) {
-            const macro_data = (await pack.getDocuments()).find((i) => i.name === macroName)?.toObject();
-            if (macro_data) {
-                const temp_macro = new Macro(macro_data);
-                temp_macro.permission.default = CONST.DOCUMENT_PERMISSION_LEVELS.OWNER;
-                temp_macro.execute();
+            let macro = (await pack.getDocuments({name: macroName}))?.[0];
+            if (macro) {
+                if (!macro.canExecute)
+                    macro = new macro.constructor(foundry.utils.mergeObject(macro.toObject(), {"-=_id": null, "ownership.default": CONST.DOCUMENT_OWNERSHIP_LEVELS.OWNER}, {performDeletions: true, inplace: true}));
+                macro.execute();
             } else {
-                ui.notifications.error("Macro " + macroName + " not found");
+                ui.notifications.error(\`Macro \${macroName} not found\`);
             }
         } else {
-            ui.notifications.error("Compendium " + compendiumName + " not found");
+            ui.notifications.error(\`Compendium \${compendiumName} not found\`);
         }
     }
     _executeMacroByName('XDY DO_NOT_IMPORT ${macroName}');
@@ -112,9 +112,11 @@ ${documentation ? documentation[0] : "/* There is no documentation in the macro.
                 map.set("Adjust Merchant Prices", "icons/commodities/currency/coins-assorted-mix-copper.webp");
                 map.set("Advanced Countdown", "systems/pf2e/icons/spells/time-beacon.webp");
                 map.set("Assign Standby Spell", "systems/pf2e/icons/spells/abyssal-pact.webp");
+                map.set("Automatic Arcane Cascade", "systems/pf2e/icons/features/classes/arcane-cascade.webp");
                 map.set("Bless", "systems/pf2e/icons/spells/bless.webp");
                 map.set("Casters Spellbook", "systems/pf2e/icons/equipment/held-items/possibility-tome.webp");
                 map.set("Conditions Manager", "systems/pf2e/icons/conditions/doomed.webp");
+                map.set("Custom Mixed Heritage", "systems/pf2e/icons/spells/chromatic-image.webp");
                 map.set(
                     "Custom Saves and Skill Checks",
                     "systems/pf2e/icons/equipment/held-items/abadars-flawless-scale.webp",
@@ -132,6 +134,7 @@ ${documentation ? documentation[0] : "/* There is no documentation in the macro.
                 );
                 map.set("Group Perception Roller", "systems/pf2e/icons/spells/vision-of-weakness.webp");
                 map.set("Heroic Recovery", "systems/pf2e/icons/spells/wholeness-of-body.webp");
+                map.set("Hunt Double Shared Triple Prey", "icons/creatures/eyes/humanoid-single-red-brown.webp");
                 map.set("Level Based DCs", "systems/pf2e/icons/equipment/held-items/radiant-spark.webp");
                 map.set("Lingering Fortissimo", "systems/pf2e/icons/spells/inspire-heroics.webp");
                 map.set("Loot Generator", "systems/pf2e/icons/equipment/held-items/earthsight-box.webp");

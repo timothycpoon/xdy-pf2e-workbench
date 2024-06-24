@@ -1,11 +1,147 @@
-## [30.9.1](https://github.com/timothycpoon/xdy-pf2e-workbench/compare/fv30.9.0...fv30.9.1) (2024-05-15)
+# [6.6.0](https://github.com/xdy/xdy-pf2e-workbench/compare/v6.5.0...v6.6.0) (2024-06-23)
+
+
+### Features
+
+* Add Point-Out to BAM ([d3059e0](https://github.com/xdy/xdy-pf2e-workbench/commit/d3059e04f8c90323eaadf1c3a0929dcadfe0910c))
+
+# [6.5.0](https://github.com/xdy/xdy-pf2e-workbench/compare/v6.4.0...v6.5.0) (2024-06-21)
+
+
+### Features
+
+* Instead of hiding autorolled damage rolls of privately cast spells (or, optionally, obfuscating the name of the spell) always show the damage roll with an obfuscated spell name. ([51511df](https://github.com/xdy/xdy-pf2e-workbench/commit/51511df49c0ae66031452ef63d4e78a95881f2ef))
+
+# [6.4.0](https://github.com/xdy/xdy-pf2e-workbench/compare/v6.3.1...v6.4.0) (2024-06-18)
+
+
+### Features
+
+* Add image to Automatic Arcance Cascade macro ([735bbf2](https://github.com/xdy/xdy-pf2e-workbench/commit/735bbf2bb9ed21c6d86f68866d8e4db92e7f081f))
+* BAM: Wrap macros in a class ([56675bb](https://github.com/xdy/xdy-pf2e-workbench/commit/56675bbf223b8847d0934465dc0c2baff3a80fda)), closes [#878](https://github.com/xdy/xdy-pf2e-workbench/issues/878)
+
+## [6.3.1](https://github.com/xdy/xdy-pf2e-workbench/compare/v6.3.0...v6.3.1) (2024-06-15)
 
 
 ### Bug Fixes
 
-* Keeping up with the Macro Faeries. ([46f9091](https://github.com/timothycpoon/xdy-pf2e-workbench/commit/46f90914f50eeeff70fb8db3027341b4040e0601))
-* Keeping up with the Macro Faeries. ([aa7f93e](https://github.com/timothycpoon/xdy-pf2e-workbench/commit/aa7f93eabdeb7d5afa07746aee5bdb2d134916ec))
-* Keeping up with the Macro Faeries. ([839c479](https://github.com/timothycpoon/xdy-pf2e-workbench/commit/839c479c620fbb2401b8b93edcd29a644fc21884))
+* Keeping up with the Macro Faeries. ([3c43644](https://github.com/xdy/xdy-pf2e-workbench/commit/3c436440d7599d3252e59b24a72cf8f8ffec1a47))
+* Re-fix icons path. ([3ac6525](https://github.com/xdy/xdy-pf2e-workbench/commit/3ac65258aa3cc58c1cbc6e5bd32185019c7fbcda))
+
+# [6.3.0](https://github.com/xdy/xdy-pf2e-workbench/compare/v6.2.2...v6.3.0) (2024-06-14)
+
+
+### Bug Fixes
+
+* Keeping up with the Macro Faeries. ([d66d23e](https://github.com/xdy/xdy-pf2e-workbench/commit/d66d23edbfd3e8f3ab988a1e6f30c8cd948444e7))
+
+
+### Features
+
+* Added flag to actor after stun has been reduced in combat, for use by other modules. ([cb306d1](https://github.com/xdy/xdy-pf2e-workbench/commit/cb306d1b3f8088082551280647ee601cf081c870))
+
+## [6.2.2](https://github.com/xdy/xdy-pf2e-workbench/compare/v6.2.1...v6.2.2) (2024-06-12)
+
+
+### Bug Fixes
+
+* Changing pause image and text should now work again courtesy of 7H3LaughingMan. ([933e840](https://github.com/xdy/xdy-pf2e-workbench/commit/933e8403c4009eb4aa9d33f5124e2dd865339495))
+
+## [6.2.1](https://github.com/xdy/xdy-pf2e-workbench/compare/v6.2.0...v6.2.1) (2024-06-11)
+
+
+### Bug Fixes
+
+* Keeping up with the Macro Faeries. ([59433ed](https://github.com/xdy/xdy-pf2e-workbench/commit/59433edd722e2f9dd83be3c409f6bfc0ff493802))
+
+# [6.2.0](https://github.com/xdy/xdy-pf2e-workbench/compare/v6.1.0...v6.2.0) (2024-06-10)
+
+
+### Features
+
+* Messed up previous fix. Thankfully, Trent had just submitted a better fix. So, update and reimport. ([b876039](https://github.com/xdy/xdy-pf2e-workbench/commit/b87603966e6b0978b7ab5e11695b9c3523a3ba86))
+
+# [6.1.0](https://github.com/xdy/xdy-pf2e-workbench/compare/v6.0.1...v6.1.0) (2024-06-10)
+
+
+### Features
+
+* Fixes calling Symon's macros (individual macros may still be broken in v12). NOTE! As this is a change in the calling macro, you need to reimport all previously imported macros. (Or, edit them yourself to replace the string DOCUMENT_PERMISSION_LEVELS with DOCUMENT_OWNERSHIP_LEVELS in all the imported macros.) ([6d2f593](https://github.com/xdy/xdy-pf2e-workbench/commit/6d2f5937a0e43a59a2ea8829ec737b73a8269f20))
+
+## [6.0.1](https://github.com/xdy/xdy-pf2e-workbench/compare/v6.0.0...v6.0.1) (2024-06-10)
+
+
+### Bug Fixes
+
+* Keeping up with the Macro Faeries. (And require pf2e 6.0.1 and foundry 12.327) ([5b20001](https://github.com/xdy/xdy-pf2e-workbench/commit/5b200017249580322391135b605f5b462029cab3))
+
+# [6.0.0](https://github.com/xdy/xdy-pf2e-workbench/compare/v5.66.0...v6.0.0) (2024-06-05)
+
+
+### Features
+
+* PF2e Workbench now requires PF2e version 6.0.0-beta3 or later, and Foundry v12.325 or later. ([2a3f115](https://github.com/xdy/xdy-pf2e-workbench/commit/2a3f115f2732b71db93ed08d1630f1dbf101b73f)), closes [#1338](https://github.com/xdy/xdy-pf2e-workbench/issues/1338)
+
+
+### BREAKING CHANGES
+
+* PF2e Workbench now requires PF2e version 6.0.0-beta3 or later, and Foundry v12.325 or later.
+
+Changing paused text is disabled for now as it is broken, will try to fix later.
+Same goes for Breath Weapon Reminders.
+
+This release has barely been tested, so there is probably more breakage. Please make github issues when you find something that doesn't work, if there isn't already an issue. PR:s with fixes are even more welcome. :)
+
+# [5.66.0](https://github.com/xdy/xdy-pf2e-workbench/compare/v5.65.11...v5.66.0) (2024-06-05)
+
+
+### Features
+
+* BAM: Get rid eval() for action variants ([557827c](https://github.com/xdy/xdy-pf2e-workbench/commit/557827c2d80d18d95e1b4234bff30cdbde36f33a))
+* BAM: Get rid of eval for Actions with a statistic ([9e8b92f](https://github.com/xdy/xdy-pf2e-workbench/commit/9e8b92f8f66a303e6f53898c7346c5fccdbde580))
+* BAM: Remove last eval'ed string ([2eee213](https://github.com/xdy/xdy-pf2e-workbench/commit/2eee213180c34aa96455d5ab55d2fa019ce270e0))
+
+## [5.65.11](https://github.com/xdy/xdy-pf2e-workbench/compare/v5.65.10...v5.65.11) (2024-06-05)
+
+
+### Bug Fixes
+
+* Keeping up with the Macro Faeries. ([0fec1f6](https://github.com/xdy/xdy-pf2e-workbench/commit/0fec1f6c50694732a7ee07a668ae2bdeaa7a9e7a))
+
+## [5.65.10](https://github.com/xdy/xdy-pf2e-workbench/compare/v5.65.9...v5.65.10) (2024-06-02)
+
+
+### Bug Fixes
+
+* Keeping up with the Macro Faeries. ([1c6fece](https://github.com/xdy/xdy-pf2e-workbench/commit/1c6fecebd91252d129e457110a7bf15abc0cffba))
+
+## [5.65.9](https://github.com/xdy/xdy-pf2e-workbench/compare/v5.65.8...v5.65.9) (2024-06-02)
+
+
+### Bug Fixes
+
+* Keeping up with the Macro Faeries. ([82329fa](https://github.com/xdy/xdy-pf2e-workbench/commit/82329fa3398006fb545e514bdcc5801a598c5813))
+
+## [5.65.8](https://github.com/xdy/xdy-pf2e-workbench/compare/v5.65.7...v5.65.8) (2024-05-22)
+
+
+### Bug Fixes
+
+* Keeping up with the Macro Faeries. ([28bf96a](https://github.com/xdy/xdy-pf2e-workbench/commit/28bf96a35905d2e18c25bcf47404cc445666438e))
+
+## [5.65.7](https://github.com/xdy/xdy-pf2e-workbench/compare/v5.65.6...v5.65.7) (2024-05-20)
+
+
+### Bug Fixes
+
+* Keeping up with the Macro Faeries. ([e670ded](https://github.com/xdy/xdy-pf2e-workbench/commit/e670ded8b97db197b655b757bc5470ece6fe1bbb))
+
+## [5.65.6](https://github.com/xdy/xdy-pf2e-workbench/compare/v5.65.5...v5.65.6) (2024-05-15)
+
+
+### Bug Fixes
+
+* Keeping up with the Macro Faeries. ([dfa6d37](https://github.com/xdy/xdy-pf2e-workbench/commit/dfa6d3776ad65d2e19c233b261a2b01c35a0318b))
 
 ## [5.65.5](https://github.com/xdy/xdy-pf2e-workbench/compare/v5.65.4...v5.65.5) (2024-05-09)
 

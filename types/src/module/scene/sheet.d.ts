@@ -7,6 +7,9 @@ export declare class SceneConfigPF2e<TDocument extends ScenePF2e> extends SceneC
     get scene(): TDocument;
     protected _renderInner(data: FormApplicationData<TDocument>, options: RenderOptions): Promise<JQuery>;
     activateListeners($html: JQuery): void;
+    protected _onSubmit(event: Event, options?: OnSubmitFormOptions): Promise<false | Record<string, unknown>>;
+    protected _onChangeInput(event: Event): Promise<void>;
+    protected _getSubmitData(updateData?: Record<string, unknown>): Record<string, unknown>;
     /** Intercept flag update and change to boolean/null. */
     protected _updateObject(event: Event, formData: Record<string, unknown>): Promise<void>;
 }

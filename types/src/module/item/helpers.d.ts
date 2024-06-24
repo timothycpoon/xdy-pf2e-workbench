@@ -17,9 +17,9 @@ declare class ItemChatData {
     item: ItemPF2e;
     data: RawItemChatData;
     htmlOptions: EnrichmentOptionsPF2e;
-    /** A showdown markdown converter */
-    static mdConverter: showdown.Converter;
     constructor({ item, data, htmlOptions }: ItemChatDataConstructorOptions);
+    /** Sanitized and convert stringy markdown into stringy HTML, with any initial HTML content stripped */
+    static markdownToHTML(markdown: string): string;
     process(): Promise<RawItemChatData>;
 }
 interface ItemChatDataConstructorOptions {

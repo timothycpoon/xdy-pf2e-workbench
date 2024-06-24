@@ -30,6 +30,7 @@ interface HighlightGridParams {
         direction?: number;
         width: number | null;
     }>;
+    snappingMode?: number;
     collisionType?: WallRestrictionType;
     preview?: boolean;
 }

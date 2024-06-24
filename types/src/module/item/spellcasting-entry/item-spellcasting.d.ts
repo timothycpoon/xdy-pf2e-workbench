@@ -2,7 +2,7 @@ import type { CreaturePF2e } from "@actor";
 import { AttributeString } from "@actor/types.ts";
 import type { PhysicalItemPF2e, SpellPF2e } from "@item";
 import { MagicTradition } from "@item/spell/types.ts";
-import type { PredicatePF2e } from "@system/predication.ts";
+import type { Predicate } from "@system/predication.ts";
 import type { Statistic } from "@system/statistic/statistic.ts";
 import { SpellCollection } from "./collection.ts";
 import type { CastOptions, SpellcastingEntry, SpellcastingSheetData } from "./types.ts";
@@ -14,7 +14,7 @@ declare class ItemSpellcasting<TActor extends CreaturePF2e = CreaturePF2e> imple
     statistic: Statistic;
     tradition: MagicTradition | null;
     /** A predicate to test against a physical item to determine whether its contained spell can be cast */
-    castPredicate: PredicatePF2e;
+    castPredicate: Predicate;
     constructor({ id, name, actor, statistic, tradition, castPredicate }: ItemsSpellcastingConstructorParams<TActor>);
     get counteraction(): Statistic;
     get attribute(): AttributeString;
@@ -42,6 +42,6 @@ interface ItemsSpellcastingConstructorParams<TActor extends CreaturePF2e> {
     actor: TActor;
     statistic: Statistic;
     tradition?: Maybe<MagicTradition>;
-    castPredicate: PredicatePF2e;
+    castPredicate: Predicate;
 }
 export { ItemSpellcasting };

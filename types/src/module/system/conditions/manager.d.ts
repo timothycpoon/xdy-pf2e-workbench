@@ -7,7 +7,6 @@ import type { TokenPF2e } from "@module/canvas/index.ts";
 export declare class ConditionManager {
     #private;
     static conditions: Map<ConditionSlug | ItemUUID, ConditionPF2e<null>>;
-    private static CONDITION_SOURCES?;
     /** Gets a list of condition slugs. */
     static get conditionsSlugs(): string[];
     static initialize(): void;

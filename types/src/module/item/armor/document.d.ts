@@ -29,7 +29,7 @@ declare class ArmorPF2e<TParent extends ActorPF2e | null = ActorPF2e | null> ext
         typeOnly?: boolean;
     }): string;
     /** Ensure correct shield/actual-armor usage */
-    protected _preUpdate(changed: DeepPartial<this["_source"]>, options: DocumentUpdateContext<TParent>, user: UserPF2e): Promise<boolean | void>;
+    protected _preUpdate(changed: DeepPartial<this["_source"]>, operation: DatabaseUpdateOperation<TParent>, user: UserPF2e): Promise<boolean | void>;
 }
 interface ArmorPF2e<TParent extends ActorPF2e | null = ActorPF2e | null> extends PhysicalItemPF2e<TParent> {
     readonly _source: ArmorSource;

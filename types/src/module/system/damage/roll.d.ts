@@ -4,6 +4,7 @@ import type { UserPF2e } from "@module/user/index.ts";
 import { DegreeOfSuccessIndex } from "@system/degree-of-success.ts";
 import { RollDataPF2e } from "@system/rolls.ts";
 import type Peggy from "peggy";
+import type { DiceTerm, RollTerm } from "types/foundry/client-esm/dice/terms/module.d.ts";
 import { InstancePool } from "./terms.ts";
 import { DamageCategory, DamageTemplate, DamageType, MaterialDamageEffect } from "./types.ts";
 declare abstract class AbstractDamageRoll extends Roll {
@@ -19,7 +20,6 @@ declare abstract class AbstractDamageRoll extends Roll {
     abstract get expectedValue(): number;
     /** The theoretically highest total of this roll */
     abstract get maximumValue(): number;
-    protected _evaluateSync(): never;
 }
 declare class DamageRoll extends AbstractDamageRoll {
     static CHAT_TEMPLATE: string;

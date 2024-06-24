@@ -2,7 +2,7 @@ import type { ActorPF2e } from "@actor";
 import { DamageDicePF2e, ModifierPF2e } from "@actor/modifiers.ts";
 import type { ItemPF2e } from "@item";
 import { BaseDamageData } from "@system/damage/types.ts";
-import { PredicatePF2e } from "@system/predication.ts";
+import { Predicate } from "@system/predication.ts";
 import type { RuleValue } from "../data.ts";
 import type { DamageAlterationProperty, DamageAlterationRuleElement, DamageAlterationValue } from "./rule-element.ts";
 declare class DamageAlteration {
@@ -21,6 +21,6 @@ interface PartialRuleElement extends Pick<DamageAlterationRuleElement, "mode" | 
     resolveValue?: DamageAlterationRuleElement["resolveValue"];
     ignored?: boolean;
     parent?: ItemPF2e<ActorPF2e>;
-    predicate?: PredicatePF2e;
+    predicate?: Predicate;
 }
 export { DamageAlteration };

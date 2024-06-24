@@ -1,6 +1,6 @@
 import { CreaturePF2e, type FamiliarPF2e } from "@actor";
 import { CreatureSpeeds, LabeledSpeed } from "@actor/creature/data.ts";
-import { CreatureUpdateContext } from "@actor/creature/types.ts";
+import { CreatureUpdateOperation } from "@actor/creature/types.ts";
 import { ActorInitiative } from "@actor/initiative.ts";
 import { StatisticModifier } from "@actor/modifiers.ts";
 import { AttributeString, MovementType } from "@actor/types.ts";
@@ -37,8 +37,6 @@ declare class CharacterPF2e<TParent extends TokenDocumentPF2e | null = TokenDocu
     initiative: ActorInitiative;
     get allowedItemTypes(): (ItemType | "physical")[];
     get keyAttribute(): AttributeString;
-    /** @deprecated */
-    get keyAbility(): AttributeString;
     /** This PC's ability scores */
     get abilities(): CharacterAbilities;
     get handsFree(): ZeroToTwo;
@@ -98,7 +96,7 @@ declare class CharacterPF2e<TParent extends TokenDocumentPF2e | null = TokenDocu
     toggleInvested(itemId: string): Promise<boolean>;
     /** Add a proficiency in a weapon group or base weapon */
     addAttackProficiency(key: BaseWeaponProficiencyKey | WeaponGroupProficiencyKey): Promise<void>;
-    protected _preUpdate(changed: DeepPartial<CharacterSource>, options: CreatureUpdateContext<TParent>, user: UserPF2e): Promise<boolean | void>;
+    protected _preUpdate(changed: DeepPartial<CharacterSource>, options: CreatureUpdateOperation<TParent>, user: UserPF2e): Promise<boolean | void>;
 }
 interface CharacterPF2e<TParent extends TokenDocumentPF2e | null = TokenDocumentPF2e | null> extends CreaturePF2e<TParent> {
     flags: CharacterFlags;

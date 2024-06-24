@@ -33,7 +33,10 @@ import {
 } from "./feature/damageHandler/dyingHandling.ts";
 import { checkAttackValidity } from "./feature/reminders/checkAttackValidity.js";
 import { reminderBreathWeapon } from "./feature/reminders/reminderBreathWeapon.js";
-import { castPrivateSpellHideName, handlePrivateSpellcasting } from "./feature/qolHandler/handlePrivateSpellcasting.js";
+import {
+    handlePrivateSpellcasting,
+    hideSpellNameInDamageroll,
+} from "./feature/qolHandler/handlePrivateSpellcasting.js";
 import { FeatPF2e } from "@item/feat/document.js";
 
 export const preCreateChatMessageHook = (message: ChatMessagePF2e, data: any, _options, _user: UserPF2e) => {
@@ -163,11 +166,11 @@ export function renderChatMessageHook(message: ChatMessagePF2e, jq: JQuery) {
     }
 
     if (
-        game.settings.get(MODULENAME, "castPrivateSpellHideName") &&
+        game.settings.get(MODULENAME, "castPrivateSpell") &&
         message?.flags?.pf2e?.origin?.type === "spell" &&
         isActuallyDamageRoll(message)
     ) {
-        castPrivateSpellHideName(message, html);
+        hideSpellNameInDamageroll(message, html);
     }
 
     // Alert everyone that Keeley's hero point rule was invoked
@@ -329,11 +332,14 @@ export function pf2eRerollHook(
 ) {
     if (!heroPoint || keep !== "new") return;
 
+    // @ts-ignore
     const die = newRoll.dice.find((d) => d instanceof Die && d.number === 1 && d.faces === 20);
     const result = die?.results.find((r) => r.active && r.result <= 10);
     if (die && result) {
         newRoll.terms.push(
+            // @ts-ignore
             OperatorTerm.fromData({ class: "OperatorTerm", operator: "+", evaluated: true }),
+            // @ts-ignore
             NumericTerm.fromData({ class: "NumericTerm", number: 10, evaluated: true }),
         );
         // @ts-ignore It's protected. Meh.

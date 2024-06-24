@@ -1,5 +1,4 @@
 import type { ActorType, CharacterPF2e, NPCPF2e } from "@actor";
-import { AttributeString } from "@actor/types.ts";
 import type { NPCAttackTrait } from "@item/melee/types.ts";
 import type { BaseWeaponType, OtherWeaponTag, WeaponCategory, WeaponGroup } from "@item/weapon/types.ts";
 import type { DamageDieSize, DamageType } from "@system/damage/index.ts";
@@ -73,7 +72,7 @@ type StrikeSchema = RuleElementSchema & {
             modifier: NumberField<number, number, false, false, true>;
         }>;
     }>;
-    ability: StringField<AttributeString, AttributeString, false, true, true>;
+    ability: StringField<string, string, false, true, true>;
     /** A representative icon for the strike */
     img: FilePathField<ImageFilePath, ImageFilePath, true, false, true>;
     /** Whether to replace all other strike actions */

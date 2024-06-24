@@ -39,6 +39,7 @@ type AllowedDropsData = ModelPropsFromSchema<AllowedDropsSchema>;
 type ChoiceSetObject = ChoiceSetOwnedItems | ChoiceSetAttacks | ChoiceSetPackQuery;
 type UninflatedChoiceSet = string | PickableThing[] | ChoiceSetObject;
 interface ChoiceSetSource extends RuleElementSource {
+    choices?: unknown;
     flag?: unknown;
     prompt?: unknown;
     selection?: unknown;

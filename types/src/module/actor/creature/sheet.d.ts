@@ -44,6 +44,7 @@ interface CreatureSheetData<TActor extends CreaturePF2e> extends ActorSheetDataP
         slug: Language | null;
         label: string;
     }[];
+    initiativeOptions: FormSelectOption[];
     dying: {
         maxed: boolean;
         remainingDying: number;

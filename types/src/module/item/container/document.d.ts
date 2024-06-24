@@ -26,7 +26,7 @@ declare class ContainerPF2e<TParent extends ActorPF2e | null = ActorPF2e | null>
     ejectContents(): Promise<void>;
     getChatData(this: ContainerPF2e<TParent>, htmlOptions?: EnrichmentOptions): Promise<RawItemChatData>;
     /** Coerce changes to container bulk data into validity */
-    protected _preUpdate(changed: DeepPartial<this["_source"]>, options: DocumentUpdateContext<TParent>, user: UserPF2e): Promise<boolean | void>;
+    protected _preUpdate(changed: DeepPartial<this["_source"]>, operation: DatabaseUpdateOperation<TParent>, user: UserPF2e): Promise<boolean | void>;
 }
 interface ContainerPF2e<TParent extends ActorPF2e | null = ActorPF2e | null> extends PhysicalItemPF2e<TParent> {
     readonly _source: ContainerSource;

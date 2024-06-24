@@ -37,6 +37,7 @@ interface WeaponSheetData extends PhysicalItemSheetData<WeaponPF2e> {
     mandatoryRanged: boolean;
     meleeGroups: typeof CONFIG.PF2E.meleeWeaponGroups;
     meleeUsage: ComboWeaponMeleeUsage | undefined;
+    meleeUsageBaseDamage: FormSelectOption[];
     meleeUsageTraits: SheetOptions;
     otherTags: SheetOptions;
     preciousMaterials: MaterialSheetData;

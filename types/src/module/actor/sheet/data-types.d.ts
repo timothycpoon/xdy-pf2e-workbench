@@ -63,6 +63,7 @@ interface ActorSheetDataPF2e<TActor extends ActorPF2e> extends ActorSheetData<TA
     user: {
         isGM: boolean;
     };
+    publicationLicenses: FormSelectOption[];
 }
 interface AbilityViewData {
     _id: string;

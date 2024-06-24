@@ -21,6 +21,9 @@ declare class ItemSheetPF2e<TItem extends ItemPF2e> extends ItemSheet<TItem, Ite
     close(options?: {
         force?: boolean;
     }): Promise<void>;
+    protected _configureProseMirrorPlugins(name: string, options: {
+        remove?: boolean;
+    }): Record<string, ProseMirror.Plugin>;
     activateListeners($html: JQuery): void;
     protected _getSubmitData(updateData?: Record<string, unknown> | null): Record<string, unknown>;
     /** Add button to refresh from compendium if setting is enabled. */
@@ -63,6 +66,7 @@ interface ItemSheetDataPF2e<TItem extends ItemPF2e> extends ItemSheetData<TItem>
             template: string;
         }[];
     };
+    publicationLicenses: FormSelectOption[];
     /** Lore only, will be removed later */
     proficiencyRanks: typeof CONFIG.PF2E.proficiencyLevels;
 }

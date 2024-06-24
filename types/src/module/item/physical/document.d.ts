@@ -55,6 +55,7 @@ declare abstract class PhysicalItemPF2e<TParent extends ActorPF2e | null = Actor
     /** Whether this is a specific magic item: applicable to armor, shields, and weapons */
     get isSpecific(): boolean;
     get isInContainer(): boolean;
+    /** Returns true if any of this item's containers is a stowing container */
     get isStowed(): boolean;
     /** Get this item's container, returning null if it is not in a container */
     get container(): ContainerPF2e<ActorPF2e> | null;
@@ -107,12 +108,12 @@ declare abstract class PhysicalItemPF2e<TParent extends ActorPF2e | null = Actor
     /** Include mystification-related rendering instructions for views that will display this data. */
     protected traitChatData(dictionary: Record<string, string>): TraitChatData[];
     /** Redirect subitem updates to the parent item */
-    update(data: Record<string, unknown>, context?: DocumentModificationContext<TParent>): Promise<this | undefined>;
+    update(data: Record<string, unknown>, operation?: Partial<DatabaseUpdateOperation<TParent>>): Promise<this | undefined>;
     /** Redirect subitem deletes to parent-item updates */
-    delete(context?: DocumentModificationContext<TParent>): Promise<this | undefined>;
+    delete(operation?: Partial<DatabaseDeleteOperation<TParent>>): Promise<this | undefined>;
     /** Set to unequipped upon acquiring */
-    protected _preCreate(data: this["_source"], options: DocumentModificationContext<TParent>, user: UserPF2e): Promise<boolean | void>;
-    protected _preUpdate(changed: DeepPartial<this["_source"]>, options: PhysicalItemUpdateContext<TParent>, user: UserPF2e): Promise<boolean | void>;
+    protected _preCreate(data: this["_source"], options: DatabaseCreateOperation<TParent>, user: UserPF2e): Promise<boolean | void>;
+    protected _preUpdate(changed: DeepPartial<this["_source"]>, operation: PhysicalItemUpdateOperation<TParent>, user: UserPF2e): Promise<boolean | void>;
 }
 interface PhysicalItemPF2e<TParent extends ActorPF2e | null = ActorPF2e | null> extends ItemPF2e<TParent> {
     readonly _source: PhysicalItemSource;
@@ -121,7 +122,7 @@ interface PhysicalItemPF2e<TParent extends ActorPF2e | null = ActorPF2e | null> 
 interface PhysicalItemConstructionContext<TParent extends ActorPF2e | null> extends DocumentConstructionContext<TParent> {
     parentItem?: PhysicalItemPF2e<TParent>;
 }
-interface PhysicalItemUpdateContext<TParent extends ActorPF2e | null> extends DocumentUpdateContext<TParent> {
+interface PhysicalItemUpdateOperation<TParent extends ActorPF2e | null> extends DatabaseUpdateOperation<TParent> {
     checkHP?: boolean;
 }
 export { PhysicalItemPF2e, type PhysicalItemConstructionContext };

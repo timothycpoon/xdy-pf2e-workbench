@@ -46,6 +46,7 @@ interface KingdomBuilderSheetData {
     skillLabels: Record<string, string>;
     build: KingdomAbilityBuilderData;
     finished: boolean;
+    aspirationOptions: FormSelectOption[];
 }
 interface CategorySheetData {
     /** The active build entry slug (the one that's been saved) */

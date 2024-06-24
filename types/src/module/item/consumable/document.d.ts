@@ -26,7 +26,7 @@ declare class ConsumablePF2e<TParent extends ActorPF2e | null = ActorPF2e | null
     /** Use a consumable item, sending the result to chat */
     consume(thisMany?: number): Promise<void>;
     castEmbeddedSpell(trickMagicItemData?: TrickMagicItemEntry): Promise<void>;
-    protected _preUpdate(changed: DeepPartial<this["_source"]>, options: DocumentUpdateContext<TParent>, user: UserPF2e): Promise<boolean | void>;
+    protected _preUpdate(changed: DeepPartial<this["_source"]>, operation: DatabaseUpdateOperation<TParent>, user: UserPF2e): Promise<boolean | void>;
 }
 interface ConsumablePF2e<TParent extends ActorPF2e | null = ActorPF2e | null> extends PhysicalItemPF2e<TParent> {
     readonly _source: ConsumableSource;

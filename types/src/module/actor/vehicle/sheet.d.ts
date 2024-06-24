@@ -24,6 +24,7 @@ interface VehicleSheetData extends ActorSheetDataPF2e<VehiclePF2e> {
     saves: {
         fortitude: AdjustedValue;
     };
+    emitsSoundOptions: FormSelectOption[];
 }
 type ActionsSheetData = Record<"action" | "reaction" | "free", {
     label: string;

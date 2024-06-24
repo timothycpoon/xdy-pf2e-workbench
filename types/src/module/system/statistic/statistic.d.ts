@@ -30,8 +30,6 @@ declare class Statistic<TActor extends ActorPF2e = ActorPF2e> extends BaseStatis
     get dc(): StatisticDifficultyClass<this>;
     /** Convenience getter to the statistic's total modifier */
     get mod(): number;
-    /** @deprecated */
-    get ability(): AttributeString | null;
     createRollOptions(domains?: string[], args?: RollOptionConfig): Set<string>;
     withRollOptions(options?: RollOptionConfig): Statistic;
     /**

@@ -1,7 +1,7 @@
 import type { CreaturePF2e } from "@actor";
 import { AttributeString } from "@actor/types.ts";
 import { MagicTradition } from "@item/spell/types.ts";
-import { PredicatePF2e, RawPredicate } from "@system/predication.ts";
+import { Predicate, RawPredicate } from "@system/predication.ts";
 import { PredicateField } from "@system/schema-data-fields.ts";
 import type { NumberField, SchemaField, StringField } from "types/foundry/common/data/fields.d.ts";
 import { RuleElementPF2e } from "../index.ts";
@@ -40,7 +40,7 @@ type SpecialStatisticSchema = RuleElementSchema & {
         predicate: RawPredicate;
         tradition: MagicTradition | null;
     }, {
-        predicate: PredicatePF2e;
+        predicate: Predicate;
         tradition: MagicTradition | null;
     }, false, true, true>;
 };

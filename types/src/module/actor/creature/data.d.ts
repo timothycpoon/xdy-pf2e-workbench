@@ -1,7 +1,7 @@
 import type { ActorAttributes, ActorAttributesSource, ActorDetailsSource, ActorHitPoints, ActorHitPointsSource, ActorSystemData, ActorSystemSource, ActorTraitsSource, AttributeBasedTraceData, BaseActorSourcePF2e, StrikeData } from "@actor/data/base.ts";
 import type { ActorSizePF2e } from "@actor/data/size.ts";
 import type { DamageDicePF2e, ModifierPF2e, RawModifier, StatisticModifier } from "@actor/modifiers.ts";
-import type { AttributeString, MovementType, SaveType, SkillAbbreviation, SkillLongForm } from "@actor/types.ts";
+import type { AttributeString, MovementType, SaveType, SkillSlug } from "@actor/types.ts";
 import type { LabeledNumber, Size, ValueAndMax, ZeroToThree } from "@module/data.ts";
 import type { ArmorClassTraceData } from "@system/statistic/index.ts";
 import type { PerceptionTraceData } from "@system/statistic/perception.ts";
@@ -143,7 +143,7 @@ interface LabeledSpeed extends Omit<LabeledNumber, "exceptions"> {
 /** Creature initiative statistic */
 interface CreatureInitiativeSource {
     /** What skill or ability is currently being used to compute initiative. */
-    statistic: SkillLongForm | "perception";
+    statistic: SkillSlug | "perception";
 }
 interface CreatureResources extends CreatureResourcesSource {
     /** The current number of focus points and pool size */
@@ -184,4 +184,4 @@ interface HeldShieldData {
     icon: ImageFilePath;
 }
 export { VisionLevels };
-export type { Abilities, AbilityData, BaseCreatureSource, CreatureActorType, CreatureAttributes, CreatureDetails, CreatureDetailsSource, CreatureHitPointsSource, CreatureInitiativeSource, CreatureLanguagesData, CreaturePerceptionData, CreatureResources, CreatureResourcesSource, CreatureSaves, CreatureSpeeds, CreatureSystemData, CreatureSystemSource, CreatureTraitsData, CreatureTraitsSource, HeldShieldData, LabeledSpeed, SaveData, SenseData, SkillAbbreviation, SkillData, VisionLevel, };
+export type { Abilities, AbilityData, BaseCreatureSource, CreatureActorType, CreatureAttributes, CreatureDetails, CreatureDetailsSource, CreatureHitPointsSource, CreatureInitiativeSource, CreatureLanguagesData, CreaturePerceptionData, CreatureResources, CreatureResourcesSource, CreatureSaves, CreatureSpeeds, CreatureSystemData, CreatureSystemSource, CreatureTraitsData, CreatureTraitsSource, HeldShieldData, LabeledSpeed, SaveData, SenseData, SkillData, VisionLevel, };

@@ -48,3 +48,4 @@ interface RollOptionSource extends RuleElementSource {
     removeAfterRoll?: JSONValue;
 }
 export { RollOptionRuleElement };
+export type { RollOptionSource };

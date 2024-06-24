@@ -31,10 +31,10 @@ declare class FeatPF2e<TParent extends ActorPF2e | null = ActorPF2e | null> exte
     getRollOptions(prefix?: string, options?: {
         includeGranter?: boolean;
     }): string[];
-    protected _preCreate(data: this["_source"], options: DocumentModificationContext<TParent>, user: UserPF2e): Promise<boolean | void>;
-    protected _preUpdate(changed: DeepPartial<this["_source"]>, options: DocumentModificationContext<TParent>, user: UserPF2e): Promise<boolean | void>;
+    protected _preCreate(data: this["_source"], operation: DatabaseCreateOperation<TParent>, user: UserPF2e): Promise<boolean | void>;
+    protected _preUpdate(changed: DeepPartial<this["_source"]>, operation: DatabaseUpdateOperation<TParent>, user: UserPF2e): Promise<boolean | void>;
     /** Warn the owning user(s) if this feat was taken despite some restriction */
-    protected _onCreate(data: FeatSource, options: DocumentModificationContext<TParent>, userId: string): void;
+    protected _onCreate(data: FeatSource, operation: DatabaseCreateOperation<TParent>, userId: string): void;
 }
 interface FeatPF2e<TParent extends ActorPF2e | null = ActorPF2e | null> extends ItemPF2e<TParent> {
     readonly _source: FeatSource;

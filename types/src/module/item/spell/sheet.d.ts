@@ -36,9 +36,11 @@ interface SpellSheetData extends ItemSheetDataPF2e<SpellPF2e> {
         disabled: boolean;
     }[]>;
     areaShapes: Record<EffectAreaShape, string>;
-    heightenIntervals: number[];
+    heightenIntervals: FormSelectOption[];
     heightenOverlays: SpellSheetHeightenOverlayData[];
     canHeighten: boolean;
+    defensePassiveOptions: FormSelectOption[];
+    defenseSaveOptions: typeof CONFIG.PF2E.saves;
 }
 interface SpellSheetOverlayData {
     id: string | null;
@@ -52,7 +54,7 @@ interface SpellSheetOverlayData {
 }
 interface SpellSheetHeightenOverlayData extends SpellSheetOverlayData {
     system: Partial<SpellSystemSource>;
-    heightenLevels: number[];
+    heightenLevels: FormSelectOption[];
     missing: {
         key: keyof SpellSystemData;
         label: string;

@@ -231,6 +231,11 @@ Hooks.once("init", async (_actor: ActorPF2e) => {
 });
 
 export function changePauseText() {
+    if (game.release.generation > 12) {
+        console.log("PF2e Workbench: Changing pause text is not (yet) supported in foundry 12");
+        return;
+    }
+
     if (!document?.querySelector("#pause")?.classList.contains("paused")) {
         return;
     }

@@ -23,6 +23,8 @@ import type { MacroPF2e } from "@module/macro.ts";
 import type { RuleElementPF2e, RuleElements } from "@module/rules/index.ts";
 import type { UserPF2e } from "@module/user/index.ts";
 import type { AmbientLightDocumentPF2e, MeasuredTemplateDocumentPF2e, ScenePF2e, TileDocumentPF2e, TokenDocumentPF2e } from "@scene";
+import type { RegionBehaviorPF2e } from "@scene/region-behavior/document.ts";
+import type { RegionBehaviorInstance } from "@scene/region-behavior/types.ts";
 import type { ActorDeltaPF2e } from "@scene/token-document/actor-delta.ts";
 import type { PF2ECONFIG, StatusEffectIconTheme } from "@scripts/config/index.ts";
 import type { DicePF2e } from "@scripts/dice.ts";
@@ -32,10 +34,12 @@ import type { CheckPF2e } from "@system/check/index.ts";
 import type { ConditionManager } from "@system/conditions/manager.ts";
 import type { EffectTracker } from "@system/effect-tracker.ts";
 import type { ModuleArt } from "@system/module-art.ts";
+import type { Predicate } from "@system/predication.ts";
 import type { CustomDamageData, HomebrewTag, HomebrewTraitSettingsKey, LanguageSettings } from "@system/settings/homebrew/index.ts";
 import type { TextEditorPF2e } from "@system/text-editor.ts";
 import type { sluggify } from "@util";
 import type EnJSON from "static/lang/en.json";
+import type { CanvasBaseRegion } from "types/foundry/client/data/documents/client-base-mixes.d.ts";
 interface GamePF2e extends Game<ActorPF2e<null>, ActorsPF2e<ActorPF2e<null>>, ChatMessagePF2e, EncounterPF2e, ItemPF2e<null>, MacroPF2e, ScenePF2e, UserPF2e> {
     pf2e: {
         actions: Record<string, Function> & Collection<Action>;
@@ -74,6 +78,7 @@ interface GamePF2e extends Game<ActorPF2e<null>, ActorsPF2e<ActorPF2e<null>>, Ch
         ModifierType: {
             [K in Uppercase<ModifierType>]: Lowercase<K>;
         };
+        Predicate: typeof Predicate;
         RuleElement: typeof RuleElementPF2e;
         RuleElements: typeof RuleElements;
         StatisticModifier: typeof StatisticModifier;
@@ -142,7 +147,7 @@ interface GamePF2e extends Game<ActorPF2e<null>, ActorsPF2e<ActorPF2e<null>>, Ch
         };
     };
 }
-type ConfiguredConfig = Config<AmbientLightDocumentPF2e<ScenePF2e | null>, ActiveEffectPF2e<ActorPF2e | ItemPF2e | null>, ActorPF2e, ActorDeltaPF2e<TokenDocumentPF2e>, ChatLogPF2e, ChatMessagePF2e, EncounterPF2e, CombatantPF2e<EncounterPF2e | null, TokenDocumentPF2e>, EncounterTrackerPF2e<EncounterPF2e | null>, CompendiumDirectoryPF2e, HotbarPF2e, ItemPF2e, MacroPF2e, MeasuredTemplateDocumentPF2e, TileDocumentPF2e, TokenDocumentPF2e, WallDocument<ScenePF2e | null>, ScenePF2e, UserPF2e, EffectsCanvasGroupPF2e>;
+type ConfiguredConfig = Config<AmbientLightDocumentPF2e<ScenePF2e | null>, ActiveEffectPF2e<ActorPF2e | ItemPF2e | null>, ActorPF2e, ActorDeltaPF2e<TokenDocumentPF2e>, ChatLogPF2e, ChatMessagePF2e, EncounterPF2e, CombatantPF2e<EncounterPF2e | null, TokenDocumentPF2e>, EncounterTrackerPF2e<EncounterPF2e | null>, CompendiumDirectoryPF2e, HotbarPF2e, ItemPF2e, MacroPF2e, MeasuredTemplateDocumentPF2e, RegionDocument<ScenePF2e | null>, RegionBehaviorPF2e<RegionDocument<ScenePF2e | null>>, TileDocumentPF2e, TokenDocumentPF2e, WallDocument<ScenePF2e | null>, ScenePF2e, UserPF2e, EffectsCanvasGroupPF2e>;
 declare global {
     interface ConfigPF2e extends ConfiguredConfig {
         debug: ConfiguredConfig["debug"] & {
@@ -247,6 +252,10 @@ declare global {
         lte: (a: number, b: number) => boolean;
         ne: (a: number, b: number) => boolean;
         ternary: (condition: boolean | number, ifTrue: number, ifFalse: number) => number;
+    }
+    interface RegionDocument<TParent extends Scene | null = Scene | null> extends CanvasBaseRegion<TParent> {
+        tokens: Set<TokenDocumentPF2e>;
+        readonly behaviors: foundry.abstract.EmbeddedCollection<RegionBehaviorInstance<this>>;
     }
     const BUILD_MODE: "development" | "production";
     const CONDITION_SOURCES: ConditionSource[];

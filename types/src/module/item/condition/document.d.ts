@@ -44,8 +44,8 @@ declare class ConditionPF2e<TParent extends ActorPF2e | null = ActorPF2e | null>
     prepareActorData(this: ConditionPF2e<ActorPF2e>): void;
     /** Withhold all rule elements if this condition is inactive */
     prepareRuleElements(options?: RuleElementOptions): RuleElementPF2e[];
-    protected _preUpdate(changed: DeepPartial<this["_source"]>, options: ConditionModificationContext<TParent>, user: UserPF2e): Promise<boolean | void>;
-    protected _onUpdate(changed: DeepPartial<this["_source"]>, options: ConditionModificationContext<TParent>, userId: string): void;
+    protected _preUpdate(changed: DeepPartial<this["_source"]>, operation: ConditionUpdateOperation<TParent>, user: UserPF2e): Promise<boolean | void>;
+    protected _onUpdate(changed: DeepPartial<this["_source"]>, operation: ConditionUpdateOperation<TParent>, userId: string): void;
 }
 interface ConditionPF2e<TParent extends ActorPF2e | null = ActorPF2e | null> extends AbstractEffectPF2e<TParent> {
     readonly _source: ConditionSource;
@@ -57,8 +57,8 @@ interface PersistentDamagePF2e<TParent extends ActorPF2e | null> extends Conditi
         persistent: PersistentDamageData;
     };
 }
-interface ConditionModificationContext<TParent extends ActorPF2e | null> extends DocumentModificationContext<TParent> {
+interface ConditionUpdateOperation<TParent extends ActorPF2e | null> extends DatabaseUpdateOperation<TParent> {
     conditionValue?: number | null;
 }
 export { ConditionPF2e };
-export type { ConditionModificationContext, PersistentDamagePF2e };
+export type { ConditionUpdateOperation, PersistentDamagePF2e };
