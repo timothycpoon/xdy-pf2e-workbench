@@ -1,45 +1,37 @@
-# [31.0.0](https://github.com/timothycpoon/xdy-pf2e-workbench/compare/fv30.9.1...fv31.0.0) (2024-06-24)
+## [6.6.5](https://github.com/xdy/xdy-pf2e-workbench/compare/v6.6.4...v6.6.5) (2024-07-01)
 
 
 ### Bug Fixes
 
-* Changing pause image and text should now work again courtesy of 7H3LaughingMan. ([933e840](https://github.com/timothycpoon/xdy-pf2e-workbench/commit/933e8403c4009eb4aa9d33f5124e2dd865339495))
-* Keeping up with the Macro Faeries. ([3c43644](https://github.com/timothycpoon/xdy-pf2e-workbench/commit/3c436440d7599d3252e59b24a72cf8f8ffec1a47))
-* Keeping up with the Macro Faeries. ([d66d23e](https://github.com/timothycpoon/xdy-pf2e-workbench/commit/d66d23edbfd3e8f3ab988a1e6f30c8cd948444e7))
-* Keeping up with the Macro Faeries. ([59433ed](https://github.com/timothycpoon/xdy-pf2e-workbench/commit/59433edd722e2f9dd83be3c409f6bfc0ff493802))
-* Keeping up with the Macro Faeries. ([0fec1f6](https://github.com/timothycpoon/xdy-pf2e-workbench/commit/0fec1f6c50694732a7ee07a668ae2bdeaa7a9e7a))
-* Keeping up with the Macro Faeries. ([1c6fece](https://github.com/timothycpoon/xdy-pf2e-workbench/commit/1c6fecebd91252d129e457110a7bf15abc0cffba))
-* Keeping up with the Macro Faeries. ([82329fa](https://github.com/timothycpoon/xdy-pf2e-workbench/commit/82329fa3398006fb545e514bdcc5801a598c5813))
-* Keeping up with the Macro Faeries. ([28bf96a](https://github.com/timothycpoon/xdy-pf2e-workbench/commit/28bf96a35905d2e18c25bcf47404cc445666438e))
-* Keeping up with the Macro Faeries. ([e670ded](https://github.com/timothycpoon/xdy-pf2e-workbench/commit/e670ded8b97db197b655b757bc5470ece6fe1bbb))
-* Keeping up with the Macro Faeries. ([dfa6d37](https://github.com/timothycpoon/xdy-pf2e-workbench/commit/dfa6d3776ad65d2e19c233b261a2b01c35a0318b))
-* Keeping up with the Macro Faeries. (And require pf2e 6.0.1 and foundry 12.327) ([5b20001](https://github.com/timothycpoon/xdy-pf2e-workbench/commit/5b200017249580322391135b605f5b462029cab3))
-* Re-fix icons path. ([3ac6525](https://github.com/timothycpoon/xdy-pf2e-workbench/commit/3ac65258aa3cc58c1cbc6e5bd32185019c7fbcda))
+* Made Breath Weapon reminder a bit more robust. ([7552f37](https://github.com/xdy/xdy-pf2e-workbench/commit/7552f376d3d2b4e51e8c2f5f22a44d98fb03aca5)), closes [#1381](https://github.com/xdy/xdy-pf2e-workbench/issues/1381)
+
+## [6.6.4](https://github.com/xdy/xdy-pf2e-workbench/compare/v6.6.3...v6.6.4) (2024-06-30)
 
 
-### Features
+### Bug Fixes
 
-* Add image to Automatic Arcance Cascade macro ([735bbf2](https://github.com/timothycpoon/xdy-pf2e-workbench/commit/735bbf2bb9ed21c6d86f68866d8e4db92e7f081f))
-* Add Point-Out to BAM ([d3059e0](https://github.com/timothycpoon/xdy-pf2e-workbench/commit/d3059e04f8c90323eaadf1c3a0929dcadfe0910c))
-* Added flag to actor after stun has been reduced in combat, for use by other modules. ([cb306d1](https://github.com/timothycpoon/xdy-pf2e-workbench/commit/cb306d1b3f8088082551280647ee601cf081c870))
-* BAM: Get rid eval() for action variants ([557827c](https://github.com/timothycpoon/xdy-pf2e-workbench/commit/557827c2d80d18d95e1b4234bff30cdbde36f33a))
-* BAM: Get rid of eval for Actions with a statistic ([9e8b92f](https://github.com/timothycpoon/xdy-pf2e-workbench/commit/9e8b92f8f66a303e6f53898c7346c5fccdbde580))
-* BAM: Remove last eval'ed string ([2eee213](https://github.com/timothycpoon/xdy-pf2e-workbench/commit/2eee213180c34aa96455d5ab55d2fa019ce270e0))
-* BAM: Wrap macros in a class ([56675bb](https://github.com/timothycpoon/xdy-pf2e-workbench/commit/56675bbf223b8847d0934465dc0c2baff3a80fda)), closes [#878](https://github.com/timothycpoon/xdy-pf2e-workbench/issues/878)
-* Fixes calling Symon's macros (individual macros may still be broken in v12). NOTE! As this is a change in the calling macro, you need to reimport all previously imported macros. (Or, edit them yourself to replace the string DOCUMENT_PERMISSION_LEVELS with DOCUMENT_OWNERSHIP_LEVELS in all the imported macros.) ([6d2f593](https://github.com/timothycpoon/xdy-pf2e-workbench/commit/6d2f5937a0e43a59a2ea8829ec737b73a8269f20))
-* Instead of hiding autorolled damage rolls of privately cast spells (or, optionally, obfuscating the name of the spell) always show the damage roll with an obfuscated spell name. ([51511df](https://github.com/timothycpoon/xdy-pf2e-workbench/commit/51511df49c0ae66031452ef63d4e78a95881f2ef))
-* Messed up previous fix. Thankfully, Trent had just submitted a better fix. So, update and reimport. ([b876039](https://github.com/timothycpoon/xdy-pf2e-workbench/commit/b87603966e6b0978b7ab5e11695b9c3523a3ba86))
-* PF2e Workbench now requires PF2e version 6.0.0-beta3 or later, and Foundry v12.325 or later. ([2a3f115](https://github.com/timothycpoon/xdy-pf2e-workbench/commit/2a3f115f2732b71db93ed08d1630f1dbf101b73f)), closes [#1338](https://github.com/timothycpoon/xdy-pf2e-workbench/issues/1338)
+* Avoid triggering Breath Weapon reminder on Dragon Form (and other polymorph abilities that include action descriptions). ([a203f4c](https://github.com/xdy/xdy-pf2e-workbench/commit/a203f4cdd7b00e4068a731f034b0c0443c07290c))
+
+## [6.6.3](https://github.com/xdy/xdy-pf2e-workbench/compare/v6.6.2...v6.6.3) (2024-06-30)
 
 
-### BREAKING CHANGES
+### Bug Fixes
 
-* PF2e Workbench now requires PF2e version 6.0.0-beta3 or later, and Foundry v12.325 or later.
+* Breath Weapon reminder works again. ([67799b1](https://github.com/xdy/xdy-pf2e-workbench/commit/67799b1aa7ffd9cc04421966fb506c30e0fb200d)), closes [#1347](https://github.com/xdy/xdy-pf2e-workbench/issues/1347)
 
-Changing paused text is disabled for now as it is broken, will try to fix later.
-Same goes for Breath Weapon Reminders.
+## [6.6.2](https://github.com/xdy/xdy-pf2e-workbench/compare/v6.6.1...v6.6.2) (2024-06-29)
 
-This release has barely been tested, so there is probably more breakage. Please make github issues when you find something that doesn't work, if there isn't already an issue. PR:s with fixes are even more welcome. :)
+
+### Bug Fixes
+
+* Don't show modifier (-1) for BAM actions with no skill ([142ef7e](https://github.com/xdy/xdy-pf2e-workbench/commit/142ef7e48afd1a2a7ff3d0e5db029bd46c6ad6b5))
+
+## [6.6.1](https://github.com/xdy/xdy-pf2e-workbench/compare/v6.6.0...v6.6.1) (2024-06-28)
+
+
+### Bug Fixes
+
+* BAM: Use lowercase skill names ([930cd20](https://github.com/xdy/xdy-pf2e-workbench/commit/930cd20c63cc81741eb9d1dcf01f115a6b5a1a51))
 
 # [6.6.0](https://github.com/xdy/xdy-pf2e-workbench/compare/v6.5.0...v6.6.0) (2024-06-23)
 
