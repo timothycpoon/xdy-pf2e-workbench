@@ -6,11 +6,8 @@ on:
   push:
     branches: [ main ]
 
-#TODO Parse out these, for now they're hardcoded.
 env:
-  fvtt_minimum: 11.314
-  fvtt_verified: 11.315
-  fvtt_maximum: 11
+  package_type: module
   node_version: 20
 
 jobs:
@@ -31,7 +28,7 @@ jobs:
           git submodule update --init --recursive
           git submodule update --recursive --remote
 
-      - uses: stefanzweifel/git-auto-commit-action@v5.0.0
+      - uses: stefanzweifel/git-auto-commit-action@v5.0.1
         with:
           commit_message: "chore: Update submodules"
 
