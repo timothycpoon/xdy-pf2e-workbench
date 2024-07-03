@@ -1,3 +1,14 @@
+## [31.0.1](https://github.com/timothycpoon/xdy-pf2e-workbench/compare/fv31.0.0...fv31.0.1) (2024-07-03)
+
+
+### Bug Fixes
+
+* Avoid triggering Breath Weapon reminder on Dragon Form (and other polymorph abilities that include action descriptions). ([a203f4c](https://github.com/timothycpoon/xdy-pf2e-workbench/commit/a203f4cdd7b00e4068a731f034b0c0443c07290c))
+* BAM: Use lowercase skill names ([930cd20](https://github.com/timothycpoon/xdy-pf2e-workbench/commit/930cd20c63cc81741eb9d1dcf01f115a6b5a1a51))
+* Breath Weapon reminder works again. ([67799b1](https://github.com/timothycpoon/xdy-pf2e-workbench/commit/67799b1aa7ffd9cc04421966fb506c30e0fb200d)), closes [#1347](https://github.com/timothycpoon/xdy-pf2e-workbench/issues/1347)
+* Don't show modifier (-1) for BAM actions with no skill ([142ef7e](https://github.com/timothycpoon/xdy-pf2e-workbench/commit/142ef7e48afd1a2a7ff3d0e5db029bd46c6ad6b5))
+* Made Breath Weapon reminder a bit more robust. ([7552f37](https://github.com/timothycpoon/xdy-pf2e-workbench/commit/7552f376d3d2b4e51e8c2f5f22a44d98fb03aca5)), closes [#1381](https://github.com/timothycpoon/xdy-pf2e-workbench/issues/1381)
+
 ## [6.6.5](https://github.com/xdy/xdy-pf2e-workbench/compare/v6.6.4...v6.6.5) (2024-07-01)
 
 
