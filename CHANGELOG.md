@@ -1,3 +1,15 @@
+## [31.0.2](https://github.com/timothycpoon/xdy-pf2e-workbench/compare/fv31.0.1...fv31.0.2) (2024-07-14)
+
+
+### Bug Fixes
+
+* Applying Persistent Damage and/or Persistent Healing works again. ([137500e](https://github.com/timothycpoon/xdy-pf2e-workbench/commit/137500e6c8886a599763cb3f883ce0637ca804ed))
+* Deep and arcane css black magic. (I.e. search and replace a couple of names so as to hopefully not conflict with Nikolaj's new module.) ([4f29015](https://github.com/timothycpoon/xdy-pf2e-workbench/commit/4f29015a63055e43fe8b26f5c8de88d944dc7111))
+* Keeping up with the Macro Faeries. ([df6bcf6](https://github.com/timothycpoon/xdy-pf2e-workbench/commit/df6bcf656d006e8628b1aa5271d8b1d3c76ab600))
+* Revert "fix: Use system code to see who should handle a hooked event." ([6f57369](https://github.com/timothycpoon/xdy-pf2e-workbench/commit/6f5736905f9784f2bb1a21cf1a6a421c2bb96012))
+* Use system code to see who should handle a hooked event. ([1a31207](https://github.com/timothycpoon/xdy-pf2e-workbench/commit/1a31207b74243091786eb3ebeecfd171f0ee7d3c))
+* When casting spells privately should now show properly whether a save is basic or not. ([f78b8ca](https://github.com/timothycpoon/xdy-pf2e-workbench/commit/f78b8ca17e3e5f4cd10afc735ac5ff975440d229))
+
 ## [6.6.11](https://github.com/xdy/xdy-pf2e-workbench/compare/v6.6.10...v6.6.11) (2024-07-12)
 
 
