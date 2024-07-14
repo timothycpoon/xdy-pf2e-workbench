@@ -25,7 +25,7 @@ export async function autoRollDamage(message: ChatMessagePF2e) {
             ["all", "gm"].includes(settings.autoRollDamageAllow),
         )
     ) {
-        const pf2eFlags = <ActorFlagsPF2e>message.flags.pf2e;
+        const pf2eFlags = message.flags.pf2e;
         const originUuid = <string>pf2eFlags?.origin?.uuid;
 
         if (originUuid) {
@@ -63,8 +63,7 @@ export async function autoRollDamage(message: ChatMessagePF2e) {
             const degreeOfSuccess = degreeOfSuccessWithRerollHandling(message);
             const isFailure = ["criticalFailure", "failure"].includes(degreeOfSuccess);
             const isSuccess = ["criticalSuccess", "success"].includes(degreeOfSuccess);
-            const context: any = pf2eFlags.context;
-            const isBasicSave = context?.options?.includes("item:defense:basic");
+            const isBasicSave = pf2eFlags.context?.options?.includes("item:defense:basic");
 
             const originMessage = await getLatestChatMessageWithOrigin(5, originUuid);
             const flags = originMessage?.flags;
@@ -139,20 +138,18 @@ export async function noOrSuccessfulFlatcheck(message: ChatMessagePF2e): Promise
 }
 
 export function persistentDamage(message) {
-    const flavor = message.flavor;
-    const persistentFlavor = flavor?.includes("<strong>" + game.i18n.localize("PF2E.ConditionTypePersistent"));
     if (
         shouldIHandleThisMessage(
             message,
             ["all", "players"].includes(String(game.settings.get(MODULENAME, "applyPersistentAllow"))),
             ["all", "gm"].includes(String(game.settings.get(MODULENAME, "applyPersistentAllow"))),
         ) &&
-        flavor &&
-        persistentFlavor &&
+        message.flavor &&
+        message.flavor?.includes("<strong>" + game.i18n.localize("PF2E.ConditionTypePersistent")) &&
         message.speaker.token &&
         message.rolls &&
         message.rolls.length > 0 &&
-        message.id === game.messages.contents.pop()?.id &&
+        message.id === game.messages.contents.slice(-1, game.messages.size)[0].id &&
         game.actors &&
         (message.getFlag(MODULENAME, "persistentHandled") ?? true)
     ) {
@@ -170,7 +167,7 @@ export function persistentDamage(message) {
         if (actor && game.settings.get(MODULENAME, "applyPersistentDamageRecoveryRoll")) {
             const condition = actor.conditions
                 .filter((condition) => condition.slug === "persistent-damage")
-                .find((condition) => flavor.includes(condition.name));
+                .find((condition) => message.flavor.includes(condition.name));
             if (condition) {
                 // TODO Update the message to remove the recovery roll button, instead include the result in the message (and remove the message the following line creates.)
                 condition.rollRecovery().then();
@@ -193,7 +190,7 @@ export function persistentHealing(message, enabled: boolean) {
         game.combats.active &&
         game.combats.active.combatant &&
         game.combats.active.combatant.actor &&
-        message.id === game.messages.contents.pop()?.id &&
+        message.id === game.messages.contents.slice(-1, game.messages.size)[0].id &&
         (message.getFlag(MODULENAME, "persistentHandled") ?? true)
     ) {
         const token = game.combats.active.combatant.token;

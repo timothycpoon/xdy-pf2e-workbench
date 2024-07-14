@@ -1,13 +1,44 @@
-## [31.0.1](https://github.com/timothycpoon/xdy-pf2e-workbench/compare/fv31.0.0...fv31.0.1) (2024-07-03)
+## [6.6.11](https://github.com/xdy/xdy-pf2e-workbench/compare/v6.6.10...v6.6.11) (2024-07-12)
 
 
 ### Bug Fixes
 
-* Avoid triggering Breath Weapon reminder on Dragon Form (and other polymorph abilities that include action descriptions). ([a203f4c](https://github.com/timothycpoon/xdy-pf2e-workbench/commit/a203f4cdd7b00e4068a731f034b0c0443c07290c))
-* BAM: Use lowercase skill names ([930cd20](https://github.com/timothycpoon/xdy-pf2e-workbench/commit/930cd20c63cc81741eb9d1dcf01f115a6b5a1a51))
-* Breath Weapon reminder works again. ([67799b1](https://github.com/timothycpoon/xdy-pf2e-workbench/commit/67799b1aa7ffd9cc04421966fb506c30e0fb200d)), closes [#1347](https://github.com/timothycpoon/xdy-pf2e-workbench/issues/1347)
-* Don't show modifier (-1) for BAM actions with no skill ([142ef7e](https://github.com/timothycpoon/xdy-pf2e-workbench/commit/142ef7e48afd1a2a7ff3d0e5db029bd46c6ad6b5))
-* Made Breath Weapon reminder a bit more robust. ([7552f37](https://github.com/timothycpoon/xdy-pf2e-workbench/commit/7552f376d3d2b4e51e8c2f5f22a44d98fb03aca5)), closes [#1381](https://github.com/timothycpoon/xdy-pf2e-workbench/issues/1381)
+* When casting spells privately should now show properly whether a save is basic or not. ([f78b8ca](https://github.com/xdy/xdy-pf2e-workbench/commit/f78b8ca17e3e5f4cd10afc735ac5ff975440d229))
+
+## [6.6.10](https://github.com/xdy/xdy-pf2e-workbench/compare/v6.6.9...v6.6.10) (2024-07-12)
+
+
+### Bug Fixes
+
+* Keeping up with the Macro Faeries. ([df6bcf6](https://github.com/xdy/xdy-pf2e-workbench/commit/df6bcf656d006e8628b1aa5271d8b1d3c76ab600))
+
+## [6.6.9](https://github.com/xdy/xdy-pf2e-workbench/compare/v6.6.8...v6.6.9) (2024-07-09)
+
+
+### Bug Fixes
+
+* Revert "fix: Use system code to see who should handle a hooked event." ([6f57369](https://github.com/xdy/xdy-pf2e-workbench/commit/6f5736905f9784f2bb1a21cf1a6a421c2bb96012))
+
+## [6.6.8](https://github.com/xdy/xdy-pf2e-workbench/compare/v6.6.7...v6.6.8) (2024-07-06)
+
+
+### Bug Fixes
+
+* Use system code to see who should handle a hooked event. ([1a31207](https://github.com/xdy/xdy-pf2e-workbench/commit/1a31207b74243091786eb3ebeecfd171f0ee7d3c))
+
+## [6.6.7](https://github.com/xdy/xdy-pf2e-workbench/compare/v6.6.6...v6.6.7) (2024-07-05)
+
+
+### Bug Fixes
+
+* Deep and arcane css black magic. (I.e. search and replace a couple of names so as to hopefully not conflict with Nikolaj's new module.) ([4f29015](https://github.com/xdy/xdy-pf2e-workbench/commit/4f29015a63055e43fe8b26f5c8de88d944dc7111))
+
+## [6.6.6](https://github.com/xdy/xdy-pf2e-workbench/compare/v6.6.5...v6.6.6) (2024-07-04)
+
+
+### Bug Fixes
+
+* Applying Persistent Damage and/or Persistent Healing works again. ([137500e](https://github.com/xdy/xdy-pf2e-workbench/commit/137500e6c8886a599763cb3f883ce0637ca804ed))
 
 ## [6.6.5](https://github.com/xdy/xdy-pf2e-workbench/compare/v6.6.4...v6.6.5) (2024-07-01)
 
