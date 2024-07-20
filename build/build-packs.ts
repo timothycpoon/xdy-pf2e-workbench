@@ -37,7 +37,7 @@ function copyFolder(source: string, target: string) {
 }
 
 function getFolders(path: string | Buffer | URL) {
-    return fs.readdirSync(path).filter(function(file) {
+    return fs.readdirSync(path).filter(function (file) {
         return fs.statSync(path + "/" + file).isDirectory();
     });
 }
@@ -141,6 +141,7 @@ ${documentation ? documentation[0] : "/* There is no documentation in the macro.
                 map.set("Marshal Stances", "systems/pf2e/icons/features/feats/dread-marshal-stance.webp");
                 map.set("Modded Countdown Cooldown", "systems/pf2e/icons/spells/time-beacon.webp");
                 map.set("Ooze Split", "systems/pf2e/icons/spells/blackfingers-blades.webp");
+                map.set("Let Fate Decide", "icons/magic/control/energy-stream-link-white.webp");
                 map.set("Random Encounter Builder", "systems/pf2e/icons/equipment/held-items/games.webp");
                 map.set("Ration Consumer", "systems/pf2e/icons/equipment/adventuring-gear/rations.webp");
                 map.set("Recall Knowledge", "icons/skills/trades/academics-book-study-runes.webp");

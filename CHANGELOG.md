@@ -1,14 +1,24 @@
-## [31.0.2](https://github.com/timothycpoon/xdy-pf2e-workbench/compare/fv31.0.1...fv31.0.2) (2024-07-14)
+## [6.6.14](https://github.com/xdy/xdy-pf2e-workbench/compare/v6.6.13...v6.6.14) (2024-07-19)
 
 
 ### Bug Fixes
 
-* Applying Persistent Damage and/or Persistent Healing works again. ([137500e](https://github.com/timothycpoon/xdy-pf2e-workbench/commit/137500e6c8886a599763cb3f883ce0637ca804ed))
-* Deep and arcane css black magic. (I.e. search and replace a couple of names so as to hopefully not conflict with Nikolaj's new module.) ([4f29015](https://github.com/timothycpoon/xdy-pf2e-workbench/commit/4f29015a63055e43fe8b26f5c8de88d944dc7111))
-* Keeping up with the Macro Faeries. ([df6bcf6](https://github.com/timothycpoon/xdy-pf2e-workbench/commit/df6bcf656d006e8628b1aa5271d8b1d3c76ab600))
-* Revert "fix: Use system code to see who should handle a hooked event." ([6f57369](https://github.com/timothycpoon/xdy-pf2e-workbench/commit/6f5736905f9784f2bb1a21cf1a6a421c2bb96012))
-* Use system code to see who should handle a hooked event. ([1a31207](https://github.com/timothycpoon/xdy-pf2e-workbench/commit/1a31207b74243091786eb3ebeecfd171f0ee7d3c))
-* When casting spells privately should now show properly whether a save is basic or not. ([f78b8ca](https://github.com/timothycpoon/xdy-pf2e-workbench/commit/f78b8ca17e3e5f4cd10afc735ac5ff975440d229))
+* Set required foundry version to 12.329, update and rebuild all compendiums. ([58dbc2c](https://github.com/xdy/xdy-pf2e-workbench/commit/58dbc2c8d13b755fbce31cfac3d075ff46b6d405))
+
+## [6.6.13](https://github.com/xdy/xdy-pf2e-workbench/compare/v6.6.12...v6.6.13) (2024-07-15)
+
+
+### Bug Fixes
+
+* Update of auto apply persistent damage and recovery roll ([47e1cdb](https://github.com/xdy/xdy-pf2e-workbench/commit/47e1cdbd5ec389556237bd18703123c315def32d))
+* Update of auto apply persistent healing similar to how auto apply persistent damage is done. ([59070ba](https://github.com/xdy/xdy-pf2e-workbench/commit/59070ba9d42676c70a7c19b1f95bc34647c30961))
+
+## [6.6.12](https://github.com/xdy/xdy-pf2e-workbench/compare/v6.6.11...v6.6.12) (2024-07-15)
+
+
+### Bug Fixes
+
+* Scale To Level now handles weakness right, courtesy of FelixSteffen. ([260b049](https://github.com/xdy/xdy-pf2e-workbench/commit/260b0498940acc5f46ee3e077b18dce0b8cc769f))
 
 ## [6.6.11](https://github.com/xdy/xdy-pf2e-workbench/compare/v6.6.10...v6.6.11) (2024-07-12)
 
