@@ -1,3 +1,13 @@
+## [31.0.3](https://github.com/timothycpoon/xdy-pf2e-workbench/compare/fv31.0.2...fv31.0.3) (2024-07-20)
+
+
+### Bug Fixes
+
+* Scale To Level now handles weakness right, courtesy of FelixSteffen. ([260b049](https://github.com/timothycpoon/xdy-pf2e-workbench/commit/260b0498940acc5f46ee3e077b18dce0b8cc769f))
+* Set required foundry version to 12.329, update and rebuild all compendiums. ([58dbc2c](https://github.com/timothycpoon/xdy-pf2e-workbench/commit/58dbc2c8d13b755fbce31cfac3d075ff46b6d405))
+* Update of auto apply persistent damage and recovery roll ([47e1cdb](https://github.com/timothycpoon/xdy-pf2e-workbench/commit/47e1cdbd5ec389556237bd18703123c315def32d))
+* Update of auto apply persistent healing similar to how auto apply persistent damage is done. ([59070ba](https://github.com/timothycpoon/xdy-pf2e-workbench/commit/59070ba9d42676c70a7c19b1f95bc34647c30961))
+
 ## [6.6.14](https://github.com/xdy/xdy-pf2e-workbench/compare/v6.6.13...v6.6.14) (2024-07-19)
 
 
