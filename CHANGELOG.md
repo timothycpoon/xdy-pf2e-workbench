@@ -1,3 +1,15 @@
+# [31.1.0](https://github.com/timothycpoon/xdy-pf2e-workbench/compare/fv31.0.3...fv31.1.0) (2024-07-21)
+
+
+### Bug Fixes
+
+* Keeping up with the Macro Faeries. ([c488928](https://github.com/timothycpoon/xdy-pf2e-workbench/commit/c4889281a103ab733b9fa9d7441b74e0a9c58a64))
+
+
+### Features
+
+* Support pf2e 6.1.0 ([78f05f7](https://github.com/timothycpoon/xdy-pf2e-workbench/commit/78f05f7fbb7f815fbbf426e913e2ac4f1f6e1f87))
+
 # [6.7.0](https://github.com/xdy/xdy-pf2e-workbench/compare/v6.6.15...v6.7.0) (2024-07-20)
 
 
