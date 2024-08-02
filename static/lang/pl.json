@@ -38,7 +38,7 @@
           "Demoralize": "Demoralizacja",
           "DisableDevice": "Unieszkodliwienie urządzenia",
           "Disarm": "Rozbrojenie",
-          "Feint": "Zmyłka",
+          "Feint": "Finta",
           "ForceOpen": "Otwarcie siłą",
           "GatherInformation": "Zbieranie informacji",
           "Grapple": "Chwytanie",
@@ -177,11 +177,9 @@
         "hint": "Wybierz, kto może ustawić opcję automatycznego naliczania obrażeń przy trafieniu. Zapisz ustawienia, aby wyświetlić/ukryć dodatkowe opcje w menu ustawień automatyzacji klienta."
       },
       "applyPersistentHealing": {
-        "RegenerationLabel": "Otrzymana regeneracja",
         "wasHealed": "Leczenie {healing} zostało zastosowane automatycznie.",
         "name": "Automatycznie zastosuj trwałe leczenie używane przez system.",
-        "hint": "Ustawienie klienta w celu automatycznego stosowania trwałego leczenia przez system. Zapisz ustawienia, aby wyświetlić/ukryć dodatkowe opcje.",
-        "FastHealingLabel": "Otrzymał szybkie uzdrowienie"
+        "hint": "Ustawienie klienta w celu automatycznego stosowania trwałego leczenia przez system. Zapisz ustawienia, aby wyświetlić/ukryć dodatkowe opcje."
       },
       "autoGainDyingAtZeroHPIfCriticallyHitOneMore": {
         "no": "Nie",
@@ -212,7 +210,7 @@
         "spell": "Zaklęcie",
         "they": "Oni",
         "cantrip": "Sztuczka",
-        "savePart": "<br>Rzut obronny dla nieznanego zaklęcia to: Check[type:{dataSave}|dc:{dataDC}|traits:{traits}|basic:{basic}}]",
+        "savePart": "<br>Rzut obronny dla nieznanego zaklęcia to: @Check[type:{dataSave}|dc:{dataDC}|traits:{traits}{basic}}]",
         "hint": "W przypadku rzucania zaklęć prywatnie, ustawienie to wysyła również publiczną wiadomość o rzuceniu zaklęcia, chyba że podczas rzucania zaklęcia przytrzymasz klawisze SHIFT i CTRL.",
         "name": "Publikuje wiadomość o rzuceniu zaklęcia.",
         "secondPartNoRk": ".<br>Możesz spróbować użyć jednego z @UUID[Compendium.pf2e.feats-srd.MjQyTcV8Jiv1Jtln] lub @UUID[Compendium.pf2e.feats-srd.2rSyTfPgAmNAo01r] aby go rozpoznać. Możesz też w swojej turze wydać akcję, aby spróbować go zidentyfikować (o szczegóły zapytaj swojego MG).",
@@ -622,8 +620,8 @@
         "name": "Używaj cech stworzeń."
       },
       "npcMystifierUseCreatureTypesTraits": {
-        "hint": "Zaznacz, aby użyć cech typu stworzenia (patrz https://2e.aonprd.com/Traits.aspx) w utajnianej nazwie.",
-        "name": "Używanie cech typu stworzenia"
+        "hint": "Sprawdź, czy używasz cech identyfikacji stworzeń (patrz https://2e.aonprd.com/Rules.aspx?ID=2641) w ukrytej nazwie.",
+        "name": "Używanie cech identyfikacyjnych stworzeń"
       },
       "npcMystifierUseSize": {
         "hint": "Zaznacz, aby użyć rozmiaru aktora w utajnionej nazwie",

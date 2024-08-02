@@ -1,4 +1,4 @@
-export const AON_CREATURE_TYPES: string[] = [
+export const CREATURE_IDENTIFICATION_TRAITS: string[] = [
     "aberration",
     "animal",
     "beast",
@@ -9,13 +9,11 @@ export const AON_CREATURE_TYPES: string[] = [
     "fey",
     "fiend",
     "fungus",
-    "giant",
     "humanoid",
     "monitor",
-    "negative",
     "ooze",
-    "petitioner",
     "plant",
+    "shade",
     "spirit",
     "swarm",
     "troop",

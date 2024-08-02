@@ -11,7 +11,7 @@ import {
     damageCardExpand,
     mystifyNpcItems,
 } from "./feature/qolHandler/index.js";
-import { autoRollDamage, persistentDamage, persistentHealing } from "./feature/damageHandler/index.js";
+import { autoRollDamage, persistentDamageHealing } from "./feature/damageHandler/index.js";
 import { reduceFrightened } from "./feature/conditionHandler/index.js";
 import {
     mangleNamesInChatMessage,
@@ -60,12 +60,11 @@ export const preCreateChatMessageHook = (message: ChatMessagePF2e, data: any, _o
         handlePrivateSpellcasting(data, message).then();
     }
 
-    if (game.settings.get(MODULENAME, "applyPersistentDamage")) {
-        persistentDamage(message);
-    }
-
-    if (game.settings.get(MODULENAME, "applyPersistentHealing")) {
-        persistentHealing(message);
+    if (
+        game.settings.get(MODULENAME, "applyPersistentDamage") ||
+        game.settings.get(MODULENAME, "applyPersistentHealing")
+    ) {
+        persistentDamageHealing(message);
     }
 
     if (reminderTargetingEnabled) {
@@ -299,7 +298,7 @@ export async function preUpdateActorHook(actor: CreaturePF2e, update: Record<str
 }
 
 export function preUpdateTokenHook(_document, update, options, ..._args) {
-    if (game.settings.get(MODULENAME, "tokenAnimation") && (update.x || update.y)) {
+    if (game.settings.get(MODULENAME, "tokenAnimation") && (update.x !== null || update.y !== null)) {
         fu.setProperty(options, "animation", {
             movementSpeed: game.settings.get(MODULENAME, "tokenAnimationSpeed"),
         });

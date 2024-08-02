@@ -1,5 +1,5 @@
 import { TokenDocumentPF2e } from "@scene";
-import { AON_CREATURE_TYPES, ADJECTIVE_CREATURE_TRAITS, ELITE_WEAK } from "../../xdy-pf2e-constants.js";
+import { CREATURE_IDENTIFICATION_TRAITS, ADJECTIVE_CREATURE_TRAITS, ELITE_WEAK } from "../../xdy-pf2e-constants.js";
 import { MODULENAME } from "../../xdy-pf2e-workbench.js";
 import { TokenPF2e } from "@module/canvas/token/object.js";
 
@@ -8,7 +8,7 @@ let TRAITS: {
     RARITIES: string[];
     PF2E_CREATURE_TRAITS: string[];
     ADJECTIVE_TRAITS: string[];
-    AON_CREATURE_TYPES: string[];
+    CREATURE_IDENTIFICATION_TRAITS: string[];
     ELITE_WEAK: string[];
 };
 
@@ -46,8 +46,8 @@ function fillTraits() {
     TRAITS = {
         RARITIES: Object.keys(CONFIG.PF2E.rarityTraits),
         SIZES: Object.keys(CONFIG.PF2E.actorSizes),
-        AON_CREATURE_TYPES: AON_CREATURE_TYPES,
         ADJECTIVE_TRAITS: ADJECTIVE_CREATURE_TRAITS,
+        CREATURE_IDENTIFICATION_TRAITS: CREATURE_IDENTIFICATION_TRAITS,
         PF2E_CREATURE_TRAITS: Object.keys(CONFIG.PF2E.creatureTraits),
         ELITE_WEAK: ELITE_WEAK,
     };
@@ -90,9 +90,11 @@ function filterTraitList(traitsList: string[], prefix: string, postfix: string):
         pf2eAdjectiveTraits = traitsList.filter((trait: string) => TRAITS.ADJECTIVE_TRAITS.includes(trait));
     }
 
-    let aonCreatureTypes: string[] = [];
+    let creatureIdentificationTraits: string[] = [];
     if (game.settings.get(MODULENAME, "npcMystifierUseCreatureTypesTraits")) {
-        aonCreatureTypes = traitsList.filter((trait: string) => TRAITS.AON_CREATURE_TYPES.includes(trait));
+        creatureIdentificationTraits = traitsList.filter((trait: string) =>
+            TRAITS.CREATURE_IDENTIFICATION_TRAITS.includes(trait),
+        );
     }
 
     let pf2eCreatureTraits: string[] = [];
@@ -106,7 +108,7 @@ function filterTraitList(traitsList: string[], prefix: string, postfix: string):
             .filter((trait: string) => !TRAITS.ELITE_WEAK.includes(trait))
             .filter((trait: string) => !TRAITS.SIZES.includes(trait))
             .filter((trait: string) => !TRAITS.RARITIES.includes(trait))
-            .filter((trait: string) => !TRAITS.AON_CREATURE_TYPES.includes(trait))
+            .filter((trait: string) => !TRAITS.CREATURE_IDENTIFICATION_TRAITS.includes(trait))
             .filter((trait: string) => !TRAITS.PF2E_CREATURE_TRAITS.includes(trait));
     }
 
@@ -119,7 +121,7 @@ function filterTraitList(traitsList: string[], prefix: string, postfix: string):
                 .concat(rarities)
                 .concat(others)
                 .concat(pf2eAdjectiveTraits)
-                .concat(aonCreatureTypes)
+                .concat(creatureIdentificationTraits)
                 .concat(pf2eCreatureTraits)
                 .concat([postfix]),
         ).values(),

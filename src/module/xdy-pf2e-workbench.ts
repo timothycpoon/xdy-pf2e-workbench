@@ -232,44 +232,43 @@ Hooks.once("init", async (_actor: ActorPF2e) => {
 });
 
 export function changePauseText() {
-    if (game.release.generation > 12) {
-        console.log("PF2e Workbench: Changing pause text is not (yet) supported in foundry 12");
-        return;
-    }
-
     if (!document?.querySelector("#pause")?.classList.contains("paused")) {
         return;
     }
 
-    if (game.settings.get(MODULENAME, "customPauseImage") !== "") {
-        // Set css variables for the module
-        const path = <string>game.settings.get(MODULENAME, "customPauseImage");
-        const prefix = path.startsWith("http") ? "" : "../../../";
-        document.documentElement.style.setProperty("--xdy-pf2e-workbench-pause", "url(" + prefix + path + ")");
-    }
+    const style = document.documentElement.style;
 
-    document.documentElement.style.setProperty("--xdy-pf2e-workbench-pause-bottom", "10%");
-    document.documentElement.style.setProperty("--xdy-pf2e-workbench-pause-figcaption-top", "0%");
-    if (game.settings.get(MODULENAME, "customPauseRelocation")) {
-        document.documentElement.style.setProperty("--xdy-pf2e-workbench-pause-bottom", "calc(50% - 64px)");
-        document.documentElement.style.setProperty("--xdy-pf2e-workbench-pause-figcaption-top", "-100%");
-        document.documentElement.style.setProperty("--xdy-pf2e-workbench-pause-background", "");
-    }
+    const imagePath = <string>game.settings.get(MODULENAME, "customPauseImage");
 
-    const text = game.settings.get(MODULENAME, "customPauseText");
-    if (phase >= Phase.READY) {
-        const element = document.querySelector("figcaption");
-        if (text && text !== "" && element) {
-            // @ts-ignore
-            element.textContent = text;
-            const pauseText = game?.i18n?.translations?.GAME["Paused"];
-            if (pauseText) {
-                game.i18n.translations.GAME["Paused"] = text;
-            }
+    if (imagePath !== "") {
+        let url: string;
+        if (/^https?:/i.test(imagePath)) {
+            const imageUrl = new URL(imagePath);
+            imageUrl.pathname = encodeURIComponent(imageUrl.pathname.split("/")[1] ?? imageUrl.pathname);
+            url = `url("${imageUrl}")`;
+        } else {
+            url = `url("../../../${encodeURIComponent(imagePath)}")`;
         }
-        // const paused = !game.paused;
-        // game.togglePause(paused, true);
-        // new Promise((resolve) => setTimeout(resolve, 25)).then(() => game.togglePause(!paused, true));
+        style.setProperty("--xdy-pf2e-workbench-pause", url);
+    }
+
+    if (game.settings.get(MODULENAME, "customPauseRelocation")) {
+        style.setProperty("--xdy-pf2e-workbench-pause-bottom", "calc(50% - 64px)");
+        style.setProperty("--xdy-pf2e-workbench-pause-figcaption-top", "-100%");
+        style.setProperty("--xdy-pf2e-workbench-pause-background", "");
+    } else {
+        style.setProperty("--xdy-pf2e-workbench-pause-bottom", "10%");
+        style.setProperty("--xdy-pf2e-workbench-pause-figcaption-top", "0%");
+    }
+
+    if (phase >= Phase.READY) {
+        const element = document.querySelector<HTMLElement>("figcaption");
+
+        const text = <string>game.settings.get(MODULENAME, "customPauseText");
+
+        if (text && element) {
+            element.textContent = text;
+        }
     }
 }
 
