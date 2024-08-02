@@ -1,3 +1,22 @@
+## [31.1.1](https://github.com/timothycpoon/xdy-pf2e-workbench/compare/fv31.1.0...fv31.1.1) (2024-08-02)
+
+
+### Bug Fixes
+
+* Actually turn off changing the paused text in v12. (Not sure it'll return.) ([87783ba](https://github.com/timothycpoon/xdy-pf2e-workbench/commit/87783bab675164d8a143efa4d5992e2b5ffe7da1))
+* Another try at making pause text work. ([1f55cca](https://github.com/timothycpoon/xdy-pf2e-workbench/commit/1f55cca5e697573c253f4d3362d9fb5a37977296))
+* De-OGL:ing the Workbench part 1 of n ([a36a549](https://github.com/timothycpoon/xdy-pf2e-workbench/commit/a36a5494513b34446f707f03a70183c2570be64d))
+* Keeping up with the Macro Faeries. ([f2c0c62](https://github.com/timothycpoon/xdy-pf2e-workbench/commit/f2c0c62b6ccae5e257eb9505508789ea2bb29bff))
+* Keeping up with the Macro Faeries. ([6ff1f5a](https://github.com/timothycpoon/xdy-pf2e-workbench/commit/6ff1f5a49e073cb613623268890b8f694d15425e))
+* Make BAM work with Dorako UI ([41c1588](https://github.com/timothycpoon/xdy-pf2e-workbench/commit/41c15889e40cc375e01265d7ead95d778074d01d))
+* Make pause image url handling more robust. ([7078d86](https://github.com/timothycpoon/xdy-pf2e-workbench/commit/7078d86b1084d7081642d1c0b145799d4da73e6a))
+* Re-add spirit to creature traits. ([195156c](https://github.com/timothycpoon/xdy-pf2e-workbench/commit/195156c38c8a747b966f545aba949db0142d5a67))
+* require pf2e 6.1.2 and foundry 12.330, update types ([b5449f0](https://github.com/timothycpoon/xdy-pf2e-workbench/commit/b5449f0db045b34ba604b654f2f0ec7efbab7915))
+* Require pf2e 6.2.0, updated types. ([5262e87](https://github.com/timothycpoon/xdy-pf2e-workbench/commit/5262e8796c82d8e8ea52d16bb058afd7cedecec9))
+* Token animation speed now works when dragging to 0,0 ([c499d18](https://github.com/timothycpoon/xdy-pf2e-workbench/commit/c499d1867ba83430f3a222c9f2571214f9dc33b7))
+* Unify apply persistent damage/healing, add roll options ([bbcfbc8](https://github.com/timothycpoon/xdy-pf2e-workbench/commit/bbcfbc897eeaf4b83222833d9212293402d547d4))
+* Use the traits listed for creature identification skills for mystification. ([cfb25bc](https://github.com/timothycpoon/xdy-pf2e-workbench/commit/cfb25bcca69c2ea80263b08317edc0047070ef8e))
+
 ## [6.7.13](https://github.com/xdy/xdy-pf2e-workbench/compare/v6.7.12...v6.7.13) (2024-08-02)
 
 
