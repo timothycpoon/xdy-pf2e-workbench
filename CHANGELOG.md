@@ -1,3 +1,10 @@
+## [31.1.1](https://github.com/timothycpoon/xdy-pf2e-workbench/compare/v31.1.0...v31.1.1) (2024-08-12)
+
+
+### Bug Fixes
+
+* submodules ([c14d53a](https://github.com/timothycpoon/xdy-pf2e-workbench/commit/c14d53a9d8fe8cc265851f91b9ec1c3a0889b57a))
+
 ## [6.7.18](https://github.com/xdy/xdy-pf2e-workbench/compare/v6.7.17...v6.7.18) (2024-08-12)
 
 
