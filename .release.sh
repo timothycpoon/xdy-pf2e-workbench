@@ -1,7 +1,7 @@
 MANIFEST_SEARCH_PATTERN='(\s\"(manifest)\"\: \"https:\/\/github.com\/timothycpoon\/xdy-pf2e-workbench\/releases\/).*(\/(module.json)\",)'
 DOWNLOAD_SEARCH_PATTERN='(\s\"(download)\"\: \"https:\/\/github.com\/timothycpoon\/xdy-pf2e-workbench\/releases\/).*(\/(xdy-pf2e-workbench.zip)\",)'
 #For version specific download
-VERSION_MAIN_REPLACE="\1download/fv$1\3"
+VERSION_MAIN_REPLACE="\1download/v$1\3"
 #For latest download
 LATEST_MAIN_REPLACE="\1latest/download\3"
 
